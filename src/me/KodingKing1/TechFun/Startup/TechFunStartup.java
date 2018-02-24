@@ -18,6 +18,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.block.Dispenser;
 import org.bukkit.block.Dropper;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
@@ -26,6 +27,10 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+import java.util.Random;
 
 /**
  * Created by dylan on 27/02/2017.
@@ -243,6 +248,30 @@ public class TechFunStartup {
         smackyStick.register();
 
         weaponsCategory.registerItem(smackyStick);
+
+        ItemBase swordOfBlinding = Factory.makeItem("SwordOfBlinding", "Sword of Blinding", new String[]{ "Has a chance to blind the enemy when hit." }, Material.DIAMOND_SWORD, new Object[] {
+                null, Material.REDSTONE_BLOCK, null,
+                null, Material.DIAMOND_SWORD, null,
+                Material.OBSIDIAN, diamondCore, Material.OBSIDIAN
+        }, CraftingStation.MagicalCraftingTable, 10);
+
+        swordOfBlinding.registerHandler(new ItemAttackHandler() {
+            @Override
+            public void onAttack(EntityDamageByEntityEvent e, Player p, ItemStack item) {
+                Random r = new Random();
+                int chance = r.nextInt(9);
+                if (chance == 0 && e.getEntityType() == EntityType.PLAYER) {
+                    Player attacked = (Player) e.getEntity();
+                    attacked.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 60, 2, false, false));
+                    TechFunMain.getPluginLogger().sendMessage(attacked, TextUtil.Level.Error, "You have been inflicted with blindness by " + p.getName() + "\'s Sword of Blinding!");
+                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "You have inflicted " + attacked.getName() + " with blindness!");
+                }
+            }
+        });
+
+        swordOfBlinding.register();
+
+        weaponsCategory.registerItem(swordOfBlinding);
 
         weaponsCategory.register();
 
