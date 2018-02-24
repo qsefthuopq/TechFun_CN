@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="TechFun V2">
+    <output-path>$PROJECT_DIR$/out/artifacts/TechFun_V2</output-path>
+    <root id="archive" name="TechFun V2.jar">
+      <element id="module-output" name="TechFun V2" />
+    </root>
+  </artifact>
+</component>

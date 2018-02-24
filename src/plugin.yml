@@ -1,0 +1,9 @@
+name: TechFun
+version: 1.0.0
+main: me.KodingKing1.TechFun.TechFunMain
+author: KodingKing1
+commands:
+  tf:
+    usage: /<command> [Sub-Command]
+    description: The main command of TechFun!
+    aliases: [TechFun]
