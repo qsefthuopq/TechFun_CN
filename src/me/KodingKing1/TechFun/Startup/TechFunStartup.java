@@ -381,6 +381,13 @@ public class TechFunStartup {
 
         Category toolsCategory = Factory.makeCategory("TFTools", "Tools", new String[]{"The category for tools in default TechFun."}, Material.DIAMOND_PICKAXE);
 
+        ItemBase pickaxeOfSmelting = Factory.makeItem("PickaxeOfSmelting", "Pickaxe of Smelting", new String[]{ "Automatically smelts ores mined." }, Material.DIAMOND_PICKAXE, new Object[]{
+                Material.OBSIDIAN, Material.REDSTONE, Material.OBSIDIAN,
+                Material.BOOK, diamondCore, Material.BOOK,
+                Material.OBSIDIAN, Material.DIAMOND_PICKAXE, Material.REDSTONE
+        }, CraftingStation.Forge, 10);
+
+        pickaxeOfSmelting.register();
 
         toolsCategory.register();
     }
