@@ -6,26 +6,26 @@ import me.KodingKing1.TechFun.Objects.CraftingStation;
 import me.KodingKing1.TechFun.Objects.Factory;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemAttackHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemClickHandler;
-import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemCraftHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.MultiBlock.MultiBlockClickHandler;
 import me.KodingKing1.TechFun.Objects.ItemBase;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
 import me.KodingKing1.TechFun.TechFunMain;
-import me.KodingKing1.TechFun.Util.*;
-import org.bukkit.*;
-import org.bukkit.block.Block;
+import me.KodingKing1.TechFun.Util.CoolDownManager;
+import me.KodingKing1.TechFun.Util.InvUtil;
+import me.KodingKing1.TechFun.Util.TFUtil;
+import me.KodingKing1.TechFun.Util.TextUtil;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.Dispenser;
 import org.bukkit.block.Dropper;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -39,7 +39,7 @@ public class TechFunStartup {
 
     private static TechFunMain plugin;
 
-    public static void init(TechFunMain techfun){
+    public static void init(TechFunMain techfun) {
         plugin = techfun;
         registerAll();
         registerEvents();
@@ -151,17 +151,17 @@ public class TechFunStartup {
             @Override
             public void onItemClick(PlayerInteractEvent e, Player p, ItemStack item) {
                 e.setCancelled(true);
-                if(bedWarperCooldown.getTimeLeft(p) == 0){
-                    if(p.getBedSpawnLocation() == null){
+                if (bedWarperCooldown.getTimeLeft(p) == 0) {
+                    if (p.getBedSpawnLocation() == null) {
                         TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Info, "You have been warped to spawn because you have not set a bed spawn!");
                         p.teleport(p.getWorld().getSpawnLocation());
-                    }else{
+                    } else {
                         TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "You have been teleported to your bed!");
                         p.teleport(p.getBedSpawnLocation());
                     }
                     bedWarperCooldown.setCooldownLength(p, 120);
                     bedWarperCooldown.startCooldown(p);
-                }else{
+                } else {
                     TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "Your item is on cooldown! It has " + String.valueOf(bedWarperCooldown.getTimeLeft(p)) + " seconds left!");
                 }
             }
@@ -225,7 +225,7 @@ public class TechFunStartup {
         soulDagger.registerHandler(new ItemAttackHandler() {
             @Override
             public void onAttack(EntityDamageByEntityEvent e, Player p, ItemStack item) {
-                if(soulDaggerCooldown.getTimeLeft(p) == 0){
+                if (soulDaggerCooldown.getTimeLeft(p) == 0) {
                     p.setHealth(Math.min(20, p.getHealth() + 4));
                     soulDaggerCooldown.setCooldownLength(p, 5);
                     soulDaggerCooldown.startCooldown(p);
@@ -249,7 +249,7 @@ public class TechFunStartup {
 
         weaponsCategory.registerItem(smackyStick);
 
-        ItemBase swordOfBlinding = Factory.makeItem("SwordOfBlinding", "Sword of Blinding", new String[]{ "Has a chance to blind the enemy when hit." }, Material.DIAMOND_SWORD, new Object[] {
+        ItemBase swordOfBlinding = Factory.makeItem("SwordOfBlinding", "Sword of Blinding", new String[]{"Has a chance to blind the enemy when hit."}, Material.DIAMOND_SWORD, new Object[]{
                 null, Material.REDSTONE_BLOCK, null,
                 null, Material.DIAMOND_SWORD, null,
                 Material.OBSIDIAN, diamondCore, Material.OBSIDIAN
@@ -279,7 +279,7 @@ public class TechFunStartup {
 
         CoolDownManager flightCharmCooldown = new CoolDownManager(plugin);
 
-        ItemBase flightCharm = Factory.makeItem("FlightCharm", "Charm Of Flight", new String[]{ "Gives you flight temporarily!" }, Material.EMERALD, new Object[] {
+        ItemBase flightCharm = Factory.makeItem("FlightCharm", "Charm Of Flight", new String[]{"Gives you flight temporarily!"}, Material.EMERALD, new Object[]{
                 Material.OBSIDIAN, Material.REDSTONE_BLOCK, Material.OBSIDIAN,
                 Material.REDSTONE, diamondCore.getItem(), Material.REDSTONE,
                 Material.OBSIDIAN, Material.GOLD_BLOCK, Material.OBSIDIAN
@@ -338,12 +338,12 @@ public class TechFunStartup {
             @Override
             public void onItemClick(PlayerInteractEvent e, Player p, ItemStack item) {
                 e.setCancelled(true);
-                if(wandOfFireCooldown.getTimeLeft(p) == 0){
+                if (wandOfFireCooldown.getTimeLeft(p) == 0) {
                     Fireball fireball = (Fireball) p.launchProjectile(Fireball.class);
                     fireball.setVelocity(p.getLocation().getDirection().multiply(3));
                     wandOfFireCooldown.setCooldownLength(p, 10);
                     wandOfFireCooldown.startCooldown(p);
-                }else{
+                } else {
                     TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "The item is still on cooldown! There is " + wandOfFireCooldown.getTimeLeft(p) + " seconds left!");
                 }
             }
@@ -363,11 +363,11 @@ public class TechFunStartup {
             @Override
             public void onAttack(EntityDamageByEntityEvent e, Player p, ItemStack item) {
                 e.setCancelled(true);
-                if(e.getEntity() instanceof Player){
+                if (e.getEntity() instanceof Player) {
                     p.getInventory().setItemInMainHand(null);
                     p.getInventory().addItem(TFUtil.makePlayerHead(e.getEntity().getName(), e.getEntity().getName() + "\'s head", new String[]{"Its a players head. Hmmmm."}));
                     e.getEntity().getWorld().spawnParticle(Particle.CRIT_MAGIC, p.getLocation(), 100);
-                }else{
+                } else {
                     TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "You must click on a player!");
                 }
             }
@@ -378,9 +378,14 @@ public class TechFunStartup {
         magicCategory.registerItem(playerBeheader);
 
         magicCategory.register();
+
+        Category toolsCategory = Factory.makeCategory("TFTools", "Tools", new String[]{"The category for tools in default TechFun."}, Material.DIAMOND_PICKAXE);
+
+
+        toolsCategory.register();
     }
 
-    private static void registerCommands(){
+    private static void registerCommands() {
         plugin.getCommand("tf").setExecutor(new TechFunCommands());
     }
 
