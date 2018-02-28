@@ -7,7 +7,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 /**
  * Created by Dylan Inwood on 28/02/2018.
  */
-public interface ItemBlockBreakHandler {
+public interface ItemBlockBreakHandler extends ItemHandler {
 
     void onBlockBroken(Block b, Player p, BlockBreakEvent e);
 
