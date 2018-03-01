@@ -21,6 +21,7 @@ public class ItemBase {
     CraftingStation craftingStation;
     int xpToUnlock;
     List<ItemHandler> handlers = new ArrayList<>();
+    int amount = 0;
 
     public String getName() {
         return name;
@@ -36,6 +37,7 @@ public class ItemBase {
 
     public void setItem(ItemStack item) {
         this.item = item;
+        this.amount = new ItemStack(item).getAmount();
     }
 
     public ItemStack[] getRecipe() {
@@ -66,6 +68,10 @@ public class ItemBase {
 
     public CraftingStation getCraftingStation() {
         return craftingStation;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 
     public void setCraftingStation(CraftingStation craftingStation) {

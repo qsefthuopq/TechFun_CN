@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a64e4aa-9779-4dc4-b8dd-11c15a151f34" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/Cooldown.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/CustomRecipe.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/CustomRecipe.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/ItemBase.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/ItemBase.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunStartup.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunStartup.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/InvUtil.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/InvUtil.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,12 +18,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TechFunStartup.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TechFunStartup.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunStartup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="440" column="0" lean-forward="true" selection-start-line="440" selection-start-column="0" selection-end-line="440" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="477">
+              <caret line="423" column="51" lean-forward="false" selection-start-line="423" selection-start-column="51" selection-end-line="423" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -55,69 +59,59 @@
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="460">
-              <caret line="1132" column="21" lean-forward="true" selection-start-line="1132" selection-start-column="21" selection-end-line="1132" selection-end-column="21" />
+              <caret line="1190" column="21" lean-forward="true" selection-start-line="1190" selection-start-column="21" selection-end-line="1190" selection-end-column="21" />
               <folding>
-                <marker date="1519883531858" expanded="true" signature="62520:62537" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="62520:62555" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="62520:62568" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="62520:62583" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="62618:65211" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="62631:65196" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="62685:63067" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="62704:63052" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="62815:63032" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="62855:62998" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="62876:62976" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63117:63444" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63136:63429" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63231:63409" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63271:63375" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63292:63353" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63495:63760" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63514:63745" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63547:63725" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63587:63691" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63608:63669" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63803:64109" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63822:64094" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63896:64074" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63936:64040" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="63957:64018" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="64160:64473" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="64179:64458" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="64260:64438" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="64300:64404" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="64321:64382" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="64508:64814" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="64527:64799" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="64601:64779" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="64641:64745" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="64662:64723" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="64866:65182" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="64885:65167" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="64969:65147" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="65009:65113" ph="..." />
-                <marker date="1519883531858" expanded="true" signature="65030:65091" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66161:66178" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66161:66196" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66161:66209" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66161:66224" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66259:68852" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66272:68837" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66326:66708" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66345:66693" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66456:66673" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66496:66639" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66517:66617" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66758:67085" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66777:67070" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66872:67050" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66912:67016" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="66933:66994" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67136:67401" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67155:67386" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67188:67366" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67228:67332" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67249:67310" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67444:67750" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67463:67735" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67537:67715" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67577:67681" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67598:67659" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67801:68114" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67820:68099" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67901:68079" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67941:68045" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="67962:68023" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="68149:68455" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="68168:68440" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="68242:68420" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="68282:68386" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="68303:68364" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="68507:68823" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="68526:68808" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="68610:68788" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="68650:68754" ph="..." />
+                <marker date="1519884679419" expanded="true" signature="68671:68732" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TFUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/TFUtil.java">
+      <file leaf-file-name="Factory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Factory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1105">
-              <caret line="74" column="20" lean-forward="false" selection-start-line="74" selection-start-column="20" selection-end-line="74" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Category.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Category/Category.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+            <state relative-caret-position="712">
+              <caret line="205" column="26" lean-forward="false" selection-start-line="205" selection-start-column="26" selection-end-line="205" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -126,12 +120,22 @@
       <file leaf-file-name="CustomRecipe.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/CustomRecipe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+            <state relative-caret-position="340">
+              <caret line="22" column="8" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="53" />
               <folding>
-                <element signature="e#907#908#0" expanded="true" />
-                <element signature="e#958#959#0" expanded="true" />
+                <element signature="e#721#722#0" expanded="true" />
+                <element signature="e#750#751#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ItemBase.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/ItemBase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="356">
+              <caret line="53" column="46" lean-forward="true" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -139,8 +143,8 @@
       <file leaf-file-name="TechFunGuide.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunGuide.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4981">
-              <caret line="320" column="69" lean-forward="false" selection-start-line="320" selection-start-column="69" selection-end-line="320" selection-end-column="69" />
+            <state relative-caret-position="306">
+              <caret line="330" column="66" lean-forward="true" selection-start-line="330" selection-start-column="66" selection-end-line="330" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -149,18 +153,23 @@
       <file leaf-file-name="Registry.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/Registry.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="151">
+              <caret line="67" column="53" lean-forward="false" selection-start-line="67" selection-start-column="53" selection-end-line="67" selection-end-column="53" />
+              <folding>
+                <element signature="e#1140#1141#0" expanded="true" />
+                <element signature="e#1176#1177#0" expanded="true" />
+                <element signature="e#2164#2165#0" expanded="true" />
+                <element signature="e#2205#2206#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InvUtil.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="InvUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/InvUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="51" column="9" lean-forward="false" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
+            <state relative-caret-position="459">
+              <caret line="242" column="30" lean-forward="true" selection-start-line="242" selection-start-column="30" selection-end-line="242" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -198,14 +207,16 @@
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Handlers/Item/ItemBlockBreakHandler.java" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Events/ItemEvents.java" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Factory.java" />
-        <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/CustomRecipe.java" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunGuide.java" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/TFUtil.java" />
-        <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/InvUtil.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/Cooldown.java" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/CoolDownManager.java" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunStartup.java" />
+        <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/Registry.java" />
+        <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/CustomRecipe.java" />
+        <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/ItemBase.java" />
+        <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/InvUtil.java" />
       </list>
     </option>
   </component>
@@ -293,6 +304,15 @@
               <item name="me" type="462c0819:PsiDirectoryNode" />
               <item name="KodingKing1" type="462c0819:PsiDirectoryNode" />
               <item name="TechFun" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="me" type="462c0819:PsiDirectoryNode" />
+              <item name="KodingKing1" type="462c0819:PsiDirectoryNode" />
+              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
+              <item name="Objects" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
@@ -588,7 +608,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519882403622</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fixed a bug with cooldowns which would increase the speed of the cooldown when activated multiple times.">
+      <created>1519883573533</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1519883573533</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -597,7 +624,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3172043" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3172043" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -636,7 +663,8 @@
     <MESSAGE value="Made handler extend class." />
     <MESSAGE value="Added XP Token and Pickaxe of Smelting." />
     <MESSAGE value="Added workspace file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added workspace file." />
+    <MESSAGE value="Fixed a bug with cooldowns which would increase the speed of the cooldown when activated multiple times." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed a bug with cooldowns which would increase the speed of the cooldown when activated multiple times." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -651,7 +679,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5865">
           <caret line="387" column="0" lean-forward="false" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -668,8 +698,8 @@
         <state relative-caret-position="323">
           <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
           <folding>
-            <element signature="e#907#908#0" expanded="true" />
-            <element signature="e#958#959#0" expanded="true" />
+            <element signature="e#721#722#0" expanded="true" />
+            <element signature="e#750#751#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -710,7 +740,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1140#1141#0" expanded="true" />
+            <element signature="e#1176#1177#0" expanded="true" />
+            <element signature="e#2164#2165#0" expanded="true" />
+            <element signature="e#2205#2206#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -734,7 +769,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -758,7 +795,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -782,7 +821,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -835,7 +876,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="234" column="31" lean-forward="false" selection-start-line="234" selection-start-column="31" selection-end-line="234" selection-end-column="31" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -905,14 +948,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Factory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3281">
-          <caret line="204" column="133" lean-forward="false" selection-start-line="204" selection-start-column="133" selection-end-line="204" selection-end-column="133" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Events/ItemEvents.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -921,34 +956,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunGuide.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4981">
-          <caret line="320" column="69" lean-forward="false" selection-start-line="320" selection-start-column="69" selection-end-line="320" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/Registry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/libs/spigot-1.12.2.jar!/org/bukkit/World.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
           <caret line="95" column="9" lean-forward="false" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/InvUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="51" column="9" lean-forward="false" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -968,63 +979,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/CustomRecipe.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-          <folding>
-            <element signature="e#907#908#0" expanded="true" />
-            <element signature="e#958#959#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
-          <caret line="1132" column="21" lean-forward="true" selection-start-line="1132" selection-start-column="21" selection-end-line="1132" selection-end-column="21" />
+          <caret line="1190" column="21" lean-forward="true" selection-start-line="1190" selection-start-column="21" selection-end-line="1190" selection-end-column="21" />
           <folding>
-            <marker date="1519883531858" expanded="true" signature="62520:62537" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="62520:62555" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="62520:62568" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="62520:62583" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="62618:65211" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="62631:65196" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="62685:63067" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="62704:63052" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="62815:63032" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="62855:62998" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="62876:62976" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63117:63444" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63136:63429" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63231:63409" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63271:63375" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63292:63353" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63495:63760" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63514:63745" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63547:63725" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63587:63691" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63608:63669" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63803:64109" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63822:64094" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63896:64074" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63936:64040" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="63957:64018" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="64160:64473" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="64179:64458" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="64260:64438" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="64300:64404" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="64321:64382" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="64508:64814" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="64527:64799" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="64601:64779" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="64641:64745" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="64662:64723" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="64866:65182" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="64885:65167" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="64969:65147" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="65009:65113" ph="..." />
-            <marker date="1519883531858" expanded="true" signature="65030:65091" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66161:66178" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66161:66196" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66161:66209" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66161:66224" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66259:68852" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66272:68837" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66326:66708" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66345:66693" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66456:66673" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66496:66639" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66517:66617" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66758:67085" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66777:67070" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66872:67050" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66912:67016" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="66933:66994" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67136:67401" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67155:67386" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67188:67366" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67228:67332" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67249:67310" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67444:67750" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67463:67735" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67537:67715" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67577:67681" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67598:67659" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67801:68114" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67820:68099" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67901:68079" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67941:68045" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="67962:68023" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="68149:68455" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="68168:68440" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="68242:68420" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="68282:68386" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="68303:68364" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="68507:68823" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="68526:68808" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="68610:68788" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="68650:68754" ph="..." />
+            <marker date="1519884679419" expanded="true" signature="68671:68732" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1052,8 +1052,66 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunStartup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="440" column="0" lean-forward="true" selection-start-line="440" selection-start-column="0" selection-end-line="440" selection-end-column="0" />
+        <state relative-caret-position="477">
+          <caret line="423" column="51" lean-forward="false" selection-start-line="423" selection-start-column="51" selection-end-line="423" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Factory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="712">
+          <caret line="205" column="26" lean-forward="false" selection-start-line="205" selection-start-column="26" selection-end-line="205" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/Registry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="67" column="53" lean-forward="false" selection-start-line="67" selection-start-column="53" selection-end-line="67" selection-end-column="53" />
+          <folding>
+            <element signature="e#1140#1141#0" expanded="true" />
+            <element signature="e#1176#1177#0" expanded="true" />
+            <element signature="e#2164#2165#0" expanded="true" />
+            <element signature="e#2205#2206#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunGuide.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="330" column="66" lean-forward="true" selection-start-line="330" selection-start-column="66" selection-end-line="330" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/CustomRecipe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="22" column="8" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="53" />
+          <folding>
+            <element signature="e#721#722#0" expanded="true" />
+            <element signature="e#750#751#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/ItemBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="53" column="46" lean-forward="true" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/InvUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="242" column="30" lean-forward="true" selection-start-line="242" selection-start-column="30" selection-end-line="242" selection-end-column="30" />
           <folding />
         </state>
       </provider>

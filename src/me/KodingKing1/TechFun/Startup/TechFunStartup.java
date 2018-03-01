@@ -12,7 +12,10 @@ import me.KodingKing1.TechFun.Objects.Handlers.MultiBlock.MultiBlockClickHandler
 import me.KodingKing1.TechFun.Objects.ItemBase;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
 import me.KodingKing1.TechFun.TechFunMain;
-import me.KodingKing1.TechFun.Util.*;
+import me.KodingKing1.TechFun.Util.Cooldown;
+import me.KodingKing1.TechFun.Util.InvUtil;
+import me.KodingKing1.TechFun.Util.TFUtil;
+import me.KodingKing1.TechFun.Util.TextUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -27,17 +30,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.material.MaterialData;
-import org.bukkit.material.SpawnEgg;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.Random;
 
 /**
  * Created by dylan on 27/02/2017.
@@ -375,7 +372,7 @@ public class TechFunStartup {
 
         magicCategory.registerItem(playerBeheader);
 
-        ItemBase xpToken = Factory.makeItem("XPToken", "XP Token", new String[]{ "Gives you 5 levels when used." }, Material.EMERALD, new Object[]{
+        ItemBase xpToken = Factory.makeItem("XPToken", "XP Token", new String[]{"Gives you 5 levels when used."}, Material.EMERALD, new Object[]{
                 Material.COBBLESTONE, Material.COAL_BLOCK, Material.COBBLESTONE,
                 Material.COAL, stoneCore, Material.COAL,
                 Material.COBBLESTONE, Material.GLASS_BOTTLE, Material.COBBLESTONE
@@ -398,7 +395,7 @@ public class TechFunStartup {
 
         Category toolsCategory = Factory.makeCategory("TFTools", "Tools", new String[]{"The category for tools in default TechFun."}, Material.DIAMOND_PICKAXE);
 
-        ItemBase pickaxeOfSmelting = Factory.makeItem("PickaxeOfSmelting", "Pickaxe of Smelting", new String[]{ "Automatically smelts ores mined." }, Material.DIAMOND_PICKAXE, new Object[]{
+        ItemBase pickaxeOfSmelting = Factory.makeItem("PickaxeOfSmelting", "Pickaxe of Smelting", new String[]{"Automatically smelts ores mined."}, Material.DIAMOND_PICKAXE, new Object[]{
                 Material.OBSIDIAN, Material.REDSTONE, Material.OBSIDIAN,
                 Material.BOOK, diamondCore, Material.BOOK,
                 Material.OBSIDIAN, Material.DIAMOND_PICKAXE, Material.OBSIDIAN
@@ -422,9 +419,9 @@ public class TechFunStartup {
 
         toolsCategory.register();
 
-        Category spawnerCategory = Factory.makeCategory("TFSpawner", "Spawners", new String[]{ "Contains spawn eggs for entities." }, Material.MOB_SPAWNER);
+        Category spawnerCategory = Factory.makeCategory("TFSpawner", "Spawners", new String[]{"Contains spawn eggs for entities."}, Material.MOB_SPAWNER);
 
-        CustomRecipe cowSpawner = Factory.makeCustomRecipe(TFUtil.makeMobSpawnEgg("Cow", 2,  plugin), new ItemStack[] {
+        CustomRecipe cowSpawner = Factory.makeCustomRecipe(TFUtil.makeMobSpawnEgg("Cow", 2, plugin), new ItemStack[]{
                 null, new ItemStack(Material.RAW_BEEF), null,
                 null, new ItemStack(Material.EGG), null,
                 null, null, null

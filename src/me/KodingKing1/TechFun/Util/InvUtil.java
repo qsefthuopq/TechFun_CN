@@ -103,7 +103,7 @@ public class InvUtil {
                         }
                     }
                 }
-                for (int i = 0; i < recipe.getOut().getAmount(); i++) {
+                for (int i = 0; i < recipe.getAmount(); i++) {
                     dispenser.getWorld().dropItemNaturally(dispenser.getLocation().add(0, 3, 0), recipe.getOut());
                 }
                 dispenser.getWorld().playSound(dispenser.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
@@ -172,7 +172,9 @@ public class InvUtil {
                         }
                     }
                 }
-                dispenser.getWorld().dropItemNaturally(dispenser.getLocation().add(0, 3, 0), item.getItem());
+                for (int i = 0; i < item.getAmount(); i++) {
+                    dispenser.getWorld().dropItemNaturally(dispenser.getLocation().add(0, 3, 0), item.getItem());
+                }
                 dispenser.getWorld().playSound(dispenser.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                 new BukkitRunnable() {
                     int i = 1;
@@ -226,7 +228,7 @@ public class InvUtil {
             if (!invi.getType().equals(reci.getType())) {
                 isCorrect = false;
             }
-            if (invi.hasItemMeta() && reci.hasItemMeta()) {
+            if (invi.hasItemMeta() && invi.getItemMeta().hasDisplayName() && reci.hasItemMeta() && reci.getItemMeta().hasDisplayName()) {
                 if (!(ChatColor.stripColor(invi.getItemMeta().getDisplayName().toLowerCase()).contentEquals(ChatColor.stripColor(reci.getItemMeta().getDisplayName().toLowerCase())))) {
                     isCorrect = false;
                 }

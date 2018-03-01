@@ -13,12 +13,18 @@ public class CustomRecipe {
     public ItemStack[] recipe;
     public CraftingStation station;
     public Category category;
+    public int amount = 0;
 
     public CustomRecipe(ItemStack out, ItemStack[] recipe, CraftingStation station, Category category) {
         this.out = out;
         this.recipe = recipe;
         this.station = station;
         this.category = category;
+        this.amount = new ItemStack(out).getAmount();
+    }
+
+    public int getAmount() {
+        return amount;
     }
 
     public ItemStack getOut() {
