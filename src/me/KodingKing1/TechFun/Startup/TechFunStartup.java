@@ -12,10 +12,7 @@ import me.KodingKing1.TechFun.Objects.Handlers.MultiBlock.MultiBlockClickHandler
 import me.KodingKing1.TechFun.Objects.ItemBase;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
 import me.KodingKing1.TechFun.TechFunMain;
-import me.KodingKing1.TechFun.Util.CoolDownManager;
-import me.KodingKing1.TechFun.Util.InvUtil;
-import me.KodingKing1.TechFun.Util.TFUtil;
-import me.KodingKing1.TechFun.Util.TextUtil;
+import me.KodingKing1.TechFun.Util.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -149,8 +146,6 @@ public class TechFunStartup {
 
         utilitiesCategory.registerItem(portableCrafter);
 
-        CoolDownManager bedWarperCooldown = new CoolDownManager(plugin);
-
         ItemBase bedWarper = Factory.makeItem("BedWarper", "Bed Warper", new String[]{"Teleports you to your bed in times of need!", "Has a 2 minute cooldown!"}, Material.BED, new Object[]{
                 Material.ENDER_PEARL, Material.BED, Material.ENDER_PEARL,
                 goldCore, Material.EYE_OF_ENDER, goldCore,
@@ -160,8 +155,9 @@ public class TechFunStartup {
         bedWarper.registerHandler(new ItemClickHandler() {
             @Override
             public void onItemClick(PlayerInteractEvent e, Player p, ItemStack item) {
+                Cooldown cooldown = new Cooldown(p.getUniqueId(), "bedWarper", 60 * 2);
                 e.setCancelled(true);
-                if (bedWarperCooldown.getTimeLeft(p) == 0) {
+                if (Cooldown.getTimeLeft(p.getUniqueId(), "bedWarper") <= 0) {
                     if (p.getBedSpawnLocation() == null) {
                         TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Info, "You have been warped to spawn because you have not set a bed spawn!");
                         p.teleport(p.getWorld().getSpawnLocation());
@@ -169,10 +165,9 @@ public class TechFunStartup {
                         TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "You have been teleported to your bed!");
                         p.teleport(p.getBedSpawnLocation());
                     }
-                    bedWarperCooldown.setCooldownLength(p, 120);
-                    bedWarperCooldown.startCooldown(p);
+                    cooldown.start();
                 } else {
-                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "Your item is on cooldown! It has " + String.valueOf(bedWarperCooldown.getTimeLeft(p)) + " seconds left!");
+                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "Your item is on cooldown! It has " + Cooldown.getTimeLeft(p.getUniqueId(), "bedWarper") + " seconds left!");
                 }
             }
         });
@@ -223,9 +218,7 @@ public class TechFunStartup {
 
         Category weaponsCategory = Factory.makeCategory("TFWeapons", "Weapons", new String[]{"Want to battle your enemies and conquer the world!", "Well here is the place for you!"}, Material.DIAMOND_SWORD, 0);
 
-        CoolDownManager soulDaggerCooldown = new CoolDownManager(plugin);
-
-        ItemBase soulDagger = Factory.makeItem("SoulDagger", "Soul Dagger", new String[]{"Gives 2 hearts of life-steal when", "hitting another player every 5 seconds."}, Material.GOLD_SWORD, new Object[]{
+        ItemBase soulDagger = Factory.makeItem("SoulDagger", "Soul Dagger", new String[]{"Has a chance of gaining 2 hearts of life-steal when", "hitting another player."}, Material.GOLD_SWORD, new Object[]{
                 Material.GOLD_INGOT, Material.GOLD_SWORD, Material.GOLD_INGOT,
                 null, ironCore.getItem(), null,
                 Material.GOLD_INGOT, null, Material.GOLD_INGOT
@@ -234,10 +227,9 @@ public class TechFunStartup {
         soulDagger.registerHandler(new ItemAttackHandler() {
             @Override
             public void onAttack(EntityDamageByEntityEvent e, Player p, ItemStack item) {
-                if (soulDaggerCooldown.getTimeLeft(p) == 0) {
+                Random random = new Random();
+                if (random.nextInt(7) == 0) {
                     p.setHealth(Math.min(20, p.getHealth() + 4));
-                    soulDaggerCooldown.setCooldownLength(p, 5);
-                    soulDaggerCooldown.startCooldown(p);
                 }
             }
         });
@@ -286,8 +278,6 @@ public class TechFunStartup {
 
         Category magicCategory = Factory.makeCategory("TFMagic", "Magic", new String[]{"Things for magical wizards and mages!"}, Material.BLAZE_ROD);
 
-        CoolDownManager flightCharmCooldown = new CoolDownManager(plugin);
-
         ItemBase flightCharm = Factory.makeItem("FlightCharm", "Charm Of Flight", new String[]{"Gives you flight temporarily!"}, Material.EMERALD, new Object[]{
                 Material.OBSIDIAN, Material.REDSTONE_BLOCK, Material.OBSIDIAN,
                 Material.REDSTONE, diamondCore.getItem(), Material.REDSTONE,
@@ -297,15 +287,15 @@ public class TechFunStartup {
         flightCharm.registerHandler(new ItemClickHandler() {
             @Override
             public void onItemClick(PlayerInteractEvent e, Player p, ItemStack item) {
+                Cooldown cooldown = new Cooldown(p.getUniqueId(), "flightCharm", 60 * 5);
                 e.setCancelled(true);
-                if (flightCharmCooldown.getTimeLeft(p) == 0) {
+                if (Cooldown.getTimeLeft(p.getUniqueId(), "flightCharm") <= 0) {
                     item.setAmount(item.getAmount() - 1);
                     if (item.getAmount() == 0) {
                         item.setType(Material.AIR);
                     }
                     p.setAllowFlight(true);
-                    flightCharmCooldown.setCooldownLength(p, 60 * 5);
-                    flightCharmCooldown.startCooldown(p);
+                    cooldown.start();
                     for (int i = 5; i > 0; i--) {
                         final int i2 = i;
                         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
@@ -325,8 +315,9 @@ public class TechFunStartup {
                         }
                     }, 20 * 60 * 5);
                     TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "Charm activated, you now have flight for 5 minutes!");
+                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
                 } else {
-                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "The item is still on cooldown! There is " + flightCharmCooldown.getTimeLeft(p) + " seconds left!");
+                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "The item is still on cooldown! There is " + Cooldown.getTimeLeft(p.getUniqueId(), "flightCharm") + " seconds left!");
                 }
             }
         });
@@ -334,8 +325,6 @@ public class TechFunStartup {
         flightCharm.register();
 
         magicCategory.registerItem(flightCharm);
-
-        CoolDownManager wandOfFireCooldown = new CoolDownManager(plugin);
 
         ItemBase wandOfFire = Factory.makeItem("WandOfFire", "Wand Of Fire", new String[]{"Lets you shoot fire!"}, Material.BLAZE_ROD, new Object[]{
                 Material.BLAZE_POWDER, Material.MAGMA_CREAM, Material.BLAZE_POWDER,
@@ -346,14 +335,14 @@ public class TechFunStartup {
         wandOfFire.registerHandler(new ItemClickHandler() {
             @Override
             public void onItemClick(PlayerInteractEvent e, Player p, ItemStack item) {
+                Cooldown cooldown = new Cooldown(p.getUniqueId(), "wandOfFire", 10);
                 e.setCancelled(true);
-                if (wandOfFireCooldown.getTimeLeft(p) == 0) {
+                if (Cooldown.getTimeLeft(p.getUniqueId(), "wandOfFire") <= 0) {
                     Fireball fireball = (Fireball) p.launchProjectile(Fireball.class);
                     fireball.setVelocity(p.getLocation().getDirection().multiply(3));
-                    wandOfFireCooldown.setCooldownLength(p, 10);
-                    wandOfFireCooldown.startCooldown(p);
+                    cooldown.start();
                 } else {
-                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "The item is still on cooldown! There is " + wandOfFireCooldown.getTimeLeft(p) + " seconds left!");
+                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "The item is still on cooldown! There is " + Cooldown.getTimeLeft(p.getUniqueId(), "wandOfFire") + " seconds left!");
                 }
             }
         });
