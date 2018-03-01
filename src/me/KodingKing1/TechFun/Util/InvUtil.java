@@ -8,18 +8,19 @@ import me.KodingKing1.TechFun.Objects.ItemBase;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
 import me.KodingKing1.TechFun.Startup.Registry;
 import me.KodingKing1.TechFun.TechFunMain;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.Dispenser;
 import org.bukkit.block.Dropper;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.Iterator;
 
 /**
  * Created by dylan on 27/02/2017.
@@ -102,7 +103,9 @@ public class InvUtil {
                         }
                     }
                 }
-                dispenser.getWorld().dropItemNaturally(dispenser.getLocation().add(0, 3, 0), recipe.getOut());
+                for (int i = 0; i < recipe.getOut().getAmount(); i++) {
+                    dispenser.getWorld().dropItemNaturally(dispenser.getLocation().add(0, 3, 0), recipe.getOut());
+                }
                 dispenser.getWorld().playSound(dispenser.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                 new BukkitRunnable() {
                     int i = 1;
@@ -123,8 +126,6 @@ public class InvUtil {
         for(ItemBase item : Registry.getItems()){
             boolean isCorrect = true;
             Inventory inv = dispenser.getInventory();
-            System.out.println(inv);
-            System.out.println(item.getRecipe());
             for(int i = 0; i < 9; i++){
                 ItemStack invi = inv.getItem(i);
                 ItemStack reci = item.getRecipe()[i];
@@ -221,8 +222,6 @@ public class InvUtil {
         ItemStack reci = item2;
 //        invi.setAmount(1);
 //        reci.setAmount(1);
-        System.out.println(invi);
-        System.out.println(reci);
         if (invi != null && reci != null) {
             if (!invi.getType().equals(reci.getType())) {
                 isCorrect = false;
@@ -259,4 +258,23 @@ public class InvUtil {
         return isCorrect;
     }
 
+    public static ItemStack getFurnaceRecipeResult(Material blockType) {
+        ItemStack result = null;
+        Iterator<Recipe> iter = Bukkit.recipeIterator();
+        while (iter.hasNext()) {
+            Recipe recipe = iter.next();
+            if (!(recipe instanceof FurnaceRecipe)) continue;
+            if (((FurnaceRecipe) recipe).getInput().getType() != blockType) continue;
+            result = recipe.getResult();
+            break;
+        }
+        return result;
+    }
+
+    public static void decrementItem(ItemStack item) {
+        item.setAmount(item.getAmount() - 1);
+        if (item.getAmount() == 0) {
+            item.setType(Material.AIR);
+        }
+    }
 }

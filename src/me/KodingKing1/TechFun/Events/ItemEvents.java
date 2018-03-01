@@ -1,5 +1,6 @@
 package me.KodingKing1.TechFun.Events;
 
+import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemBlockBreakHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemClickHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemHandler;
 import me.KodingKing1.TechFun.Objects.ItemBase;
@@ -24,6 +25,10 @@ public class ItemEvents implements Listener {
             for(ItemBase item : Registry.getItems()){
                 if(InvUtil.isSimilarItem(item.getItem(), e.getItem())) {
                     for (ItemHandler handler : item.getHandlers()) {
+                        e.setCancelled(true);
+                        if (handler instanceof ItemBlockBreakHandler) {
+                            e.setCancelled(false);
+                        }
                         if (handler instanceof ItemClickHandler) {
                             ItemClickHandler ich = (ItemClickHandler) handler;
                             Boolean unlocked;
@@ -36,10 +41,10 @@ public class ItemEvents implements Listener {
                             if(!unlocked){
                                 TechFunMain.getPluginLogger().sendMessage(e.getPlayer(), TextUtil.Level.Error, "You do not have the knowledge to understand this...");
                                 e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.BLOCK_REDSTONE_TORCH_BURNOUT, 1.0F, 1.0F);
-                                e.setCancelled(true);
                                 continue;
                             }
                             ich.onItemClick(e, e.getPlayer(), e.getItem());
+                            return;
                         }
                     }
                 }

@@ -1,6 +1,7 @@
 package me.KodingKing1.TechFun.Objects;
 
 import me.KodingKing1.TechFun.Objects.Category.Category;
+import me.KodingKing1.TechFun.Startup.Registry;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -34,5 +35,9 @@ public class CustomRecipe {
 
     public Category getCategory() {
         return category;
+    }
+
+    public void register() {
+        Registry.registerCustomRecipe(this);
     }
 }

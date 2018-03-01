@@ -5,7 +5,9 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.plugin.Plugin;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +39,46 @@ public class TFUtil {
         meta.setOwner(playerName);
         item.setItemMeta(meta);
         return item;
+    }
+
+    public static Class<?> getNmsClass(String className, Plugin plugin) throws ClassNotFoundException {
+
+        return Class.forName("net.minecraft.server." + plugin.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3] + "." + className);
+    }
+
+    public static Class<?> getCraftbukkitClass(String className, Plugin plugin) throws ClassNotFoundException {
+        return Class.forName("org.bukkit.craftbukkit." + plugin.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3] + "." + className);
+    }
+
+    public static ItemStack makeMobSpawnEgg(String entityName, Plugin plugin) {
+        try {
+            ItemStack egg = new ItemStack(Material.MONSTER_EGG, 2);
+            Object nmsStack = TFUtil.getCraftbukkitClass("inventory.CraftItemStack", plugin).getMethod("asNMSCopy", ItemStack.class).invoke(null, egg);
+            Object tag = (Boolean)nmsStack.getClass().getMethod("hasTag").invoke(nmsStack) ? nmsStack.getClass().getMethod("getTag").invoke(nmsStack) : TFUtil.getNmsClass("NBTTagCompound", plugin).newInstance();
+            Object nested = TFUtil.getNmsClass("NBTTagCompound", plugin).newInstance();
+            nested.getClass().getMethod("setString", String.class, String.class).invoke(nested, "id", entityName);
+            tag.getClass().getMethod("set", String.class, TFUtil.getNmsClass("NBTBase", plugin)).invoke(tag, "EntityTag", nested);
+            nmsStack.getClass().getMethod("setTag", TFUtil.getNmsClass("NBTTagCompound", plugin)).invoke(nmsStack, tag);
+            ItemStack finalItem = (ItemStack) TFUtil.getCraftbukkitClass("inventory.CraftItemStack", plugin).getMethod("asBukkitCopy", TFUtil.getNmsClass("ItemStack", plugin)).invoke(null, nmsStack);
+            return finalItem;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ItemStack makeMobSpawnEgg(String entityName, int amount, Plugin plugin) {
+        ItemStack egg = makeMobSpawnEgg(entityName, plugin);
+        egg.setAmount(amount);
+        return egg;
     }
 
 }

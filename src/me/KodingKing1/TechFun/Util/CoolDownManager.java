@@ -37,13 +37,14 @@ public class CoolDownManager {
     }
 
     public void startCooldown(final Player player) {
-        task = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(p, new BukkitRunnable() {
+        task = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(p, new Runnable() {
             public void run() {
                 int time = hashmap.get(player.getName());
                 if(time != 0) {
                     hashmap.put(player.getName(), time - 1);
                 } else {
                     Bukkit.getServer().getScheduler().cancelTask(task);
+                    System.out.println(task);
                 }
             }
         }, 0L, 20L);

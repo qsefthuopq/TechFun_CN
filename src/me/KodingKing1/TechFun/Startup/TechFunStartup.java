@@ -3,8 +3,10 @@ package me.KodingKing1.TechFun.Startup;
 import me.KodingKing1.TechFun.Events.*;
 import me.KodingKing1.TechFun.Objects.Category.Category;
 import me.KodingKing1.TechFun.Objects.CraftingStation;
+import me.KodingKing1.TechFun.Objects.CustomRecipe;
 import me.KodingKing1.TechFun.Objects.Factory;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemAttackHandler;
+import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemBlockBreakHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemClickHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.MultiBlock.MultiBlockClickHandler;
 import me.KodingKing1.TechFun.Objects.ItemBase;
@@ -18,19 +20,27 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Dropper;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.material.MaterialData;
+import org.bukkit.material.SpawnEgg;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Random;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 
 /**
  * Created by dylan on 27/02/2017.
@@ -201,7 +211,6 @@ public class TechFunStartup {
         magicalCraftingTable.registerHandler(new MultiBlockClickHandler() {
             @Override
             public void click(MultiBlock multiBlock, Player player, PlayerInteractEvent e) {
-                System.out.println("Debug: " + e.getClickedBlock().getRelative(BlockFace.DOWN));
                 InvUtil.craftItem((Dropper) e.getClickedBlock().getRelative(BlockFace.DOWN).getState(), multiBlock, player, e, plugin, CraftingStation.MagicalCraftingTable);
             }
         });
@@ -377,6 +386,25 @@ public class TechFunStartup {
 
         magicCategory.registerItem(playerBeheader);
 
+        ItemBase xpToken = Factory.makeItem("XPToken", "XP Token", new String[]{ "Gives you 5 levels when used." }, Material.EMERALD, new Object[]{
+                Material.COBBLESTONE, Material.COAL_BLOCK, Material.COBBLESTONE,
+                Material.COAL, stoneCore, Material.COAL,
+                Material.COBBLESTONE, Material.GLASS_BOTTLE, Material.COBBLESTONE
+        }, CraftingStation.MagicalCraftingTable, 10);
+
+        xpToken.registerHandler(new ItemClickHandler() {
+            @Override
+            public void onItemClick(PlayerInteractEvent e, Player p, ItemStack item) {
+                InvUtil.decrementItem(item);
+                p.setLevel(p.getLevel() + 5);
+                p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+            }
+        });
+
+        xpToken.register();
+
+        magicCategory.registerItem(xpToken);
+
         magicCategory.register();
 
         Category toolsCategory = Factory.makeCategory("TFTools", "Tools", new String[]{"The category for tools in default TechFun."}, Material.DIAMOND_PICKAXE);
@@ -384,12 +412,38 @@ public class TechFunStartup {
         ItemBase pickaxeOfSmelting = Factory.makeItem("PickaxeOfSmelting", "Pickaxe of Smelting", new String[]{ "Automatically smelts ores mined." }, Material.DIAMOND_PICKAXE, new Object[]{
                 Material.OBSIDIAN, Material.REDSTONE, Material.OBSIDIAN,
                 Material.BOOK, diamondCore, Material.BOOK,
-                Material.OBSIDIAN, Material.DIAMOND_PICKAXE, Material.REDSTONE
+                Material.OBSIDIAN, Material.DIAMOND_PICKAXE, Material.OBSIDIAN
         }, CraftingStation.Forge, 10);
+
+        pickaxeOfSmelting.registerHandler(new ItemBlockBreakHandler() {
+            @Override
+            public void onBlockBroken(Block b, Player p, BlockBreakEvent e) {
+                Material blockType = e.getBlock().getType();
+                ItemStack result = InvUtil.getFurnaceRecipeResult(blockType);
+                if (result != null) {
+                    e.setDropItems(false);
+                    p.getWorld().dropItemNaturally(b.getLocation(), result);
+                }
+            }
+        });
 
         pickaxeOfSmelting.register();
 
+        toolsCategory.registerItem(pickaxeOfSmelting);
+
         toolsCategory.register();
+
+        Category spawnerCategory = Factory.makeCategory("TFSpawner", "Spawners", new String[]{ "Contains spawn eggs for entities." }, Material.MOB_SPAWNER);
+
+        CustomRecipe cowSpawner = Factory.makeCustomRecipe(TFUtil.makeMobSpawnEgg("Cow", 2,  plugin), new ItemStack[] {
+                null, new ItemStack(Material.RAW_BEEF), null,
+                null, new ItemStack(Material.EGG), null,
+                null, null, null
+        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+
+        cowSpawner.register();
+
+        spawnerCategory.register();
     }
 
     private static void registerCommands() {

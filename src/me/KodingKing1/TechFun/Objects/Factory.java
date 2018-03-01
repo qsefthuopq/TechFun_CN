@@ -202,4 +202,8 @@ public class Factory {
         return multiBlock;
     }
 
+    public static CustomRecipe makeCustomRecipe(ItemStack out, ItemStack[] recipe, CraftingStation craftingStation, Category category) {
+        return new CustomRecipe(out, recipe, craftingStation, category);
+    }
+
 }
