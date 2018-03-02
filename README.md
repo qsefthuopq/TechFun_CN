@@ -7,8 +7,8 @@ Note: This is not a copy of Slimefun, it is just my version that I have custom c
 ## What does it do?
 TechFun turns your default Bukkit server into a full on modpack with just one simple plugin!
 
-Bugs
+## Bugs
 If you find a bug then you can report it here! Be sure to describe the way that you did the bug and what the result is!
 
-Credits
+## Credits
  - TheBusyBiscuit for making Slimefun in the first place!
