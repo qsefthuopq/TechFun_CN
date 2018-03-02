@@ -429,6 +429,8 @@ public class TechFunStartup {
 
         cowSpawner.register();
 
+
+
         spawnerCategory.register();
     }
 
