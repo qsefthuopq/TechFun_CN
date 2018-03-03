@@ -39,6 +39,7 @@ public class TechFunGuide implements Listener {
 
     public ItemStack prevpageitem = TFUtil.makeItem("Previous Page", new String[]{}, Material.STAINED_GLASS_PANE, 1, 5);
     public ItemStack nextpageitem = TFUtil.makeItem("Next Page", new String[]{}, Material.STAINED_GLASS_PANE, 1, 5);
+    public ItemStack backpageitem = TFUtil.makeItem("Back page", new String[]{}, Material.STAINED_GLASS_PANE, 1, 4);
 
     //0 |1 |2 |3 |4 |5 |6 |7 |8 |
     //9 |10|11|12|13|14|15|16|17|
@@ -228,7 +229,7 @@ public class TechFunGuide implements Listener {
         inv.setItem(7, glass);
         inv.setItem(8, glass);
         inv.setItem(45, glass);
-        inv.setItem(46, glass);
+        inv.setItem(46, backpageitem);
         inv.setItem(47, glass);
         inv.setItem(48, prevpageitem);
         inv.setItem(49, glass);
@@ -272,6 +273,8 @@ public class TechFunGuide implements Listener {
                         return;
                     }
                 }
+            } else if (e.getCurrentItem().isSimilar(backpageitem)) {
+                TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "You cannot go up further!");
             }
             if(e.getCurrentItem().getType() == Material.STAINED_GLASS_PANE){
                 return;
@@ -373,6 +376,7 @@ public class TechFunGuide implements Listener {
                     }
                     inv.setItem(10, recipe.getStation().getIcon());
                     inv.setItem(16, recipe.getOut());
+                    inv.setItem(18, backpageitem);
                     p.openInventory(inv);
                 }
             }
@@ -403,18 +407,31 @@ public class TechFunGuide implements Listener {
                             return;
                         }
                     }
+                } else if (e.getCurrentItem().isSimilar(backpageitem)) {
+                    p.openInventory(homes.get(0).getInv());
+                    p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1, 1);
+                    return;
+                }
+                int invId = 0;
+                for (Page inv : categoryInvs.get(c)) {
+                    if (InvUtil.isInvSimilar(inv.getInv(), e.getClickedInventory())) {
+                        invId = inv.getId();
+                        break;
+                    }
                 }
                 for (ItemBase item : c.getItems()) {
                     if (e.getCurrentItem().isSimilar(TFUtil.makeItem("Locked Objects - " + ChatColor.stripColor(item.getItem().getItemMeta().getDisplayName()), new String[]{"Xp to unlock: " + String.valueOf(item.getXpToUnlock())}, Material.REDSTONE_BLOCK))) {
                         if (p.getLevel() >= item.getXpToUnlock()) {
                             p.setLevel(p.getLevel() - item.getXpToUnlock());
                             DataManager.setPlayerData(p, "Guide.Items." + item.getName() + ".Unlocked", true);
-                            TechFunGuide.open(p);
+                            new TechFunGuide();
+                            p.openInventory(categoryInvs.get(c).get(invId).getInv());
                             TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "Objects unlocked!");
                             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
                         } else if (p.getGameMode() == GameMode.CREATIVE) {
                             DataManager.setPlayerData(p, "Guide.Items." + item.getName() + ".Unlocked", true);
-                            TechFunGuide.open(p);
+                            new TechFunGuide();
+                            p.openInventory(categoryInvs.get(c).get(invId).getInv());
                             TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "Objects unlocked!");
                             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
                         } else {
@@ -476,6 +493,7 @@ public class TechFunGuide implements Listener {
                         }
                         inv.setItem(10, item.getCraftingStation().getIcon());
                         inv.setItem(16, item.getItem());
+                        inv.setItem(18, backpageitem);
                         p.openInventory(inv);
                     }
                 }
@@ -504,18 +522,24 @@ public class TechFunGuide implements Listener {
                                 }
                             }
                         }
+                    } else if (e.getCurrentItem().isSimilar(backpageitem)) {
+                        p.openInventory(homes.get(0).getInv());
+                        p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1, 1);
+                        return;
                     }
                     if (e.getCurrentItem().isSimilar(TFUtil.makeItem("Locked MultiBlock - " + ChatColor.stripColor(item.getIcon().getItemMeta().getDisplayName()), new String[]{"Xp to unlock: " + String.valueOf(item.getXpToUnlock())}, Material.REDSTONE_BLOCK))) {
                         if (p.getLevel() >= item.getXpToUnlock()) {
                             p.setLevel(p.getLevel() - item.getXpToUnlock());
                             DataManager.setPlayerData(p, "Guide.Items." + ChatColor.stripColor(item.getIcon().getItemMeta().getDisplayName()) + ".Unlocked", true);
-                            TechFunGuide.open(p);
                             TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "MultiBlock unlocked!");
+                            new TechFunGuide();
+                            p.openInventory(categoryInvs.get(c).get(invId).getInv());
                             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
                         } else if (p.getGameMode() == GameMode.CREATIVE) {
                             DataManager.setPlayerData(p, "Guide.Items." + ChatColor.stripColor(item.getIcon().getItemMeta().getDisplayName()) + ".Unlocked", true);
-                            TechFunGuide.open(p);
                             TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "MultiBlock unlocked!");
+                            new TechFunGuide();
+                            p.openInventory(categoryInvs.get(c).get(invId).getInv());
                             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
                         } else {
                             TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "Insufficient xp!");
@@ -554,6 +578,7 @@ public class TechFunGuide implements Listener {
                         }
                         inv.setItem(10, TFUtil.makeItem("MultiBlock", new String[]{"Build in the world!"}, Material.CLAY_BRICK));
                         inv.setItem(16, item.getIcon());
+                        inv.setItem(18, backpageitem);
                         p.openInventory(inv);
                     }
                 }
@@ -561,6 +586,24 @@ public class TechFunGuide implements Listener {
         }
         if(e.getClickedInventory().getTitle().toLowerCase().contains("TechFun Guide - Objects Info".toLowerCase())){
             e.setCancelled(true);
+            if (e.getCurrentItem().isSimilar(backpageitem)) {
+                for (CustomRecipe customRecipe : Registry.getCustomRecipes()) {
+                    if (customRecipe.getOut().isSimilar(e.getInventory().getItem(16))) {
+                        p.openInventory(categoryInvs.get(customRecipe.getCategory()).get(0).getInv());
+                        p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1, 1);
+                        return;
+                    }
+                }
+                for (Category c : Registry.getCategories()) {
+                    for (ItemBase itemBase : c.getItems()) {
+                        if (itemBase.getItem().isSimilar(e.getInventory().getItem(16))) {
+                            p.openInventory(categoryInvs.get(c).get(0).getInv());
+                            p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1, 1);
+                            return;
+                        }
+                    }
+                }
+            }
             for(ItemBase item : Registry.getItems()){
                 if(e.getCurrentItem().isSimilar(item.getItem())){
                     p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1.0F, 1.0F);
@@ -612,12 +655,23 @@ public class TechFunGuide implements Listener {
                     }
                     inv.setItem(10, item.getCraftingStation().getIcon());
                     inv.setItem(16, item.getItem());
+                    inv.setItem(18, backpageitem);
                     p.openInventory(inv);
                 }
             }
         }
         if(e.getClickedInventory().getTitle().toLowerCase().contains("TechFun Guide - MultiBlock Info".toLowerCase())){
             e.setCancelled(true);
+            if (e.getCurrentItem().isSimilar(backpageitem)) {
+                for (Category c : Registry.getCategories()) {
+                    for (MultiBlock multiBlock : c.getMultiBlocks()) {
+                        if (multiBlock.getIcon().isSimilar(e.getInventory().getItem(16))) {
+                            p.openInventory(categoryInvs.get(c).get(0).getInv());
+                            p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1, 1);
+                        }
+                    }
+                }
+            }
             for(ItemBase item : Registry.getItems()) {
                 if (e.getCurrentItem().isSimilar(item.getItem())) {
                     p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1.0F, 1.0F);
@@ -669,6 +723,7 @@ public class TechFunGuide implements Listener {
                     }
                     inv.setItem(10, TFUtil.makeItem("MultiBlock", new String[]{"Build in the world!"}, Material.CLAY_BRICK));
                     inv.setItem(16, item.getItem());
+                    inv.setItem(18, backpageitem);
                     p.openInventory(inv);
                 }
             }

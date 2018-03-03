@@ -30,7 +30,7 @@ public class DataManager {
         return getData(section, path);
     }
 
-    private static Object getData(ConfigurationSection section, String path) {
+    public static Object getData(ConfigurationSection section, String path) {
         return section.get(path);
     }
 
