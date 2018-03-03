@@ -228,8 +228,8 @@ public class TechFunGuide implements Listener {
         inv.setItem(6, glass);
         inv.setItem(7, glass);
         inv.setItem(8, glass);
-        inv.setItem(45, glass);
-        inv.setItem(46, backpageitem);
+        inv.setItem(45, backpageitem);
+        inv.setItem(46, glass);
         inv.setItem(47, glass);
         inv.setItem(48, prevpageitem);
         inv.setItem(49, glass);

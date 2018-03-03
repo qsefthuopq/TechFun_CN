@@ -421,6 +421,14 @@ public class TechFunStartup {
 
         Category spawnerCategory = Factory.makeCategory("TFSpawner", "Spawners", new String[]{"Contains spawn eggs for entities."}, Material.MOB_SPAWNER);
 
+        CustomRecipe mobSpawner = Factory.makeCustomRecipe(new ItemStack(Material.MOB_SPAWNER), new ItemStack[]{
+                new ItemStack(Material.OBSIDIAN), new ItemStack(Material.IRON_FENCE), new ItemStack(Material.OBSIDIAN),
+                new ItemStack(Material.IRON_BLOCK), diamondCore.getItem(), new ItemStack(Material.IRON_BLOCK),
+                new ItemStack(Material.OBSIDIAN), new ItemStack(Material.IRON_FENCE), new ItemStack(Material.OBSIDIAN)
+        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+
+        mobSpawner.register();
+
         CustomRecipe cowSpawner = Factory.makeCustomRecipe(TFUtil.makeMobSpawnEgg("Cow", 2, plugin), new ItemStack[]{
                 null, new ItemStack(Material.RAW_BEEF), null,
                 null, new ItemStack(Material.EGG), null,
@@ -429,7 +437,53 @@ public class TechFunStartup {
 
         cowSpawner.register();
 
+        CustomRecipe chickenSpawner = Factory.makeCustomRecipe(TFUtil.makeMobSpawnEgg("Chicken", 2, plugin), new ItemStack[]{
+                null, new ItemStack(Material.FEATHER), null,
+                null, new ItemStack(Material.EGG), null,
+                null, null, null
+        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
 
+        chickenSpawner.register();
+
+        CustomRecipe pigSpawner = Factory.makeCustomRecipe(TFUtil.makeMobSpawnEgg("Pig", 2, plugin), new ItemStack[]{
+                null, new ItemStack(Material.PORK), null,
+                null, new ItemStack(Material.EGG), null,
+                null, null, null
+        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+
+        pigSpawner.register();
+
+        CustomRecipe wolfSpawner = Factory.makeCustomRecipe(TFUtil.makeMobSpawnEgg("Wolf", 2, plugin), new ItemStack[]{
+                null, new ItemStack(Material.BONE), null,
+                null, new ItemStack(Material.EGG), null,
+                null, null, null
+        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+
+        wolfSpawner.register();
+
+        CustomRecipe sheepSpawner = Factory.makeCustomRecipe(TFUtil.makeMobSpawnEgg("Sheep", 2, plugin), new ItemStack[]{
+                null, new ItemStack(Material.WOOL), null,
+                null, new ItemStack(Material.EGG), null,
+                null, null, null
+        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+
+        sheepSpawner.register();
+
+        CustomRecipe squidSpawner = Factory.makeCustomRecipe(TFUtil.makeMobSpawnEgg("Squid", 2, plugin), new ItemStack[]{
+                null, new ItemStack(Material.INK_SACK), null,
+                null, new ItemStack(Material.EGG), null,
+                null, null, null
+        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+
+        squidSpawner.register();
+
+        CustomRecipe ocelotSpawner = Factory.makeCustomRecipe(TFUtil.makeMobSpawnEgg("Ocelot", 2, plugin), new ItemStack[]{
+                null, new ItemStack(Material.RAW_FISH), null,
+                null, new ItemStack(Material.EGG), null,
+                null, null, null
+        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+
+        ocelotSpawner.register();
 
         spawnerCategory.register();
     }
