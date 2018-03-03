@@ -236,7 +236,7 @@ public class InvUtil {
             if (invi.hasItemMeta() && !reci.hasItemMeta() || !invi.hasItemMeta() && reci.hasItemMeta()) {
                 isCorrect = false;
             }
-            if (invi.getItemMeta().hasDisplayName() && !reci.getItemMeta().hasDisplayName() || !invi.getItemMeta().hasDisplayName() && reci.getItemMeta().hasDisplayName()) {
+            if (invi.hasItemMeta() && reci.hasItemMeta() && (invi.getItemMeta().hasDisplayName() && !reci.getItemMeta().hasDisplayName() || !invi.getItemMeta().hasDisplayName() && reci.getItemMeta().hasDisplayName())) {
                 isCorrect = false;
             }
         } else if ((invi == null && reci != null) || (invi != null && reci == null)) {

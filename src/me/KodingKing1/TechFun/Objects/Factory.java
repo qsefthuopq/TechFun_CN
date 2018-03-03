@@ -38,6 +38,16 @@ public class Factory {
         return item;
     }
 
+    public static ItemBase makeItem(String registryName, ItemStack itemStack, Object[] recipe, CraftingStation station, int xpToUnlock){
+        ItemBase item = new ItemBase();
+        item.setItem(itemStack);
+        item.setRecipe(recipe);
+        item.setName(registryName);
+        item.setCraftingStation(station);
+        item.setXpToUnlock(xpToUnlock);
+        return item;
+    }
+
     public static ItemBase makeItem(String registryName, String playerName, String itemName, String[] lore, Object[] recipe, CraftingStation station, int xpToUnlock){
         ItemBase item = new ItemBase();
         //Objects

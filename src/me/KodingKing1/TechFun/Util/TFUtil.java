@@ -1,5 +1,7 @@
 package me.KodingKing1.TechFun.Util;
 
+import com.deanveloper.skullcreator.SkullCreator;
+import me.KodingKing1.TechFun.Objects.Factory;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -73,6 +75,30 @@ public class TFUtil {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static ItemStack makeSkullWithBase64(String base64) {
+        ItemStack item = SkullCreator.fromBase64(SkullCreator.Type.ITEM, base64);
+        return item;
+    }
+
+    public static ItemStack makeSkullWithBase64(String base64, String name, String[] lore) {
+        ItemStack item = makeSkullWithBase64(base64);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(ChatColor.AQUA + name);
+        List<String> lore2 = new ArrayList<>();
+        for(String line : lore){
+            lore2.add(ChatColor.RESET + "" + ChatColor.DARK_AQUA + line);
+        }
+        meta.setLore(lore2);
+        item.setItemMeta(meta);
+        return item;
+    }
+
+    public static ItemStack makeSkullWithBase64(String base64, String name, String[] lore, int amount) {
+        ItemStack item = makeSkullWithBase64(base64, name, lore);
+        item.setAmount(amount);
+        return item;
     }
 
     public static ItemStack makeMobSpawnEgg(String entityName, int amount, Plugin plugin) {

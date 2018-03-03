@@ -1,5 +1,6 @@
 package me.KodingKing1.TechFun.Startup;
 
+import com.deanveloper.skullcreator.SkullCreator;
 import me.KodingKing1.TechFun.Events.*;
 import me.KodingKing1.TechFun.Objects.Category.Category;
 import me.KodingKing1.TechFun.Objects.CraftingStation;
@@ -16,6 +17,7 @@ import me.KodingKing1.TechFun.Util.Cooldown;
 import me.KodingKing1.TechFun.Util.InvUtil;
 import me.KodingKing1.TechFun.Util.TFUtil;
 import me.KodingKing1.TechFun.Util.TextUtil;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -34,6 +36,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -52,6 +56,10 @@ public class TechFunStartup {
     }
 
     private static void registerAll() {
+        Map<String, String> headBase64List = new HashMap<>();
+        headBase64List.put("TrashCan", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIyZGFlYTZlYmI2OWE2ODJmNzFkZDhjZWY5ZmZmMDIwNWNjMzQ5ZWM2OTQ0N2E2MWYyNWQxYzA5YWJmNDIifX19");
+        headBase64List.put("CraftingTable", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2U3ZDhjMjQyZDJlNGY4MDI4ZjkzMGJlNzZmMzUwMTRiMjFiNTI1NTIwOGIxYzA0MTgxYjI1NzQxMzFiNzVhIn19fQ");
+
         Category materials = Factory.makeCategory("TFMaterials", "Materials", new String[]{"Lots of things used to make lots of other", "things!"}, Material.DIAMOND, 0);
 
         ItemBase woodenCore = Factory.makeItem("WoodenCore", "Wooden Core", new String[]{"The very first item core! Just made of wood."}, Material.LOG, new Object[]{
@@ -125,7 +133,7 @@ public class TechFunStartup {
 
         utilitiesCategory.registerItem(techFunGuide);
 
-        ItemBase portableCrafter = Factory.makeItem("PortableCrafter", "Portable Crafter", new String[]{"Lets you craft on the go!"}, Material.WORKBENCH, new Object[]{
+        ItemBase portableCrafter = Factory.makeItem("PortableCrafter", TFUtil.makeSkullWithBase64(headBase64List.get("CraftingTable"), "Portable Crafter", new String[]{"Lets you craft on the go!"}), new Object[]{
                 Material.LOG, Material.REDSTONE, Material.LOG,
                 Material.WOOD, Material.WORKBENCH, Material.WOOD,
                 Material.LOG, ironCore, Material.LOG
@@ -172,6 +180,23 @@ public class TechFunStartup {
         bedWarper.register();
 
         utilitiesCategory.registerItem(bedWarper);
+
+        ItemBase portableTrashCan = Factory.makeItem("PortableTrashCan", TFUtil.makeSkullWithBase64(headBase64List.get("TrashCan"), "Trash Can", new String[]{ "Lets you void any unwanted items." }), new Object[]{
+                null, null, null,
+                Material.IRON_INGOT, stoneCore, Material.IRON_INGOT,
+                null, Material.REDSTONE, null
+        }, CraftingStation.MagicalCraftingTable, 10);
+
+        portableTrashCan.registerHandler(new ItemClickHandler() {
+            @Override
+            public void onItemClick(PlayerInteractEvent e, Player p, ItemStack item) {
+                p.openInventory(Bukkit.createInventory(null, 9 * 3, ChatColor.RED + "" + ChatColor.BOLD + "Trash Can"));
+            }
+        });
+
+        portableTrashCan.register();
+
+        utilitiesCategory.registerItem(portableTrashCan);
 
         utilitiesCategory.register();
 
