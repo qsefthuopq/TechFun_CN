@@ -189,7 +189,13 @@ public class InvUtil {
                         }
                     }
                 }.runTaskTimer(plugin, 0, 3);
-                TechFunMain.getPluginLogger().sendMessage(player, TextUtil.Level.Success, "You have successfully crafted the item " + item.getName() + ChatColor.GREEN + "!");
+                String name = "";
+                if (item.getItem().hasItemMeta() && item.getItem().getItemMeta().hasDisplayName()) {
+                    name = item.getItem().getItemMeta().getDisplayName();
+                } else {
+                    name = item.getName();
+                }
+                TechFunMain.getPluginLogger().sendMessage(player, TextUtil.Level.Success, "You have successfully crafted the item " + name + ChatColor.GREEN + "!");
                 crafted = true;
                 for(ItemHandler handler : item.getHandlers()){
                     if(handler instanceof ItemCraftHandler){

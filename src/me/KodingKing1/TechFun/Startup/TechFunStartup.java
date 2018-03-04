@@ -1,6 +1,5 @@
 package me.KodingKing1.TechFun.Startup;
 
-import com.deanveloper.skullcreator.SkullCreator;
 import me.KodingKing1.TechFun.Events.*;
 import me.KodingKing1.TechFun.Objects.Category.Category;
 import me.KodingKing1.TechFun.Objects.CraftingStation;
@@ -18,10 +17,7 @@ import me.KodingKing1.TechFun.Util.InvUtil;
 import me.KodingKing1.TechFun.Util.TFUtil;
 import me.KodingKing1.TechFun.Util.TextUtil;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Dropper;
@@ -29,6 +25,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -59,6 +56,7 @@ public class TechFunStartup {
         Map<String, String> headBase64List = new HashMap<>();
         headBase64List.put("TrashCan", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIyZGFlYTZlYmI2OWE2ODJmNzFkZDhjZWY5ZmZmMDIwNWNjMzQ5ZWM2OTQ0N2E2MWYyNWQxYzA5YWJmNDIifX19");
         headBase64List.put("CraftingTable", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2U3ZDhjMjQyZDJlNGY4MDI4ZjkzMGJlNzZmMzUwMTRiMjFiNTI1NTIwOGIxYzA0MTgxYjI1NzQxMzFiNzVhIn19fQ");
+        headBase64List.put("TNT", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI5OTRiNDFmMDdmODdiMzI4MTg2YWNmY2JkYWJjNjk5ZDViMTg0N2ZhYmIyZTQ5ZDVhYmMyNzg2NTE0M2E0ZSJ9fX0");
 
         int spawnEggAmountPeaceful = 1;
 
@@ -183,7 +181,7 @@ public class TechFunStartup {
 
         utilitiesCategory.registerItem(bedWarper);
 
-        ItemBase portableTrashCan = Factory.makeItem("PortableTrashCan", TFUtil.makeSkullWithBase64(headBase64List.get("TrashCan"), "Trash Can", new String[]{ "Lets you void any unwanted items." }), new Object[]{
+        ItemBase portableTrashCan = Factory.makeItem("PortableTrashCan", TFUtil.makeSkullWithBase64(headBase64List.get("TrashCan"), "Trash Can", new String[]{"Lets you void any unwanted items."}), new Object[]{
                 null, null, null,
                 Material.IRON_INGOT, stoneCore, Material.IRON_INGOT,
                 null, Material.REDSTONE, null
@@ -398,6 +396,28 @@ public class TechFunStartup {
         playerBeheader.register();
 
         magicCategory.registerItem(playerBeheader);
+
+        ItemBase launchTnt = Factory.makeItem("LaunchTNT", TFUtil.makeSkullWithBase64(headBase64List.get("TNT"), "Launchable TNT", new String[]{"Right click this to launch a piece of TNT!"}), new Object[]{
+                null, null, null,
+                Material.REDSTONE, Material.TNT, Material.SULPHUR,
+                null, null, null
+        }, CraftingStation.MagicalCraftingTable, 10);
+
+        launchTnt.registerHandler(new ItemClickHandler() {
+            @Override
+            public void onItemClick(PlayerInteractEvent e, Player p, ItemStack item) {
+                if (p.getGameMode() != GameMode.CREATIVE) {
+                    InvUtil.decrementItem(item);
+                }
+                TNTPrimed tntPrimed = (TNTPrimed) p.getWorld().spawnEntity(p.getLocation().add(0, 1, 0), EntityType.PRIMED_TNT);
+                tntPrimed.setFuseTicks(30);
+                tntPrimed.setVelocity(p.getLocation().getDirection().multiply(2));
+            }
+        });
+
+        launchTnt.register();
+
+        magicCategory.registerItem(launchTnt);
 
         ItemBase xpToken = Factory.makeItem("XPToken", "XP Token", new String[]{"Gives you 5 levels when used."}, Material.EMERALD, new Object[]{
                 Material.COBBLESTONE, Material.COAL_BLOCK, Material.COBBLESTONE,
