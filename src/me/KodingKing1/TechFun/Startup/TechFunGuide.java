@@ -6,6 +6,7 @@ import me.KodingKing1.TechFun.Objects.Category.Category;
 import me.KodingKing1.TechFun.Objects.CustomRecipe;
 import me.KodingKing1.TechFun.Objects.Inv.Page;
 import me.KodingKing1.TechFun.Objects.ItemBase;
+import me.KodingKing1.TechFun.Objects.Machine.Machine;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
 import me.KodingKing1.TechFun.TechFunMain;
 import me.KodingKing1.TechFun.Util.DataManager;
@@ -151,6 +152,41 @@ public class TechFunGuide implements Listener {
                     }
                     catnum++;
                 }
+                if (catnum == 35) {
+                    catnum = 0;
+                    Page page = new Page();
+                    page.setId(catcount);
+                    page.setInv(catInv);
+                    pages.add(page);
+                    catcount++;
+                    catInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "TechFun Guide - Items");
+                    putBorder(catInv);
+                    catInv.setItem(49, TFUtil.makeItem("Page: " + String.valueOf(catcount + 1), new String[]{}, Material.STAINED_GLASS_PANE, 1, 3));
+                    catInv.setMaxStackSize(1);
+                }
+            }
+            for (Machine machine : category.getMachines()) {
+                if (player != null) {
+                    Boolean unlocked;
+                    if (DataManager.getPlayerData(player, "Guide.Machine." + ChatColor.stripColor(machine.getItem().getItemMeta().getDisplayName()) + ".Unlocked") != null) {
+                        unlocked = (Boolean) DataManager.getPlayerData(player, "Guide.Machine." + ChatColor.stripColor(machine.getItem().getItemMeta().getDisplayName()) + ".Unlocked");
+                    } else {
+                        DataManager.setPlayerData(player, "Guide.Machine." + ChatColor.stripColor(machine.getItem().getItemMeta().getDisplayName()) + ".Unlocked", false);
+                        unlocked = (Boolean) DataManager.getPlayerData(player, "Guide.Machine." + ChatColor.stripColor(machine.getItem().getItemMeta().getDisplayName()) + ".Unlocked");
+                    }
+                    if (!unlocked) {
+                        if (machine.getXpToUnlock() > 0) {
+                            catInv.addItem(TFUtil.makeItem("Locked Machine - " + ChatColor.stripColor(machine.getItem().getItemMeta().getDisplayName()), new String[]{"Xp to unlock: " + String.valueOf(machine.getXpToUnlock())}, Material.REDSTONE_BLOCK));
+                        } else {
+                            catInv.addItem(machine.getItem());
+                        }
+                    } else {
+                        catInv.addItem(machine.getItem());
+                    }
+                } else {
+                    catInv.addItem(machine.getItem());
+                }
+                catnum++;
                 if (catnum == 35) {
                     catnum = 0;
                     Page page = new Page();
@@ -582,6 +618,96 @@ public class TechFunGuide implements Listener {
                         p.openInventory(inv);
                     }
                 }
+
+                for (Machine item : c.getMachines()) {
+                    if (e.getCurrentItem().isSimilar(prevpageitem)) {
+                        for (Page inv : categoryInvs.get(c)) {
+                            if (InvUtil.isInvSimilar(inv.getInv(), e.getClickedInventory())) {
+                                if ((inv.getId() - 1) < 0) {
+                                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "You are already at the last page!");
+                                    return;
+                                } else {
+                                    p.openInventory(inv.getInv());
+                                    p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1.0F, 1.0F);
+                                }
+                            }
+                        }
+                    } else if (e.getCurrentItem().isSimilar(nextpageitem)) {
+                        for (Page inv : categoryInvs.get(c)) {
+                            if (InvUtil.isInvSimilar(inv.getInv(), e.getClickedInventory())) {
+                                if ((inv.getId() + 1) >= categoryInvs.get(c).size()) {
+                                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "You are already at the last page!");
+                                    return;
+                                } else {
+                                    p.openInventory(inv.getInv());
+                                    p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1.0F, 1.0F);
+                                }
+                            }
+                        }
+                    } else if (e.getCurrentItem().isSimilar(backpageitem)) {
+                        p.openInventory(homes.get(0).getInv());
+                        p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1, 1);
+                        return;
+                    }
+                    if (e.getCurrentItem().isSimilar(TFUtil.makeItem("Locked Machine - " + ChatColor.stripColor(item.getItem().getItemMeta().getDisplayName()), new String[]{"Xp to unlock: " + String.valueOf(item.getXpToUnlock())}, Material.REDSTONE_BLOCK))) {
+                        if (p.getLevel() >= item.getXpToUnlock()) {
+                            p.setLevel(p.getLevel() - item.getXpToUnlock());
+                            DataManager.setPlayerData(p, "Guide.Machine." + ChatColor.stripColor(item.getItem().getItemMeta().getDisplayName()) + ".Unlocked", true);
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "Machine unlocked!");
+                            new TechFunGuide();
+                            p.openInventory(categoryInvs.get(c).get(invId).getInv());
+                            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
+                        } else if (p.getGameMode() == GameMode.CREATIVE) {
+                            DataManager.setPlayerData(p, "Guide.Machine." + ChatColor.stripColor(item.getItem().getItemMeta().getDisplayName()) + ".Unlocked", true);
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "Machine unlocked!");
+                            new TechFunGuide();
+                            p.openInventory(categoryInvs.get(c).get(invId).getInv());
+                            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
+                        } else {
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "Insufficient xp!");
+                        }
+                        return;
+                    }
+                    if (e.getCurrentItem().isSimilar(item.getItem())) {
+                        if (e.getClick() == ClickType.RIGHT && p.isOp() && p.getGameMode() == GameMode.CREATIVE) {
+                            p.getInventory().addItem(item.getItem());
+                            return;
+                        }
+                        p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1.0F, 1.0F);
+                        Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "TechFun Guide - Machine Info");
+                        if (item.getRecipe()[0] != null) {
+                            inv.setItem(3, new ItemStack(item.getRecipe()[0]));
+                        }
+                        if (item.getRecipe()[1] != null) {
+                            inv.setItem(4, new ItemStack(item.getRecipe()[1]));
+                        }
+                        if (item.getRecipe()[2] != null) {
+                            inv.setItem(5, new ItemStack(item.getRecipe()[2]));
+                        }
+                        if (item.getRecipe()[3] != null) {
+                            inv.setItem(12, new ItemStack(item.getRecipe()[3]));
+                        }
+                        if (item.getRecipe()[4] != null) {
+                            inv.setItem(13, new ItemStack(item.getRecipe()[4]));
+                        }
+                        if (item.getRecipe()[5] != null) {
+                            inv.setItem(14, new ItemStack(item.getRecipe()[5]));
+                        }
+                        if (item.getRecipe()[6] != null) {
+                            inv.setItem(21, new ItemStack(item.getRecipe()[6]));
+                        }
+                        if (item.getRecipe()[7] != null) {
+                            inv.setItem(22, new ItemStack(item.getRecipe()[7]));
+                        }
+                        if (item.getRecipe()[8] != null) {
+                            inv.setItem(23, new ItemStack(item.getRecipe()[8]));
+                        }
+                        inv.setItem(10, TFUtil.makeItem("Machine", new String[]{"Place in the world!"}, Material.FURNACE));
+                        inv.setItem(16, item.getItem());
+                        inv.setItem(18, backpageitem);
+                        p.openInventory(inv);
+                    }
+                }
             }
         }
         if(e.getClickedInventory().getTitle().toLowerCase().contains("TechFun Guide - Objects Info".toLowerCase())){
@@ -725,6 +851,19 @@ public class TechFunGuide implements Listener {
                     inv.setItem(16, item.getItem());
                     inv.setItem(18, backpageitem);
                     p.openInventory(inv);
+                }
+            }
+        }
+        if(e.getClickedInventory().getTitle().toLowerCase().contains("TechFun Guide - Machine Info".toLowerCase())) {
+            e.setCancelled(true);
+            if (e.getCurrentItem().isSimilar(backpageitem)) {
+                for (Category c : Registry.getCategories()) {
+                    for (Machine machine : c.getMachines()) {
+                        if (machine.getItem().isSimilar(e.getInventory().getItem(16))) {
+                            p.openInventory(categoryInvs.get(c).get(0).getInv());
+                            p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1, 1);
+                        }
+                    }
                 }
             }
         }

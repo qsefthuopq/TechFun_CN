@@ -4,11 +4,13 @@ import me.KodingKing1.TechFun.Objects.Category.Category;
 import me.KodingKing1.TechFun.Objects.CraftingStation;
 import me.KodingKing1.TechFun.Objects.CustomRecipe;
 import me.KodingKing1.TechFun.Objects.ItemBase;
+import me.KodingKing1.TechFun.Objects.Machine.Machine;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ShapedRecipe;
 
+import javax.crypto.Mac;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ public class Registry {
     private static List<Category> categories = new ArrayList<>();
     private static List<MultiBlock> multiBlocks = new ArrayList<>();
     private static List<CustomRecipe> customRecipes = new ArrayList<>();
+    private static List<Machine> machines = new ArrayList<>();
 
     public static List<ItemBase> getItems() {
         return items;
@@ -39,8 +42,12 @@ public class Registry {
         return customRecipes;
     }
 
+    public static List<Machine> getMachines() {
+        return machines;
+    }
+
     public static int length(){
-        return getItems().size() + getCategories().size() + getMultiBlocks().size() + getCustomRecipes().size();
+        return getItems().size() + getCategories().size() + getMultiBlocks().size() + getCustomRecipes().size() + getMachines().size();
     }
 
     public static void registerItem(ItemBase item){
@@ -100,5 +107,9 @@ public class Registry {
         for(ItemBase item : items){
             item.register();
         }
+    }
+
+    public static void registerMachine(Machine machine) {
+        machines.add(machine);
     }
 }

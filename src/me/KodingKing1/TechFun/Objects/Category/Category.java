@@ -1,6 +1,7 @@
 package me.KodingKing1.TechFun.Objects.Category;
 
 import me.KodingKing1.TechFun.Objects.ItemBase;
+import me.KodingKing1.TechFun.Objects.Machine.Machine;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
 import me.KodingKing1.TechFun.Startup.Registry;
 import org.bukkit.Material;
@@ -19,6 +20,7 @@ public class Category {
     int xpToUnlock = 0;
     List<ItemBase> items = new ArrayList<>();
     List<MultiBlock> multiBlocks = new ArrayList<>();
+    List<Machine> machines = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -58,6 +60,14 @@ public class Category {
 
     public void registerMultiBlock(MultiBlock mb){
         getMultiBlocks().add(mb);
+    }
+
+    public List<Machine> getMachines() {
+        return machines;
+    }
+
+    public void registerMachine(Machine m) {
+        getMachines().add(m);
     }
 
     public void register(){

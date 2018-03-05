@@ -1,6 +1,7 @@
 package me.KodingKing1.TechFun.Objects;
 
 import me.KodingKing1.TechFun.Objects.Category.Category;
+import me.KodingKing1.TechFun.Objects.Machine.Machine;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
 import me.KodingKing1.TechFun.Util.TFUtil;
 import org.bukkit.ChatColor;
@@ -210,6 +211,38 @@ public class Factory {
         multiBlock.setMaterials(structure);
         multiBlock.setXpToUnlock(xpToUnlock);
         return multiBlock;
+    }
+
+    public static Machine makeMachine(String registryName, String itemName, String[] lore, Material material, Object[] recipe, CraftingStation craftingStation, int xpToUnlock){
+        Machine machine = new Machine();
+        //Objects
+        ItemStack itemStack = new ItemStack(material);
+        ItemMeta meta = itemStack.getItemMeta();
+        meta.setDisplayName(ChatColor.AQUA + itemName);
+        List<String> lore2 = new ArrayList<>();
+        for(String line : lore){
+            lore2.add(ChatColor.RESET + "" + ChatColor.GREEN + line);
+        }
+        meta.setLore(lore2);
+        itemStack.setItemMeta(meta);
+        machine.setAmount(itemStack.getAmount());
+        machine.setItem(itemStack);
+        machine.setRecipe(recipe);
+        machine.setXpToUnlock(xpToUnlock);
+        machine.setName(registryName);
+        machine.setCraftingStation(craftingStation);
+        return machine;
+    }
+
+    public static Machine makeMachine(String registryName, ItemStack itemStack, Object[] recipe, CraftingStation craftingStation, int xpToUnlock){
+        Machine machine = new Machine();
+        machine.setAmount(itemStack.getAmount());
+        machine.setItem(itemStack);
+        machine.setRecipe(recipe);
+        machine.setXpToUnlock(xpToUnlock);
+        machine.setName(registryName);
+        machine.setCraftingStation(craftingStation);
+        return machine;
     }
 
     public static CustomRecipe makeCustomRecipe(ItemStack out, ItemStack[] recipe, CraftingStation craftingStation, Category category) {

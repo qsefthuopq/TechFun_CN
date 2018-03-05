@@ -5,11 +5,11 @@ import me.KodingKing1.TechFun.Objects.CustomRecipe;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemCraftHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemHandler;
 import me.KodingKing1.TechFun.Objects.ItemBase;
+import me.KodingKing1.TechFun.Objects.Machine.Machine;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
 import me.KodingKing1.TechFun.Startup.Registry;
 import me.KodingKing1.TechFun.TechFunMain;
 import org.bukkit.*;
-import org.bukkit.block.Dispenser;
 import org.bukkit.block.Dropper;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -27,13 +27,13 @@ import java.util.Iterator;
  */
 public class InvUtil {
 
-    public static boolean isInvSimilar(Inventory inv1, Inventory inv2){
+    public static boolean isInvSimilar(Inventory inv1, Inventory inv2) {
         int amountwrong = 0;
         int i = 0;
-        for(ItemStack item : inv1.getStorageContents()){
-            if(item != null){
-                if(inv2.getItem(i) != null){
-                    if(!item.isSimilar(inv2.getItem(i))){
+        for (ItemStack item : inv1.getStorageContents()) {
+            if (item != null) {
+                if (inv2.getItem(i) != null) {
+                    if (!item.isSimilar(inv2.getItem(i))) {
                         amountwrong++;
                     }
                 }
@@ -43,10 +43,10 @@ public class InvUtil {
         return amountwrong <= 1;
     }
 
-    public static boolean hasMinItems(Inventory inv, int min){
+    public static boolean hasMinItems(Inventory inv, int min) {
         int amountwrong = 0;
-        for(ItemStack item : inv.getStorageContents()){
-            if(item != null){
+        for (ItemStack item : inv.getStorageContents()) {
+            if (item != null) {
                 amountwrong++;
             }
         }
@@ -54,13 +54,13 @@ public class InvUtil {
     }
 
 
-    public static void craftItem(Dropper dispenser, MultiBlock mb, Player player, PlayerInteractEvent e, JavaPlugin plugin, CraftingStation craftingStation){
+    public static void craftItem(Dropper dispenser, MultiBlock mb, Player player, PlayerInteractEvent e, JavaPlugin plugin, CraftingStation craftingStation) {
         e.setCancelled(true);
         boolean crafted = false;
-        for(CustomRecipe recipe : Registry.getCustomRecipes()){
+        for (CustomRecipe recipe : Registry.getCustomRecipes()) {
             boolean isCorrect = true;
             Inventory inv = dispenser.getInventory();
-            for(int i = 0; i < 9; i++){
+            for (int i = 0; i < 9; i++) {
                 ItemStack invi = inv.getItem(i);
                 ItemStack reci = recipe.getRecipe()[i];
                 if (!isSimilarItem(invi, reci)) {
@@ -91,14 +91,14 @@ public class InvUtil {
 //                    break;
 //                }
             }
-            if(isCorrect){
-                if(recipe.getStation() != craftingStation)
+            if (isCorrect) {
+                if (recipe.getStation() != craftingStation)
                     continue;
-                for(int i = 0; i < 9; i++){
-                    if(dispenser.getInventory().getItem(i) != null) {
-                        if(dispenser.getInventory().getItem(i).getAmount() > 1){
+                for (int i = 0; i < 9; i++) {
+                    if (dispenser.getInventory().getItem(i) != null) {
+                        if (dispenser.getInventory().getItem(i).getAmount() > 1) {
                             dispenser.getInventory().setItem(i, new ItemStack(dispenser.getInventory().getItem(i).getType(), dispenser.getInventory().getItem(i).getAmount() - 1));
-                        }else{
+                        } else {
                             dispenser.getInventory().setItem(i, null);
                         }
                     }
@@ -109,13 +109,14 @@ public class InvUtil {
                 dispenser.getWorld().playSound(dispenser.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                 new BukkitRunnable() {
                     int i = 1;
+
                     @Override
                     public void run() {
                         dispenser.getWorld().spawnParticle(Particle.TOTEM, dispenser.getLocation().add(0, 1, 0), 50);
-                        if(i == 0){
+                        if (i == 0) {
                             this.cancel();
                             return;
-                        }else{
+                        } else {
                             i--;
                         }
                     }
@@ -123,10 +124,10 @@ public class InvUtil {
                 crafted = true;
             }
         }
-        for(ItemBase item : Registry.getItems()){
+        for (ItemBase item : Registry.getItems()) {
             boolean isCorrect = true;
             Inventory inv = dispenser.getInventory();
-            for(int i = 0; i < 9; i++){
+            for (int i = 0; i < 9; i++) {
                 ItemStack invi = inv.getItem(i);
                 ItemStack reci = item.getRecipe()[i];
                 if (!isSimilarItem(invi, reci)) {
@@ -149,8 +150,8 @@ public class InvUtil {
 //                    break;
 //                }
             }
-            if(isCorrect){
-                if(item.getCraftingStation() != craftingStation)
+            if (isCorrect) {
+                if (item.getCraftingStation() != craftingStation)
                     continue;
                 Boolean unlocked;
                 if (DataManager.getPlayerData(player, "Guide.Items." + item.getName() + ".Unlocked") != null) {
@@ -159,15 +160,15 @@ public class InvUtil {
                     DataManager.setPlayerData(player, "Guide.Items." + item.getName() + ".Unlocked", false);
                     unlocked = (Boolean) DataManager.getPlayerData(player, "Guide.Items." + item.getName() + ".Unlocked");
                 }
-                if(!unlocked){
+                if (!unlocked) {
                     TechFunMain.getPluginLogger().sendMessage(player, TextUtil.Level.Error, "You do not have the knowledge to understand this...");
                     return;
                 }
-                for(int i = 0; i < 9; i++){
-                    if(dispenser.getInventory().getItem(i) != null) {
-                        if(dispenser.getInventory().getItem(i).getAmount() > 1){
+                for (int i = 0; i < 9; i++) {
+                    if (dispenser.getInventory().getItem(i) != null) {
+                        if (dispenser.getInventory().getItem(i).getAmount() > 1) {
                             dispenser.getInventory().setItem(i, new ItemStack(dispenser.getInventory().getItem(i).getType(), dispenser.getInventory().getItem(i).getAmount() - 1));
-                        }else{
+                        } else {
                             dispenser.getInventory().setItem(i, null);
                         }
                     }
@@ -178,13 +179,14 @@ public class InvUtil {
                 dispenser.getWorld().playSound(dispenser.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                 new BukkitRunnable() {
                     int i = 1;
+
                     @Override
                     public void run() {
                         dispenser.getWorld().spawnParticle(Particle.TOTEM, dispenser.getLocation().add(0, 1, 0), 50);
-                        if(i == 0){
+                        if (i == 0) {
                             this.cancel();
                             return;
-                        }else{
+                        } else {
                             i--;
                         }
                     }
@@ -197,25 +199,105 @@ public class InvUtil {
                 }
                 TechFunMain.getPluginLogger().sendMessage(player, TextUtil.Level.Success, "You have successfully crafted the item " + name + ChatColor.GREEN + "!");
                 crafted = true;
-                for(ItemHandler handler : item.getHandlers()){
-                    if(handler instanceof ItemCraftHandler){
+                for (ItemHandler handler : item.getHandlers()) {
+                    if (handler instanceof ItemCraftHandler) {
                         ItemCraftHandler ich = (ItemCraftHandler) handler;
                         ich.onItemCraft(player, item);
                     }
                 }
             }
         }
-        if(!crafted){
+
+        for (Machine machine : Registry.getMachines()) {
+            boolean isCorrect = true;
+            Inventory inv = dispenser.getInventory();
+            for (int i = 0; i < 9; i++) {
+                ItemStack invi = inv.getItem(i);
+                ItemStack reci = machine.getRecipe()[i];
+                if (!isSimilarItem(invi, reci)) {
+                    isCorrect = false;
+                    break;
+                }
+//                if(invi != null && reci != null){
+//                    if(!invi.getType().equals(reci.getType())){
+//                        isCorrect = false;
+//                        break;
+//                    }
+//                    if(invi.hasItemMeta() && reci.hasItemMeta()) {
+//                        if (!(ChatColor.stripColor(invi.getItemMeta().getDisplayName().toLowerCase()).contentEquals(ChatColor.stripColor(reci.getItemMeta().getDisplayName().toLowerCase())))) {
+//                            isCorrect = false;
+//                            break;
+//                        }
+//                    }
+//                }else if((invi == null && reci != null) || (invi != null && reci == null)){
+//                    isCorrect = false;
+//                    break;
+//                }
+            }
+            if (isCorrect) {
+                if (machine.getCraftingStation() != craftingStation)
+                    continue;
+                Boolean unlocked;
+                if (DataManager.getPlayerData(player, "Guide.Machine." + machine.getName() + ".Unlocked") != null) {
+                    unlocked = (Boolean) DataManager.getPlayerData(player, "Guide.Machine." + machine.getName() + ".Unlocked");
+                } else {
+                    DataManager.setPlayerData(player, "Guide.Machine." + machine.getName() + ".Unlocked", false);
+                    unlocked = (Boolean) DataManager.getPlayerData(player, "Guide.Machine." + machine.getName() + ".Unlocked");
+                }
+                if (!unlocked) {
+                    TechFunMain.getPluginLogger().sendMessage(player, TextUtil.Level.Error, "You do not have the knowledge to understand this...");
+                    return;
+                }
+                for (int i = 0; i < 9; i++) {
+                    if (dispenser.getInventory().getItem(i) != null) {
+                        if (dispenser.getInventory().getItem(i).getAmount() > 1) {
+                            dispenser.getInventory().setItem(i, new ItemStack(dispenser.getInventory().getItem(i).getType(), dispenser.getInventory().getItem(i).getAmount() - 1));
+                        } else {
+                            dispenser.getInventory().setItem(i, null);
+                        }
+                    }
+                }
+                for (int i = 0; i < machine.getAmount(); i++) {
+                    dispenser.getWorld().dropItemNaturally(dispenser.getLocation().add(0, 3, 0), machine.getItem());
+                }
+                dispenser.getWorld().playSound(dispenser.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                new BukkitRunnable() {
+                    int i = 1;
+
+                    @Override
+                    public void run() {
+                        dispenser.getWorld().spawnParticle(Particle.TOTEM, dispenser.getLocation().add(0, 1, 0), 50);
+                        if (i == 0) {
+                            this.cancel();
+                            return;
+                        } else {
+                            i--;
+                        }
+                    }
+                }.runTaskTimer(plugin, 0, 3);
+                String name = "";
+                if (machine.getItem().hasItemMeta() && machine.getItem().getItemMeta().hasDisplayName()) {
+                    name = machine.getItem().getItemMeta().getDisplayName();
+                } else {
+                    name = machine.getName();
+                }
+                TechFunMain.getPluginLogger().sendMessage(player, TextUtil.Level.Success, "You have successfully crafted the machine " + name + ChatColor.GREEN + "!");
+                crafted = true;
+            }
+        }
+
+        if (!crafted) {
             new BukkitRunnable() {
                 int i = 5;
+
                 @Override
                 public void run() {
                     dispenser.getWorld().playSound(dispenser.getLocation(), Sound.BLOCK_NOTE_BASS, 1, 1);
                     dispenser.getWorld().spawnParticle(Particle.SMOKE_LARGE, dispenser.getLocation().add(0, 1, 0), 50);
-                    if(i == 0){
+                    if (i == 0) {
                         this.cancel();
                         return;
-                    }else{
+                    } else {
                         i--;
                     }
                 }

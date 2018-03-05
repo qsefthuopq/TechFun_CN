@@ -5,6 +5,7 @@ import me.KodingKing1.TechFun.Startup.TechFunGuide;
 import me.KodingKing1.TechFun.TechFunMain;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
@@ -56,6 +57,32 @@ public class DataManager {
             section = TechFunMain.getData().getConfigurationSection(path);
         }
         return section;
+    }
+
+    public static void saveBlockData(Block b, String path, Object value) {
+        ConfigurationSection section = checkSection("Blocks." + b.getX() + "-" + b.getY() + "-" + b.getZ() + "-" + b.getWorld());
+        section.set(path, value);
+        TechFunMain.saveData();
+    }
+
+    public static Object getBlockData(Block b, String path, Object defaultValue) {
+        ConfigurationSection section = checkSection("Blocks." + b.getX() + "-" + b.getY() + "-" + b.getZ() + "-" + b.getWorld());
+        if (section.get(path) == null) {
+            section.set(path, defaultValue);
+        }
+        return section.get(path);
+    }
+
+    public static Object getBlockData(Block b, String path) {
+        ConfigurationSection section = checkSection("Blocks." + b.getX() + "-" + b.getY() + "-" + b.getZ() + "-" + b.getWorld());
+        return section.get(path);
+    }
+
+    public static void deleteBlockData(Block b) {
+        if (TechFunMain.getData().isConfigurationSection( "Blocks." + b.getX() + "-" + b.getY() + "-" + b.getZ() + "-" + b.getWorld())) {
+            TechFunMain.getData().set("Blocks." + b.getX() + "-" + b.getY() + "-" + b.getZ() + "-" + b.getWorld(), null);
+        }
+        TechFunMain.saveData();
     }
 
 //    public static void saveInventory(Inventory inv){

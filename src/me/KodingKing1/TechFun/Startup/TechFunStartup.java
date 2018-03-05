@@ -8,8 +8,10 @@ import me.KodingKing1.TechFun.Objects.Factory;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemAttackHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemBlockBreakHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemClickHandler;
+import me.KodingKing1.TechFun.Objects.Handlers.Machine.MachineClickHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.MultiBlock.MultiBlockClickHandler;
 import me.KodingKing1.TechFun.Objects.ItemBase;
+import me.KodingKing1.TechFun.Objects.Machine.Machine;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
 import me.KodingKing1.TechFun.TechFunMain;
 import me.KodingKing1.TechFun.Util.Cooldown;
@@ -22,16 +24,14 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Dropper;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Fireball;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.TNTPrimed;
+import org.bukkit.entity.*;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,12 +57,21 @@ public class TechFunStartup {
         headBase64List.put("TrashCan", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIyZGFlYTZlYmI2OWE2ODJmNzFkZDhjZWY5ZmZmMDIwNWNjMzQ5ZWM2OTQ0N2E2MWYyNWQxYzA5YWJmNDIifX19");
         headBase64List.put("CraftingTable", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2U3ZDhjMjQyZDJlNGY4MDI4ZjkzMGJlNzZmMzUwMTRiMjFiNTI1NTIwOGIxYzA0MTgxYjI1NzQxMzFiNzVhIn19fQ");
         headBase64List.put("TNT", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI5OTRiNDFmMDdmODdiMzI4MTg2YWNmY2JkYWJjNjk5ZDViMTg0N2ZhYmIyZTQ5ZDVhYmMyNzg2NTE0M2E0ZSJ9fX0");
+        headBase64List.put("Miner", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDczYmQ2MGFjYTVjZGNiMjY4ZGU0YmQ0NjU2MmI4NmRkM2YxZDg2OGZjNWFkZmM1NjE3ZGI4MDg0NzVmMCJ9fX0");
+        headBase64List.put("PlayerBeheader", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWFlMzg1NWY5NTJjZDRhMDNjMTQ4YTk0NmUzZjgxMmE1OTU1YWQzNWNiY2I1MjYyN2VhNGFjZDQ3ZDMwODEifX19");
+        headBase64List.put("XPJar", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQyZjY1NzZkNTFjNDY0YzNhNmY0NDViNzJhYWFkYWUzM2Q0NDgwYzkyZWNhYzY0M2MxNjRkYjE3MzA4ODcwIn19fQ");
+
+        headBase64List.put("WoodenCore", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTBlOWQyYmViODRiMzJlM2YxNWUzODBjYzJjNTUxMDY0MjkxMWE1MTIxMDVmYTJlYzY3OWJjNTQwZmQ4MTg0In19fQ");
+        headBase64List.put("StoneCore", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTk1NTM0ZTAyYzU5YjMzZWNlNTYxOTI4MDMzMTk3OTc3N2UwMjVmYTVmYTgxYWU3NWU5OWZkOGVmZGViYjgifX19");
+        headBase64List.put("IronCore", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmJhODQ1OTE0NWQ4M2ZmYzQ0YWQ1OGMzMjYwZTc0Y2E1YTBmNjM0YzdlZWI1OWExYWQzMjM0ODQ5YzkzM2MifX19");
+        headBase64List.put("GoldCore", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjZkMWNlNjk3ZTlkYmFhNGNjZjY0MjUxNmFhYTU5ODEzMzJkYWMxZDMzMWFmZWUyZWUzZGNjODllZmRlZGIifX19");
+        headBase64List.put("DiamondCore", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzAxNDYxOTczNjM0NTI1MTk2ZWNjNzU3NjkzYjE3MWFkYTRlZjI0YWE5MjgzNmY0MmVhMTFiZDc5YzNhNTAyZCJ9fX0");
 
         int spawnEggAmountPeaceful = 1;
 
         Category materials = Factory.makeCategory("TFMaterials", "Materials", new String[]{"Lots of things used to make lots of other", "things!"}, Material.DIAMOND, 0);
 
-        ItemBase woodenCore = Factory.makeItem("WoodenCore", "Wooden Core", new String[]{"The very first item core! Just made of wood."}, Material.LOG, new Object[]{
+        ItemBase woodenCore = Factory.makeItem("WoodenCore", TFUtil.makeSkullWithBase64(headBase64List.get("WoodenCore"), "Wooden Core", new String[]{"The very first item core! Just made of wood."}), new Object[]{
                 Material.LOG, Material.WOOD, Material.LOG,
                 Material.WOOD, Material.LEATHER, Material.WOOD,
                 Material.LOG, Material.WOOD, Material.LOG
@@ -72,7 +81,7 @@ public class TechFunStartup {
 
         materials.registerItem(woodenCore);
 
-        ItemBase stoneCore = Factory.makeItem("StoneCore", "Stone Core", new String[]{"The second tier of item cores!", "Its made of stone!"}, Material.STONE, new Object[]{
+        ItemBase stoneCore = Factory.makeItem("StoneCore", TFUtil.makeSkullWithBase64(headBase64List.get("StoneCore"), "Stone Core", new String[]{"The second tier of item cores!", "Its made of stone!"}), new Object[]{
                 Material.STONE, Material.COBBLESTONE, Material.STONE,
                 Material.COBBLESTONE, woodenCore.getItem(), Material.COBBLESTONE,
                 Material.STONE, Material.COBBLESTONE, Material.STONE
@@ -82,7 +91,7 @@ public class TechFunStartup {
 
         materials.registerItem(stoneCore);
 
-        ItemBase ironCore = Factory.makeItem("IronCore", "Iron Core", new String[]{"The third tier of item cores! Made out of silver shiny stuff! :-D"}, Material.IRON_INGOT, new Object[]{
+        ItemBase ironCore = Factory.makeItem("IronCore", TFUtil.makeSkullWithBase64(headBase64List.get("IronCore"), "Iron Core", new String[]{"The third tier of item cores! Made out of silver shiny stuff! :-D"}), new Object[]{
                 Material.IRON_INGOT, Material.STONE, Material.IRON_INGOT,
                 Material.STONE, stoneCore.getItem(), Material.STONE,
                 Material.IRON_INGOT, Material.STONE, Material.IRON_INGOT
@@ -92,7 +101,7 @@ public class TechFunStartup {
 
         materials.registerItem(ironCore);
 
-        ItemBase goldCore = Factory.makeItem("GoldCore", "Gold Core", new String[]{"The forth tier of item cores! Made out of beautiful rose gold! XD"}, Material.GOLD_INGOT, new Object[]{
+        ItemBase goldCore = Factory.makeItem("GoldCore", TFUtil.makeSkullWithBase64(headBase64List.get("GoldCore"), "Gold Core", new String[]{"The forth tier of item cores! Made out of beautiful rose gold! XD"}), new Object[]{
                 Material.GOLD_INGOT, Material.RED_ROSE, Material.GOLD_INGOT,
                 Material.IRON_INGOT, ironCore.getItem(), Material.IRON_INGOT,
                 Material.GOLD_INGOT, Material.RED_ROSE, Material.GOLD_INGOT
@@ -102,7 +111,7 @@ public class TechFunStartup {
 
         materials.registerItem(goldCore);
 
-        ItemBase diamondCore = Factory.makeItem("DiamondCore", "Diamond Core", new String[]{"The second best tier of item cores! Made out of blue shiny stuff (Diamonds)!"}, Material.DIAMOND, new Object[]{
+        ItemBase diamondCore = Factory.makeItem("DiamondCore", TFUtil.makeSkullWithBase64(headBase64List.get("DiamondCore"), "Diamond Core", new String[]{"The second best tier of item cores! Made out of blue shiny stuff (Diamonds)!"}), new Object[]{
                 Material.DIAMOND, Material.GOLD_INGOT, Material.DIAMOND,
                 Material.GOLD_INGOT, goldCore.getItem(), Material.GOLD_INGOT,
                 Material.DIAMOND, Material.GOLD_INGOT, Material.DIAMOND
@@ -236,6 +245,35 @@ public class TechFunStartup {
 
         basicMachinesCategory.registerMultiBlock(magicalCraftingTable);
 
+        Machine miner = Factory.makeMachine("Miner", TFUtil.makeSkullWithBase64(headBase64List.get("Miner"), "Miner", new String[]{ "Mines blocks directly under the machine until bedrock." }), new Object[]{
+                Material.STONE, Material.REDSTONE_BLOCK, Material.STONE,
+                stoneCore, Material.DIAMOND_PICKAXE, stoneCore,
+                Material.STONE, Material.STICK, Material.STONE
+        }, CraftingStation.MagicalCraftingTable, 15);
+
+        miner.registerHandler(new MachineClickHandler() {
+            @Override
+            public void onMachineClick(Machine machine, Player player, PlayerInteractEvent e) {
+                for (int y = e.getClickedBlock().getY() - 1; y > 0; y--) {
+                    Block b = e.getClickedBlock().getWorld().getBlockAt(e.getClickedBlock().getX(), y, e.getClickedBlock().getZ());
+                    if (b.getType() == Material.BEDROCK) {
+                        TechFunMain.getPluginLogger().sendMessage(player, TextUtil.Level.Error, "Error: I cannot dig because I have hit bedrock!");
+                    }
+                    if (b.getType() != Material.AIR) {
+                        for (ItemStack drop : b.getDrops()) {
+                            e.getClickedBlock().getWorld().dropItemNaturally(e.getClickedBlock().getLocation().add(0, 1, 0), drop);
+                        }
+                        b.setType(Material.AIR);
+                        return;
+                    }
+                }
+            }
+        });
+
+        miner.register();
+
+        basicMachinesCategory.registerMachine(miner);
+
         basicMachinesCategory.register();
 
         Category weaponsCategory = Factory.makeCategory("TFWeapons", "Weapons", new String[]{"Want to battle your enemies and conquer the world!", "Well here is the place for you!"}, Material.DIAMOND_SWORD, 0);
@@ -282,7 +320,7 @@ public class TechFunStartup {
             @Override
             public void onAttack(EntityDamageByEntityEvent e, Player p, ItemStack item) {
                 Random r = new Random();
-                int chance = r.nextInt(9);
+                int chance = r.nextInt(6);
                 if (chance == 0 && e.getEntityType() == EntityType.PLAYER) {
                     Player attacked = (Player) e.getEntity();
                     attacked.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 60, 2, false, false));
@@ -357,10 +395,12 @@ public class TechFunStartup {
         wandOfFire.registerHandler(new ItemClickHandler() {
             @Override
             public void onItemClick(PlayerInteractEvent e, Player p, ItemStack item) {
-                Cooldown cooldown = new Cooldown(p.getUniqueId(), "wandOfFire", 10);
+                Cooldown cooldown = new Cooldown(p.getUniqueId(), "wandOfFire", 6);
                 e.setCancelled(true);
                 if (Cooldown.getTimeLeft(p.getUniqueId(), "wandOfFire") <= 0) {
                     Fireball fireball = (Fireball) p.launchProjectile(Fireball.class);
+                    fireball.setYield(3);
+                    fireball.setFireTicks(0);
                     fireball.setVelocity(p.getLocation().getDirection().multiply(3));
                     cooldown.start();
                 } else {
@@ -373,7 +413,51 @@ public class TechFunStartup {
 
         magicCategory.registerItem(wandOfFire);
 
-        ItemBase playerBeheader = Factory.makeItem("PlayerBeheader", "Player Beheader", new String[]{"Takes the head right off players!"}, Material.REDSTONE, new Object[]{
+        ItemBase lightningRod = Factory.makeItem("LightningRod", "Lightning Rod", new String[]{"Lets you strike fear into your enemies eyes, literally."}, Material.STICK, new Object[]{
+                Material.GOLD_BLOCK, Material.FLINT_AND_STEEL, Material.GOLD_BLOCK,
+                Material.ENDER_PEARL, diamondCore, Material.ENDER_PEARL,
+                Material.REDSTONE_BLOCK, Material.IRON_BLOCK, Material.REDSTONE_BLOCK
+        }, CraftingStation.Forge, 10);
+
+        lightningRod.registerHandler(new ItemClickHandler() {
+            @Override
+            public void onItemClick(PlayerInteractEvent e, Player p, ItemStack item) {
+                Cooldown cooldown = new Cooldown(p.getUniqueId(), "lightningRod", 20);
+                e.setCancelled(true);
+                if (Cooldown.getTimeLeft(p.getUniqueId(), "lightningRod") <= 0) {
+                    p.getWorld().playSound(p.getTargetBlock(null, 200).getLocation(), Sound.ENTITY_EVOCATION_ILLAGER_PREPARE_WOLOLO, 1, 1);
+                    p.getWorld().playSound(p.getTargetBlock(null, 200).getLocation(), Sound.ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON, 0.5F, 0.5F);
+                    Bukkit.broadcastMessage(org.bukkit.ChatColor.DARK_AQUA + "[" + org.bukkit.ChatColor.AQUA + "TechFun" + org.bukkit.ChatColor.DARK_AQUA + "]" + ChatColor.RED + "A wild wololo could be heard in the distance. Beware of the dark magic within...");
+//                    TNTPrimed tntPrimed = (TNTPrimed) p.getWorld().spawnEntity(p.getTargetBlock(null, 200).getLocation(), EntityType.PRIMED_TNT);
+//                    tntPrimed.setFuseTicks(30);
+//                    tntPrimed.setYield(3);
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                        @Override
+                        public void run() {
+                            if (p.getTargetBlock(null, 200) == null) {
+                                TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "That block is too far away! Please try a little closer.");
+                                return;
+                            }
+                            for (int i = 0; i < 25; i++) {
+                                p.getWorld().strikeLightning(p.getTargetBlock(null, 200).getLocation());
+                            }
+                            for (int i = 0; i < 10; i++) {
+                                p.getWorld().createExplosion(p.getTargetBlock(null, 200).getLocation().getX(), p.getTargetBlock(null, 200).getLocation().getY(), p.getTargetBlock(null, 200).getLocation().getZ(), 5, false, false);
+                            }
+                        }
+                    }, 30);
+                    cooldown.start();
+                } else {
+                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "The item is still on cooldown! There is " + Cooldown.getTimeLeft(p.getUniqueId(), "lightningRod") + " seconds left!");
+                }
+            }
+        });
+
+        lightningRod.register();
+
+        magicCategory.registerItem(lightningRod);
+
+        ItemBase playerBeheader = Factory.makeItem("PlayerBeheader", TFUtil.makeSkullWithBase64(headBase64List.get("PlayerBeheader"), "Player Beheader", new String[]{"Takes the head right off players!"}), new Object[]{
                 Material.BLAZE_POWDER, null, Material.BLAZE_ROD,
                 null, goldCore, null,
                 Material.BLAZE_ROD, null, Material.BLAZE_POWDER
@@ -419,13 +503,13 @@ public class TechFunStartup {
 
         magicCategory.registerItem(launchTnt);
 
-        ItemBase xpToken = Factory.makeItem("XPToken", "XP Token", new String[]{"Gives you 5 levels when used."}, Material.EMERALD, new Object[]{
+        ItemBase xpJar = Factory.makeItem("XPJar", TFUtil.makeSkullWithBase64(headBase64List.get("XPJar"), "XP Jar", new String[]{"Gives you 5 levels when used."}), new Object[]{
                 Material.COBBLESTONE, Material.COAL_BLOCK, Material.COBBLESTONE,
                 Material.COAL, stoneCore, Material.COAL,
                 Material.COBBLESTONE, Material.GLASS_BOTTLE, Material.COBBLESTONE
         }, CraftingStation.MagicalCraftingTable, 10);
 
-        xpToken.registerHandler(new ItemClickHandler() {
+        xpJar.registerHandler(new ItemClickHandler() {
             @Override
             public void onItemClick(PlayerInteractEvent e, Player p, ItemStack item) {
                 InvUtil.decrementItem(item);
@@ -434,9 +518,9 @@ public class TechFunStartup {
             }
         });
 
-        xpToken.register();
+        xpJar.register();
 
-        magicCategory.registerItem(xpToken);
+        magicCategory.registerItem(xpJar);
 
         magicCategory.register();
 

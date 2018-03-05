@@ -4,7 +4,10 @@ import me.KodingKing1.TechFun.Objects.CraftingStation;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemBlockBreakHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemClickHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemHandler;
+import me.KodingKing1.TechFun.Objects.Handlers.Machine.MachineClickHandler;
+import me.KodingKing1.TechFun.Objects.Handlers.Machine.MachineHandler;
 import me.KodingKing1.TechFun.Objects.ItemBase;
+import me.KodingKing1.TechFun.Objects.Machine.Machine;
 import me.KodingKing1.TechFun.Startup.Registry;
 import me.KodingKing1.TechFun.TechFunMain;
 import me.KodingKing1.TechFun.Util.DataManager;
@@ -13,7 +16,11 @@ import me.KodingKing1.TechFun.Util.TextUtil;
 import org.bukkit.Sound;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.Random;
 
@@ -64,6 +71,57 @@ public class BlockEvents implements Listener {
                         Random rand = new Random();
                         if(rand.nextInt(100) < 20){
                             e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), item.getItem());
+                        }
+                    }
+                }
+            }
+        }
+        for (Machine m : Registry.getMachines()) {
+            if (((String) DataManager.getBlockData(e.getBlock(), "Name", "")).equalsIgnoreCase(m.getName()) ) {
+                DataManager.deleteBlockData(e.getBlock());
+                e.setDropItems(false);
+                e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), m.getItem());
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent e) {
+        for (Machine m : Registry.getMachines()) {
+            if (InvUtil.isSimilarItem(m.getItem(), e.getItemInHand())) {
+                DataManager.saveBlockData(e.getBlock(), "Name", m.getName());
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent e) {
+        EquipmentSlot slot = e.getHand();
+        if (!slot.equals(EquipmentSlot.HAND)) {
+            return;
+        }
+        if (e.getAction() != Action.RIGHT_CLICK_BLOCK) {
+            return;
+        }
+        if (e.hasBlock()) {
+            for (Machine m : Registry.getMachines()) {
+                String name = ((String) DataManager.getBlockData(e.getClickedBlock(), "Name")) != null ? ((String) DataManager.getBlockData(e.getClickedBlock(), "Name")) : "";
+                if (name.equalsIgnoreCase(m.getName())) {
+                    for (MachineHandler handler : m.getHandlers()) {
+                        if (handler instanceof MachineClickHandler) {
+                            Boolean unlocked;
+                            if (DataManager.getPlayerData(e.getPlayer(), "Guide.Machine." + m.getName() + ".Unlocked") != null) {
+                                unlocked = (Boolean) DataManager.getPlayerData(e.getPlayer(), "Guide.Machine." + m.getName() + ".Unlocked");
+                            } else {
+                                DataManager.setPlayerData(e.getPlayer(), "Guide.Machine." + m.getName() + ".Unlocked", false);
+                                unlocked = (Boolean) DataManager.getPlayerData(e.getPlayer(), "Guide.Machine." + m.getName() + ".Unlocked");
+                            }
+                            if(!unlocked){
+                                continue;
+                            }
+                            MachineClickHandler mch = (MachineClickHandler) handler;
+                            mch.onMachineClick(m, e.getPlayer(), e);
+                            return;
                         }
                     }
                 }
