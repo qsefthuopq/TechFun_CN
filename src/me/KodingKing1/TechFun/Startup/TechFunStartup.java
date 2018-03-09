@@ -49,7 +49,7 @@ public class TechFunStartup {
         registerAll();
         registerEvents();
         registerCommands();
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new RunnableMain(), 1L, 1L);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new RunnableMain(), 0L, 20L);
     }
 
     private static void registerAll() {
@@ -258,6 +258,7 @@ public class TechFunStartup {
                     Block b = e.getClickedBlock().getWorld().getBlockAt(e.getClickedBlock().getX(), y, e.getClickedBlock().getZ());
                     if (b.getType() == Material.BEDROCK) {
                         TechFunMain.getPluginLogger().sendMessage(player, TextUtil.Level.Error, "Error: I cannot dig because I have hit bedrock!");
+                        return;
                     }
                     if (b.getType() != Material.AIR) {
                         for (ItemStack drop : b.getDrops()) {
@@ -425,24 +426,25 @@ public class TechFunStartup {
                 Cooldown cooldown = new Cooldown(p.getUniqueId(), "lightningRod", 20);
                 e.setCancelled(true);
                 if (Cooldown.getTimeLeft(p.getUniqueId(), "lightningRod") <= 0) {
-                    p.getWorld().playSound(p.getTargetBlock(null, 200).getLocation(), Sound.ENTITY_EVOCATION_ILLAGER_PREPARE_WOLOLO, 1, 1);
-                    p.getWorld().playSound(p.getTargetBlock(null, 200).getLocation(), Sound.ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON, 0.5F, 0.5F);
-                    Bukkit.broadcastMessage(org.bukkit.ChatColor.DARK_AQUA + "[" + org.bukkit.ChatColor.AQUA + "TechFun" + org.bukkit.ChatColor.DARK_AQUA + "]" + ChatColor.RED + "A wild wololo could be heard in the distance. Beware of the dark magic within...");
+                    Block b = p.getTargetBlock(null, 200);
+                    if (b == null) {
+                        TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "That block is too far away! Please try a little closer.");
+                        return;
+                    }
+                    p.getWorld().playSound(b.getLocation(), Sound.ENTITY_EVOCATION_ILLAGER_PREPARE_WOLOLO, 1, 1);
+                    p.getWorld().playSound(b.getLocation(), Sound.ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON, 0.5F, 0.5F);
+                    Bukkit.broadcastMessage(org.bukkit.ChatColor.DARK_AQUA + "[" + org.bukkit.ChatColor.AQUA + "TechFun" + org.bukkit.ChatColor.DARK_AQUA + "]" + ChatColor.RED + "A wild wololo could be heard in the distance as " + p.getName() + " goes mad with power...");
 //                    TNTPrimed tntPrimed = (TNTPrimed) p.getWorld().spawnEntity(p.getTargetBlock(null, 200).getLocation(), EntityType.PRIMED_TNT);
 //                    tntPrimed.setFuseTicks(30);
 //                    tntPrimed.setYield(3);
                     Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                         @Override
                         public void run() {
-                            if (p.getTargetBlock(null, 200) == null) {
-                                TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "That block is too far away! Please try a little closer.");
-                                return;
-                            }
                             for (int i = 0; i < 25; i++) {
-                                p.getWorld().strikeLightning(p.getTargetBlock(null, 200).getLocation());
+                                p.getWorld().strikeLightning(b.getLocation());
                             }
                             for (int i = 0; i < 10; i++) {
-                                p.getWorld().createExplosion(p.getTargetBlock(null, 200).getLocation().getX(), p.getTargetBlock(null, 200).getLocation().getY(), p.getTargetBlock(null, 200).getLocation().getZ(), 5, false, false);
+                                p.getWorld().createExplosion(b.getLocation().getX(), b.getLocation().getY(),b.getLocation().getZ(), 5, false, false);
                             }
                         }
                     }, 30);

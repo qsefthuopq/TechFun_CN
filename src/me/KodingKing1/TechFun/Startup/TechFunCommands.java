@@ -2,6 +2,7 @@ package me.KodingKing1.TechFun.Startup;
 
 import me.KodingKing1.TechFun.Objects.Category.Category;
 import me.KodingKing1.TechFun.Objects.ItemBase;
+import me.KodingKing1.TechFun.Objects.Machine.Machine;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
 import me.KodingKing1.TechFun.TechFunMain;
 import me.KodingKing1.TechFun.Util.DataManager;
@@ -57,6 +58,9 @@ public class TechFunCommands implements CommandExecutor {
                     }
                     for(MultiBlock mb : Registry.getMultiBlocks()){
                         DataManager.setPlayerData(p, "Guide.Items." + ChatColor.stripColor(mb.getIcon().getItemMeta().getDisplayName()) + ".Unlocked", true);
+                    }
+                    for(Machine m : Registry.getMachines()){
+                        DataManager.setPlayerData(p, "Guide.Machine." + ChatColor.stripColor(m.getItem().getItemMeta().getDisplayName()) + ".Unlocked", true);
                     }
                     TechFunMain.getPluginLogger().sendMessage(sender, TextUtil.Level.Success, "Successfully unlocked everything!");
                     return true;

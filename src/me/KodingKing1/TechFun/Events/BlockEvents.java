@@ -97,7 +97,7 @@ public class BlockEvents implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
         EquipmentSlot slot = e.getHand();
-        if (!slot.equals(EquipmentSlot.HAND)) {
+        if (slot != null && !slot.equals(EquipmentSlot.HAND)) {
             return;
         }
         if (e.getAction() != Action.RIGHT_CLICK_BLOCK) {
@@ -117,6 +117,8 @@ public class BlockEvents implements Listener {
                                 unlocked = (Boolean) DataManager.getPlayerData(e.getPlayer(), "Guide.Machine." + m.getName() + ".Unlocked");
                             }
                             if(!unlocked){
+                                TechFunMain.getPluginLogger().sendMessage(e.getPlayer(), TextUtil.Level.Error, "You do not have the knowledge to understand this...");
+                                e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.BLOCK_REDSTONE_TORCH_BURNOUT, 1.0F, 1.0F);
                                 continue;
                             }
                             MachineClickHandler mch = (MachineClickHandler) handler;

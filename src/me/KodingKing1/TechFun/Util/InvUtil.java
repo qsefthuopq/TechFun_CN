@@ -315,20 +315,25 @@ public class InvUtil {
         if (invi != null && reci != null) {
             if (!invi.getType().equals(reci.getType())) {
                 isCorrect = false;
+                return isCorrect;
             }
             if (invi.hasItemMeta() && invi.getItemMeta().hasDisplayName() && reci.hasItemMeta() && reci.getItemMeta().hasDisplayName()) {
                 if (!(ChatColor.stripColor(invi.getItemMeta().getDisplayName().toLowerCase()).contentEquals(ChatColor.stripColor(reci.getItemMeta().getDisplayName().toLowerCase())))) {
                     isCorrect = false;
+                    return isCorrect;
                 }
             }
             if (invi.hasItemMeta() && !reci.hasItemMeta() || !invi.hasItemMeta() && reci.hasItemMeta()) {
                 isCorrect = false;
+                return isCorrect;
             }
             if (invi.hasItemMeta() && reci.hasItemMeta() && (invi.getItemMeta().hasDisplayName() && !reci.getItemMeta().hasDisplayName() || !invi.getItemMeta().hasDisplayName() && reci.getItemMeta().hasDisplayName())) {
                 isCorrect = false;
+                return isCorrect;
             }
         } else if ((invi == null && reci != null) || (invi != null && reci == null)) {
             isCorrect = false;
+            return isCorrect;
         }
 //        if(invi != null && reci != null){
 //            if(!invi.getType().equals(reci.getType())){

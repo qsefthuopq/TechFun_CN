@@ -3,6 +3,8 @@ package me.KodingKing1.TechFun.Startup;
 import me.KodingKing1.TechFun.Objects.Category.Category;
 import me.KodingKing1.TechFun.Objects.CraftingStation;
 import me.KodingKing1.TechFun.Objects.CustomRecipe;
+import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemHandler;
+import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemWornHandler;
 import me.KodingKing1.TechFun.Objects.ItemBase;
 import me.KodingKing1.TechFun.Objects.Machine.Machine;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
@@ -46,12 +48,23 @@ public class Registry {
         return machines;
     }
 
+    private static List<ItemBase> armor = new ArrayList<>();
+
+    public static List<ItemBase> getArmor() {
+        return armor;
+    }
+
     public static int length(){
         return getItems().size() + getCategories().size() + getMultiBlocks().size() + getCustomRecipes().size() + getMachines().size();
     }
 
     public static void registerItem(ItemBase item){
         items.add(item);
+        for (ItemHandler itemHandler : item.getHandlers()) {
+            if (itemHandler instanceof ItemWornHandler) {
+                armor.add(item);
+            }
+        }
         if(item.getCraftingStation() == CraftingStation.DefaultCraftingTable){
             ShapedRecipe recipe = new ShapedRecipe(item.getItem());
             recipe.shape("012", "345", "678");

@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4a64e4aa-9779-4dc4-b8dd-11c15a151f34" name="Default" comment="Added Launchable TNT to magic category.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Handlers/Machine/MachineClickHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Handlers/Machine/MachineHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Machine/Machine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="4a64e4aa-9779-4dc4-b8dd-11c15a151f34" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Events/BlockEvents.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Events/BlockEvents.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Category/Category.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Category/Category.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Factory.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Factory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/Registry.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/Registry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunGuide.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunGuide.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/RunnableMain.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/RunnableMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunCommands.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunCommands.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunStartup.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunStartup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/DataManager.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/DataManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/InvUtil.java" afterPath="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/InvUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugin.yml" afterPath="$PROJECT_DIR$/src/plugin.yml" />
     </list>
@@ -30,8 +24,8 @@
       <file leaf-file-name="TechFunStartup.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunStartup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="431" column="49" lean-forward="true" selection-start-line="431" selection-start-column="49" selection-end-line="431" selection-end-column="49" />
+            <state relative-caret-position="357">
+              <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -43,53 +37,7 @@
         <entry file="file://$PROJECT_DIR$/src/plugin.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Machine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Machine/Machine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="613">
-              <caret line="82" column="28" lean-forward="false" selection-start-line="82" selection-start-column="28" selection-end-line="82" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#781#782#0" expanded="true" />
-                <element signature="e#812#813#0" expanded="true" />
-                <element signature="e#986#987#0" expanded="true" />
-                <element signature="e#1015#1016#0" expanded="true" />
-                <element signature="e#2360#2361#0" expanded="true" />
-                <element signature="e#2401#2402#0" expanded="true" />
-                <element signature="e#2437#2438#0" expanded="true" />
-                <element signature="e#2496#2497#0" expanded="true" />
-                <element signature="e#2533#2534#0" expanded="true" />
-                <element signature="e#2563#2564#0" expanded="true" />
-                <element signature="e#2609#2610#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ItemBase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/ItemBase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="13" />
-              <folding>
-                <element signature="e#696#697#0" expanded="true" />
-                <element signature="e#723#724#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TechFunGuide.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunGuide.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="655" column="72" lean-forward="true" selection-start-line="655" selection-start-column="72" selection-end-line="655" selection-end-column="72" />
+              <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -98,8 +46,28 @@
       <file leaf-file-name="BlockEvents.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Events/BlockEvents.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="104" column="9" lean-forward="true" selection-start-line="104" selection-start-column="9" selection-end-line="104" selection-end-column="9" />
+            <state relative-caret-position="1496">
+              <caret line="110" column="68" lean-forward="false" selection-start-line="110" selection-start-column="68" selection-end-line="110" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MultiBlockEvents.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Events/MultiBlockEvents.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1224">
+              <caret line="86" column="20" lean-forward="false" selection-start-line="86" selection-start-column="20" selection-end-line="87" selection-end-column="121" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TechFunCommands.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunCommands.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="833">
+              <caret line="61" column="60" lean-forward="false" selection-start-line="61" selection-start-column="60" selection-end-line="61" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -118,8 +86,28 @@
       <file leaf-file-name="RunnableMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/RunnableMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            <state relative-caret-position="374">
+              <caret line="31" column="74" lean-forward="false" selection-start-line="31" selection-start-column="74" selection-end-line="31" selection-end-column="74" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Registry.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/Registry.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="64" column="32" lean-forward="true" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ItemWornHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Handlers/Item/ItemWornHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -128,21 +116,9 @@
       <file leaf-file-name="TechFunMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/TechFunMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="31" column="112" lean-forward="false" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="112" />
+            <state relative-caret-position="340">
+              <caret line="33" column="18" lean-forward="true" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MachineClickHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Handlers/Machine/MachineClickHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -164,6 +140,7 @@
       <find>CoolDownManager</find>
       <find>entity</find>
       <find>Guide.Machines</find>
+      <find>not have the</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -189,17 +166,19 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/TFUtil.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/Registry.java" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Handlers/Machine/MachineClickHandler.java" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Category/Category.java" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunGuide.java" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/DataManager.java" />
-        <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/InvUtil.java" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Machine/Machine.java" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Factory.java" />
-        <option value="$PROJECT_DIR$/src/plugin.yml" />
+        <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunCommands.java" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Events/BlockEvents.java" />
+        <option value="$PROJECT_DIR$/src/plugin.yml" />
         <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunStartup.java" />
+        <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/InvUtil.java" />
+        <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/Registry.java" />
+        <option value="$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/RunnableMain.java" />
       </list>
     </option>
   </component>
@@ -231,8 +210,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -258,125 +238,10 @@
               <item name="artifacts" type="462c0819:PsiDirectoryNode" />
               <item name="TechFun_V2" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="me" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="me" type="462c0819:PsiDirectoryNode" />
-              <item name="KodingKing1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="me" type="462c0819:PsiDirectoryNode" />
-              <item name="KodingKing1" type="462c0819:PsiDirectoryNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="me" type="462c0819:PsiDirectoryNode" />
-              <item name="KodingKing1" type="462c0819:PsiDirectoryNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="Events" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="me" type="462c0819:PsiDirectoryNode" />
-              <item name="KodingKing1" type="462c0819:PsiDirectoryNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="Objects" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="me" type="462c0819:PsiDirectoryNode" />
-              <item name="KodingKing1" type="462c0819:PsiDirectoryNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="Objects" type="462c0819:PsiDirectoryNode" />
-              <item name="Handlers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="me" type="462c0819:PsiDirectoryNode" />
-              <item name="KodingKing1" type="462c0819:PsiDirectoryNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="Objects" type="462c0819:PsiDirectoryNode" />
-              <item name="Handlers" type="462c0819:PsiDirectoryNode" />
-              <item name="Machine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="me" type="462c0819:PsiDirectoryNode" />
-              <item name="KodingKing1" type="462c0819:PsiDirectoryNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="Objects" type="462c0819:PsiDirectoryNode" />
-              <item name="Handlers" type="462c0819:PsiDirectoryNode" />
-              <item name="MultiBlock" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="me" type="462c0819:PsiDirectoryNode" />
-              <item name="KodingKing1" type="462c0819:PsiDirectoryNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="Objects" type="462c0819:PsiDirectoryNode" />
-              <item name="Machine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="me" type="462c0819:PsiDirectoryNode" />
-              <item name="KodingKing1" type="462c0819:PsiDirectoryNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="Objects" type="462c0819:PsiDirectoryNode" />
-              <item name="MultiBlock" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="me" type="462c0819:PsiDirectoryNode" />
-              <item name="KodingKing1" type="462c0819:PsiDirectoryNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="Startup" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TechFun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="me" type="462c0819:PsiDirectoryNode" />
-              <item name="KodingKing1" type="462c0819:PsiDirectoryNode" />
-              <item name="TechFun" type="462c0819:PsiDirectoryNode" />
-              <item name="Util" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -719,7 +584,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520146787662</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added miner machine and lightning rod.">
+      <created>1520240414308</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1520240414308</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -739,9 +611,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2489339" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26226014" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -755,6 +626,7 @@
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -801,7 +673,8 @@
     <MESSAGE value="Fixed a bug and changed some items." />
     <MESSAGE value="Tried to balance spawn egg prices." />
     <MESSAGE value="Added Launchable TNT to magic category." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Launchable TNT to magic category." />
+    <MESSAGE value="Added miner machine and lightning rod." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added miner machine and lightning rod." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -812,13 +685,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Events/InventoryEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/libs/spigot-1.12.2.jar!/org/bukkit/event/player/PlayerEvent.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -973,15 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="31" column="97" lean-forward="false" selection-start-line="31" selection-start-column="97" selection-end-line="31" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="29" column="76" lean-forward="false" selection-start-line="29" selection-start-column="76" selection-end-line="29" selection-end-column="76" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -989,7 +846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="39" column="51" lean-forward="false" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1004,15 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="31" lean-forward="false" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Events/MultiBlockEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="29" column="25" lean-forward="true" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1020,7 +867,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="83" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1028,7 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="46" column="6" lean-forward="true" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1036,7 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="18" column="19" lean-forward="true" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1044,7 +888,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="249" column="92" lean-forward="true" selection-start-line="249" selection-start-column="92" selection-end-line="249" selection-end-column="92" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1052,7 +895,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
           <caret line="78" column="5" lean-forward="true" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1060,30 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="68" column="44" lean-forward="true" selection-start-line="68" selection-start-column="44" selection-end-line="68" selection-end-column="44" />
-          <folding>
-            <element signature="e#1613#1614#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/InvUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="210" column="16" lean-forward="false" selection-start-line="210" selection-start-column="16" selection-end-line="210" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/Registry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="746">
-          <caret line="111" column="32" lean-forward="true" selection-start-line="111" selection-start-column="32" selection-end-line="111" selection-end-column="32" />
-          <folding>
-            <element signature="e#1368#1369#0" expanded="true" />
-            <element signature="e#1399#1400#0" expanded="true" />
-            <element signature="e#3453#3454#0" expanded="true" />
-            <element signature="e#3490#3491#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1091,7 +909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
           <caret line="230" column="42" lean-forward="true" selection-start-line="230" selection-start-column="42" selection-end-line="230" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1099,74 +916,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="e#696#697#0" expanded="true" />
-            <element signature="e#723#724#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunGuide.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="655" column="72" lean-forward="true" selection-start-line="655" selection-start-column="72" selection-end-line="655" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Events/BlockEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="104" column="9" lean-forward="true" selection-start-line="104" selection-start-column="9" selection-end-line="104" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/TextUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="1" lean-forward="false" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/TechFunMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="31" column="112" lean-forward="false" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="112" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/RunnableMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="10659">
+          <caret line="655" column="72" lean-forward="false" selection-start-line="655" selection-start-column="72" selection-end-line="655" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Handlers/Machine/MachineClickHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="102">
           <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Machine/Machine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
+        <state relative-caret-position="884">
           <caret line="82" column="28" lean-forward="false" selection-start-line="82" selection-start-column="28" selection-end-line="82" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1185,10 +957,90 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Events/MultiBlockEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="86" column="20" lean-forward="false" selection-start-line="86" selection-start-column="20" selection-end-line="87" selection-end-column="121" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Events/BlockEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1496">
+          <caret line="110" column="68" lean-forward="false" selection-start-line="110" selection-start-column="68" selection-end-line="110" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/TechFunMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="33" column="18" lean-forward="true" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Objects/Handlers/Item/ItemWornHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/TextUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="1" lean-forward="false" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="61" column="60" lean-forward="false" selection-start-line="61" selection-start-column="60" selection-end-line="61" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Util/InvUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="315" column="41" lean-forward="false" selection-start-line="315" selection-start-column="41" selection-end-line="315" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/Registry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="64" column="32" lean-forward="true" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/RunnableMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="31" column="74" lean-forward="false" selection-start-line="31" selection-start-column="74" selection-end-line="31" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/KodingKing1/TechFun/Startup/TechFunStartup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="431" column="49" lean-forward="true" selection-start-line="431" selection-start-column="49" selection-end-line="431" selection-end-column="49" />
+        <state relative-caret-position="357">
+          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
