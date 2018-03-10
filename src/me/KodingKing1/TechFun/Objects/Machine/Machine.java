@@ -5,8 +5,10 @@ import me.KodingKing1.TechFun.Objects.Handlers.Machine.MachineHandler;
 import me.KodingKing1.TechFun.Objects.ItemBase;
 import me.KodingKing1.TechFun.Startup.Registry;
 import me.KodingKing1.TechFun.TechFunMain;
+import me.KodingKing1.TechFun.Util.DataManager;
 import me.KodingKing1.TechFun.Util.TextUtil;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -94,6 +96,11 @@ public class Machine {
 
     public void register() {
         Registry.registerMachine(this);
+    }
+
+    public static void removeMachine(Block b) {
+        b.setType(Material.AIR);
+        DataManager.deleteBlockData(b);
     }
 
 }

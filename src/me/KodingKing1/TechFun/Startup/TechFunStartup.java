@@ -54,6 +54,7 @@ public class TechFunStartup {
 
     private static void registerAll() {
         Map<String, String> headBase64List = new HashMap<>();
+        //Misc
         headBase64List.put("TrashCan", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIyZGFlYTZlYmI2OWE2ODJmNzFkZDhjZWY5ZmZmMDIwNWNjMzQ5ZWM2OTQ0N2E2MWYyNWQxYzA5YWJmNDIifX19");
         headBase64List.put("CraftingTable", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2U3ZDhjMjQyZDJlNGY4MDI4ZjkzMGJlNzZmMzUwMTRiMjFiNTI1NTIwOGIxYzA0MTgxYjI1NzQxMzFiNzVhIn19fQ");
         headBase64List.put("TNT", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI5OTRiNDFmMDdmODdiMzI4MTg2YWNmY2JkYWJjNjk5ZDViMTg0N2ZhYmIyZTQ5ZDVhYmMyNzg2NTE0M2E0ZSJ9fX0");
@@ -61,11 +62,17 @@ public class TechFunStartup {
         headBase64List.put("PlayerBeheader", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWFlMzg1NWY5NTJjZDRhMDNjMTQ4YTk0NmUzZjgxMmE1OTU1YWQzNWNiY2I1MjYyN2VhNGFjZDQ3ZDMwODEifX19");
         headBase64List.put("XPJar", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQyZjY1NzZkNTFjNDY0YzNhNmY0NDViNzJhYWFkYWUzM2Q0NDgwYzkyZWNhYzY0M2MxNjRkYjE3MzA4ODcwIn19fQ");
 
+        //Cores
         headBase64List.put("WoodenCore", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTBlOWQyYmViODRiMzJlM2YxNWUzODBjYzJjNTUxMDY0MjkxMWE1MTIxMDVmYTJlYzY3OWJjNTQwZmQ4MTg0In19fQ");
         headBase64List.put("StoneCore", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTk1NTM0ZTAyYzU5YjMzZWNlNTYxOTI4MDMzMTk3OTc3N2UwMjVmYTVmYTgxYWU3NWU5OWZkOGVmZGViYjgifX19");
         headBase64List.put("IronCore", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmJhODQ1OTE0NWQ4M2ZmYzQ0YWQ1OGMzMjYwZTc0Y2E1YTBmNjM0YzdlZWI1OWExYWQzMjM0ODQ5YzkzM2MifX19");
         headBase64List.put("GoldCore", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjZkMWNlNjk3ZTlkYmFhNGNjZjY0MjUxNmFhYTU5ODEzMzJkYWMxZDMzMWFmZWUyZWUzZGNjODllZmRlZGIifX19");
         headBase64List.put("DiamondCore", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzAxNDYxOTczNjM0NTI1MTk2ZWNjNzU3NjkzYjE3MWFkYTRlZjI0YWE5MjgzNmY0MmVhMTFiZDc5YzNhNTAyZCJ9fX0");
+
+        //Foods
+        headBase64List.put("Apple", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2JiMzExZjNiYTFjMDdjM2QxMTQ3Y2QyMTBkODFmZTExZmQ4YWU5ZTNkYjIxMmEwZmE3NDg5NDZjMzYzMyJ9fX0");
+        headBase64List.put("Hamburger", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2RhZGYxNzQ0NDMzZTFjNzlkMWQ1OWQyNzc3ZDkzOWRlMTU5YTI0Y2Y1N2U4YTYxYzgyYmM0ZmUzNzc3NTUzYyJ9fX0");
+        headBase64List.put("Donut", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDA3YjhjNTFhY2VjMmE1MDhiYjJmYTY1MmZiNmU0YTA4YjE5NDg1MTU5YTA5OWY1OTgyY2NiODhkZjFmZTI3ZSJ9fX0");
 
         int spawnEggAmountPeaceful = 1;
 
@@ -244,6 +251,23 @@ public class TechFunStartup {
         magicalCraftingTable.register();
 
         basicMachinesCategory.registerMultiBlock(magicalCraftingTable);
+
+        MultiBlock cookingBench = Factory.makeMultiBlock("Cooking Bench", new String[]{ "Allows you to cook recipes!" }, Material.FURNACE, new Material[]{
+                Material.AIR, Material.AIR, Material.AIR,
+                Material.STEP, Material.WORKBENCH, Material.STEP,
+                Material.IRON_BLOCK, Material.DROPPER, Material.IRON_BLOCK
+        }, 5);
+
+        cookingBench.registerHandler(new MultiBlockClickHandler() {
+            @Override
+            public void click(MultiBlock multiBlock, Player player, PlayerInteractEvent e) {
+                InvUtil.craftItem((Dropper) e.getClickedBlock().getRelative(BlockFace.DOWN).getState(), multiBlock, player, e, plugin, CraftingStation.CookingBench);
+            }
+        });
+
+        cookingBench.register();
+
+        basicMachinesCategory.registerMultiBlock(cookingBench);
 
         Machine miner = Factory.makeMachine("Miner", TFUtil.makeSkullWithBase64(headBase64List.get("Miner"), "Miner", new String[]{ "Mines blocks directly under the machine until bedrock." }), new Object[]{
                 Material.STONE, Material.REDSTONE_BLOCK, Material.STONE,
@@ -619,6 +643,53 @@ public class TechFunStartup {
         ocelotSpawner.register();
 
         spawnerCategory.register();
+
+        Category foodCategory = Factory.makeCategory("TFFood", TFUtil.makeSkullWithBase64(headBase64List.get("Apple"), "Food", new String[]{ "Contains all the food in default TechFun!" }), 0);
+
+        Machine hamburger = Factory.makeMachine("Hamburger", TFUtil.makeSkullWithBase64(headBase64List.get("Hamburger"), "Hamburger", new String[]{ "Place it down and click me to eat!" }), new Object[]{
+                null, Material.BREAD, null,
+                null, Material.COOKED_BEEF, null,
+                null, Material.BREAD, null
+        }, CraftingStation.CookingBench, 2);
+
+        hamburger.registerHandler(new MachineClickHandler() {
+            @Override
+            public void onMachineClick(Machine machine, Player player, PlayerInteractEvent e) {
+                Machine.removeMachine(e.getClickedBlock());
+                TFUtil.eatFood(player, 20, 8);
+            }
+        });
+
+        hamburger.register();
+
+        foodCategory.registerMachine(hamburger);
+
+        Machine donut = Factory.makeMachine("Donut", TFUtil.makeSkullWithBase64(headBase64List.get("Donut"), "Donut", new String[]{ "A delicious treat for you!" }), new Object[]{
+                null, null, null,
+                null, Material.SUGAR, null,
+                Material.WHEAT, Material.EGG, Material.WHEAT
+        }, CraftingStation.CookingBench, 2);
+
+        donut.registerHandler(new MachineClickHandler() {
+            @Override
+            public void onMachineClick(Machine machine, Player player, PlayerInteractEvent e) {
+                Machine.removeMachine(e.getClickedBlock());
+                TFUtil.eatFood(player,  7, 3);
+                if (player.hasPotionEffect(PotionEffectType.SPEED)) {
+                    final PotionEffect potionEffect = player.getPotionEffect(PotionEffectType.SPEED);
+                    player.removePotionEffect(PotionEffectType.SPEED);
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,  potionEffect.getDuration() + 3 * 20, potionEffect.getAmplifier() + 1, false, false));
+                } else {
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5 * 20, 2, false, false));
+                }
+            }
+        });
+
+        donut.register();
+
+        foodCategory.registerMachine(donut);
+
+        foodCategory.register();
     }
 
     private static void registerCommands() {

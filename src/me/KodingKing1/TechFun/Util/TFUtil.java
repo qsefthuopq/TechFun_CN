@@ -2,8 +2,11 @@ package me.KodingKing1.TechFun.Util;
 
 import com.deanveloper.skullcreator.SkullCreator;
 import me.KodingKing1.TechFun.Objects.Factory;
+import me.KodingKing1.TechFun.TechFunMain;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -12,6 +15,7 @@ import org.bukkit.plugin.Plugin;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by djite on 16/05/2017.
@@ -105,6 +109,15 @@ public class TFUtil {
         ItemStack egg = makeMobSpawnEgg(entityName, plugin);
         egg.setAmount(amount);
         return egg;
+    }
+
+    public static void eatFood(Player p, int food, int saturation) {
+        p.setFoodLevel(Math.min(20, p.getFoodLevel() + food));
+        p.setSaturation(Math.min(20, p.getSaturation() + saturation));
+        p.getWorld().playSound(p.getLocation(), Sound.ENTITY_GENERIC_EAT, 1, 1);
+        String[] messages = { "You really enjoyed that!", "Mmm, that was nice!", "Mmm, tasty!", "That was delicious!" };
+        Random r = new Random();
+        TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, messages[r.nextInt(messages.length - 1)]);
     }
 
 }
