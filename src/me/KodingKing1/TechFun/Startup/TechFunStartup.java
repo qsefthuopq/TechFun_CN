@@ -43,6 +43,7 @@ import java.util.Random;
 public class TechFunStartup {
 
     private static TechFunMain plugin;
+    public static double xpMultiplier = 1;
 
     public static void init(TechFunMain techfun) {
         plugin = techfun;
@@ -53,6 +54,13 @@ public class TechFunStartup {
     }
 
     private static void registerAll() {
+        String xpMultiplierPath = "Settings.XPMultiplier";
+        if (!TechFunMain.getData().contains(xpMultiplierPath)) {
+            TechFunMain.getData().set(xpMultiplierPath, 2);
+            TechFunMain.saveData();
+        }
+        xpMultiplier = TechFunMain.getData().getDouble(xpMultiplierPath);
+
         Map<String, String> headBase64List = new HashMap<>();
         //Misc
         headBase64List.put("TrashCan", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIyZGFlYTZlYmI2OWE2ODJmNzFkZDhjZWY5ZmZmMDIwNWNjMzQ5ZWM2OTQ0N2E2MWYyNWQxYzA5YWJmNDIifX19");

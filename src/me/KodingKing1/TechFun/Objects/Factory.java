@@ -3,6 +3,7 @@ package me.KodingKing1.TechFun.Objects;
 import me.KodingKing1.TechFun.Objects.Category.Category;
 import me.KodingKing1.TechFun.Objects.Machine.Machine;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
+import me.KodingKing1.TechFun.Startup.TechFunStartup;
 import me.KodingKing1.TechFun.Util.TFUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -35,7 +36,7 @@ public class Factory {
         item.setRecipe(recipe);
         item.setName(registryName);
         item.setCraftingStation(station);
-        item.setXpToUnlock(xpToUnlock);
+        item.setXpToUnlock((int) Math.round(xpToUnlock * TechFunStartup.xpMultiplier));
         return item;
     }
 
@@ -45,7 +46,7 @@ public class Factory {
         item.setRecipe(recipe);
         item.setName(registryName);
         item.setCraftingStation(station);
-        item.setXpToUnlock(xpToUnlock);
+        item.setXpToUnlock((int) Math.round(xpToUnlock * TechFunStartup.xpMultiplier));
         return item;
     }
 
@@ -57,7 +58,7 @@ public class Factory {
         item.setRecipe(recipe);
         item.setName(registryName);
         item.setCraftingStation(station);
-        item.setXpToUnlock(xpToUnlock);
+        item.setXpToUnlock((int) Math.round(xpToUnlock * TechFunStartup.xpMultiplier));
         return item;
     }
 
@@ -100,7 +101,7 @@ public class Factory {
             item.setRecipe(recipe[i]);
             item.setName(registryNames[i]);
             item.setCraftingStation(station);
-            item.setXpToUnlock(xpToUnlock[i]);
+            item.setXpToUnlock((int) Math.round(xpToUnlock[i] * TechFunStartup.xpMultiplier));
             items[i] = item;
         }
         return items;
@@ -127,7 +128,7 @@ public class Factory {
             item.setRecipe(recipe[i]);
             item.setName(registryNames[i]);
             item.setCraftingStation(station);
-            item.setXpToUnlock(xpToUnlock[i]);
+            item.setXpToUnlock((int) Math.round(xpToUnlock[i] * TechFunStartup.xpMultiplier));
             items[i] = item;
         }
         return items;
@@ -165,7 +166,7 @@ public class Factory {
         itemStack.setItemMeta(meta);
         category.setItem(itemStack);
         category.setName(registryName);
-        category.setXpToUnlock(xpToUnlock);
+        category.setXpToUnlock((int) Math.round(xpToUnlock * TechFunStartup.xpMultiplier));
         return category;
     }
 
@@ -173,7 +174,7 @@ public class Factory {
         Category category = new Category();
         category.setItem(itemStack);
         category.setName(registryName);
-        category.setXpToUnlock(xpToUnlock);
+        category.setXpToUnlock((int) Math.round(xpToUnlock * TechFunStartup.xpMultiplier));
         return category;
     }
 
@@ -209,7 +210,7 @@ public class Factory {
         itemStack.setItemMeta(meta);
         multiBlock.setIcon(itemStack);
         multiBlock.setMaterials(structure);
-        multiBlock.setXpToUnlock(xpToUnlock);
+        multiBlock.setXpToUnlock((int) Math.round(xpToUnlock * TechFunStartup.xpMultiplier));
         return multiBlock;
     }
 
@@ -228,7 +229,7 @@ public class Factory {
         machine.setAmount(itemStack.getAmount());
         machine.setItem(itemStack);
         machine.setRecipe(recipe);
-        machine.setXpToUnlock(xpToUnlock);
+        machine.setXpToUnlock((int) Math.round(xpToUnlock * TechFunStartup.xpMultiplier));
         machine.setName(registryName);
         machine.setCraftingStation(craftingStation);
         return machine;
@@ -239,7 +240,7 @@ public class Factory {
         machine.setAmount(itemStack.getAmount());
         machine.setItem(itemStack);
         machine.setRecipe(recipe);
-        machine.setXpToUnlock(xpToUnlock);
+        machine.setXpToUnlock((int) Math.round(xpToUnlock * TechFunStartup.xpMultiplier));
         machine.setName(registryName);
         machine.setCraftingStation(craftingStation);
         return machine;
