@@ -8,6 +8,7 @@ import me.KodingKing1.TechFun.Objects.Factory;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemAttackHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemBlockBreakHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemClickHandler;
+import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemOreBlockBreakHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Machine.MachineClickHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.MultiBlock.MultiBlockClickHandler;
 import me.KodingKing1.TechFun.Objects.ItemBase;
@@ -24,14 +25,16 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Dropper;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.*;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Fireball;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.Vector;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -81,6 +84,10 @@ public class TechFunStartup {
         headBase64List.put("Apple", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2JiMzExZjNiYTFjMDdjM2QxMTQ3Y2QyMTBkODFmZTExZmQ4YWU5ZTNkYjIxMmEwZmE3NDg5NDZjMzYzMyJ9fX0");
         headBase64List.put("Hamburger", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2RhZGYxNzQ0NDMzZTFjNzlkMWQ1OWQyNzc3ZDkzOWRlMTU5YTI0Y2Y1N2U4YTYxYzgyYmM0ZmUzNzc3NTUzYyJ9fX0");
         headBase64List.put("Donut", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDA3YjhjNTFhY2VjMmE1MDhiYjJmYTY1MmZiNmU0YTA4YjE5NDg1MTU5YTA5OWY1OTgyY2NiODhkZjFmZTI3ZSJ9fX0");
+
+        //Materials
+        headBase64List.put("CompressedCarbon", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjI1MjNlMTVlOTk4NjM1NWExZjg1MWY0M2Y3NTBlZTNmMjNjODlhZTEyMzYzMWRhMjQxZjg3MmJhN2E3ODEifX19");
+        headBase64List.put("Uranium", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNThjMjA2ZTI5OTI0Yjk5MTZkNGQyNGRmYmJjMzhmMjhiNDRkNmQzY2ZhMjNhZGVjOWVkM2E4ZmNlMWI3YjIifX19");
 
         int spawnEggAmountPeaceful = 1;
 
@@ -135,6 +142,34 @@ public class TechFunStartup {
         diamondCore.register();
 
         materials.registerItem(diamondCore);
+
+        ItemBase compressedCarbon = Factory.makeItem("CompressedCarbon", TFUtil.makeSkullWithBase64(headBase64List.get("CompressedCarbon"), "Compressed Carbon", new String[]{ "Carbon that is compressed. What did you expect?" }), new Object[]{
+                null, Material.COAL, null,
+                Material.COAL, Material.COAL_BLOCK, Material.COAL,
+                null, Material.COAL, null
+        }, CraftingStation.Compressor, 10);
+
+        compressedCarbon.register();
+
+        materials.registerItem(compressedCarbon);
+
+        ItemBase uranium = Factory.makeItem("Uranium", TFUtil.makeSkullWithBase64(headBase64List.get("Uranium"), "Uranium", new String[]{ "It\'s radioactive, so I wouldn\'t recommend touching it much." }), new Object[]{
+                Material.STONE
+        }, CraftingStation.Ore, 20);
+
+        uranium.registerHandler(new ItemOreBlockBreakHandler() {
+            @Override
+            public void onBlockBroken(Player p, BlockBreakEvent e) {
+                Random random = new Random();
+                if (random.nextInt(125) == 0) {
+                    e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), uranium.getItem());
+                }
+            }
+        });
+
+        uranium.register();
+
+        materials.registerItem(uranium);
 
         materials.register();
 
@@ -260,7 +295,7 @@ public class TechFunStartup {
 
         basicMachinesCategory.registerMultiBlock(magicalCraftingTable);
 
-        MultiBlock cookingBench = Factory.makeMultiBlock("Cooking Bench", new String[]{ "Allows you to cook recipes!" }, Material.FURNACE, new Material[]{
+        MultiBlock cookingBench = Factory.makeMultiBlock("Cooking Bench", new String[]{"Allows you to cook recipes!"}, Material.FURNACE, new Material[]{
                 Material.AIR, Material.AIR, Material.AIR,
                 Material.STEP, Material.WORKBENCH, Material.STEP,
                 Material.IRON_BLOCK, Material.DROPPER, Material.IRON_BLOCK
@@ -277,7 +312,41 @@ public class TechFunStartup {
 
         basicMachinesCategory.registerMultiBlock(cookingBench);
 
-        Machine miner = Factory.makeMachine("Miner", TFUtil.makeSkullWithBase64(headBase64List.get("Miner"), "Miner", new String[]{ "Mines blocks directly under the machine until bedrock." }), new Object[]{
+        MultiBlock smeltry = Factory.makeMultiBlock("Smeltry", new String[]{"Smelts certain items into other materials."}, Material.BURNING_FURNACE, new Material[]{
+                Material.STEP, Material.STEP, Material.STEP,
+                Material.COBBLESTONE, Material.WORKBENCH, Material.COBBLESTONE,
+                Material.NETHERRACK, Material.DROPPER, Material.NETHERRACK
+        }, 10);
+
+        smeltry.registerHandler(new MultiBlockClickHandler() {
+            @Override
+            public void click(MultiBlock multiBlock, Player player, PlayerInteractEvent e) {
+                InvUtil.craftItem((Dropper) e.getClickedBlock().getRelative(BlockFace.DOWN).getState(), multiBlock, player, e, plugin, CraftingStation.Smeltry);
+            }
+        });
+
+        smeltry.register();
+
+        basicMachinesCategory.registerMultiBlock(smeltry);
+
+        MultiBlock compressor = Factory.makeMultiBlock("Compressor", new String[]{ "Compresses items into others." }, Material.PISTON_BASE, new Material[]{
+                Material.STEP, Material.STEP, Material.STEP,
+                Material.COBBLESTONE, Material.ANVIL, Material.COBBLESTONE,
+                Material.IRON_BLOCK, Material.DROPPER, Material.IRON_BLOCK
+        }, 10);
+
+        compressor.registerHandler(new MultiBlockClickHandler() {
+            @Override
+            public void click(MultiBlock multiBlock, Player player, PlayerInteractEvent e) {
+                InvUtil.craftItem((Dropper) e.getClickedBlock().getRelative(BlockFace.DOWN).getState(), multiBlock, player, e, plugin, CraftingStation.Compressor);
+            }
+        });
+
+        compressor.register();
+
+        basicMachinesCategory.registerMultiBlock(compressor);
+
+        Machine miner = Factory.makeMachine("Miner", TFUtil.makeSkullWithBase64(headBase64List.get("Miner"), "Miner", new String[]{"Mines blocks directly under the machine until bedrock."}), new Object[]{
                 Material.STONE, Material.REDSTONE_BLOCK, Material.STONE,
                 stoneCore, Material.DIAMOND_PICKAXE, stoneCore,
                 Material.STONE, Material.STICK, Material.STONE
@@ -476,7 +545,7 @@ public class TechFunStartup {
                                 p.getWorld().strikeLightning(b.getLocation());
                             }
                             for (int i = 0; i < 10; i++) {
-                                p.getWorld().createExplosion(b.getLocation().getX(), b.getLocation().getY(),b.getLocation().getZ(), 5, false, false);
+                                p.getWorld().createExplosion(b.getLocation().getX(), b.getLocation().getY(), b.getLocation().getZ(), 5, false, false);
                             }
                         }
                     }, 30);
@@ -652,9 +721,9 @@ public class TechFunStartup {
 
         spawnerCategory.register();
 
-        Category foodCategory = Factory.makeCategory("TFFood", TFUtil.makeSkullWithBase64(headBase64List.get("Apple"), "Food", new String[]{ "Contains all the food in default TechFun!" }), 0);
+        Category foodCategory = Factory.makeCategory("TFFood", TFUtil.makeSkullWithBase64(headBase64List.get("Apple"), "Food", new String[]{"Contains all the food in default TechFun!"}), 0);
 
-        Machine hamburger = Factory.makeMachine("Hamburger", TFUtil.makeSkullWithBase64(headBase64List.get("Hamburger"), "Hamburger", new String[]{ "Place it down and click me to eat!" }), new Object[]{
+        Machine hamburger = Factory.makeMachine("Hamburger", TFUtil.makeSkullWithBase64(headBase64List.get("Hamburger"), "Hamburger", new String[]{"Place it down and click me to eat!"}), new Object[]{
                 null, Material.BREAD, null,
                 null, Material.COOKED_BEEF, null,
                 null, Material.BREAD, null
@@ -672,7 +741,7 @@ public class TechFunStartup {
 
         foodCategory.registerMachine(hamburger);
 
-        Machine donut = Factory.makeMachine("Donut", TFUtil.makeSkullWithBase64(headBase64List.get("Donut"), "Donut", new String[]{ "A delicious treat for you!" }), new Object[]{
+        Machine donut = Factory.makeMachine("Donut", TFUtil.makeSkullWithBase64(headBase64List.get("Donut"), "Donut", new String[]{"A delicious treat for you!"}), new Object[]{
                 null, null, null,
                 null, Material.SUGAR, null,
                 Material.WHEAT, Material.EGG, Material.WHEAT
@@ -682,11 +751,11 @@ public class TechFunStartup {
             @Override
             public void onMachineClick(Machine machine, Player player, PlayerInteractEvent e) {
                 Machine.removeMachine(e.getClickedBlock());
-                TFUtil.eatFood(player,  7, 3);
+                TFUtil.eatFood(player, 7, 3);
                 if (player.hasPotionEffect(PotionEffectType.SPEED)) {
                     final PotionEffect potionEffect = player.getPotionEffect(PotionEffectType.SPEED);
                     player.removePotionEffect(PotionEffectType.SPEED);
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,  potionEffect.getDuration() + 3 * 20, potionEffect.getAmplifier() + 1, false, false));
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, potionEffect.getDuration() + 3 * 20, potionEffect.getAmplifier() + 1, false, false));
                 } else {
                     player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5 * 20, 2, false, false));
                 }

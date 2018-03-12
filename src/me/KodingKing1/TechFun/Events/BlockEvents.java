@@ -4,6 +4,7 @@ import me.KodingKing1.TechFun.Objects.CraftingStation;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemBlockBreakHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemClickHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemHandler;
+import me.KodingKing1.TechFun.Objects.Handlers.Item.ItemOreBlockBreakHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Machine.MachineClickHandler;
 import me.KodingKing1.TechFun.Objects.Handlers.Machine.MachineHandler;
 import me.KodingKing1.TechFun.Objects.ItemBase;
@@ -68,9 +69,11 @@ public class BlockEvents implements Listener {
                         if(!unlocked){
                             continue;
                         }
-                        Random rand = new Random();
-                        if(rand.nextInt(100) < 20){
-                            e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), item.getItem());
+                        for (ItemHandler handler : item.getHandlers()) {
+                            if (handler instanceof ItemOreBlockBreakHandler) {
+                                ItemOreBlockBreakHandler iobbh = (ItemOreBlockBreakHandler) handler;
+                                iobbh.onBlockBroken(e.getPlayer(), e);
+                            }
                         }
                     }
                 }
