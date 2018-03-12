@@ -6,6 +6,7 @@ import me.KodingKing1.TechFun.Objects.Machine.Machine;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
 import me.KodingKing1.TechFun.TechFunMain;
 import me.KodingKing1.TechFun.Util.DataManager;
+import me.KodingKing1.TechFun.Util.TFUtil;
 import me.KodingKing1.TechFun.Util.TextUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,12 +23,14 @@ public class TechFunCommands implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         if(cmd.getName().equalsIgnoreCase("tf") && args.length <= 0){
+            if (!TFUtil.checkForPermission("TechFun.Command.Info", sender)) return true;
             TechFunMain.getPluginLogger().sendMessage(sender, TextUtil.Level.Info2, "================*TechFun*================");
             TechFunMain.getPluginLogger().sendMessage(sender, TextUtil.Level.Info,  "Making your servers modded, with no mods!");
             TechFunMain.getPluginLogger().sendMessage(sender, TextUtil.Level.Info,  "Type /tf commands for commands!");
             TechFunMain.getPluginLogger().sendMessage(sender, TextUtil.Level.Info2, "=========================================");
             return true;
         }else if(cmd.getName().equalsIgnoreCase("tf") && args[0].equalsIgnoreCase("commands")) {
+            if (!TFUtil.checkForPermission("TechFun.Command.Commands", sender)) return true;
             TechFunMain.getPluginLogger().sendMessage(sender, TextUtil.Level.Info2, "=================*TechFun*=================");
             TechFunMain.getPluginLogger().sendMessage(sender, TextUtil.Level.Info,  "Commands:");
             TechFunMain.getPluginLogger().sendMessage(sender, TextUtil.Level.Info,  " - /tf");
@@ -38,6 +41,7 @@ public class TechFunCommands implements CommandExecutor {
             TechFunMain.getPluginLogger().sendMessage(sender, TextUtil.Level.Info2, "==========================================");
             return true;
         }else if(cmd.getName().equalsIgnoreCase("tf") && args[0].equalsIgnoreCase("research")) {
+            if (!TFUtil.checkForPermission("TechFun.Command.Research", sender)) return true;
             if(args.length <= 2){
                 TechFunMain.getPluginLogger().sendMessage(sender, TextUtil.Level.Error, "Please supply more arguments!");
                 return true;
@@ -45,11 +49,13 @@ public class TechFunCommands implements CommandExecutor {
             if(Bukkit.getPlayer(args[1]) != null){
                 Player p = Bukkit.getPlayer(args[1]);
                 if(args[2].equalsIgnoreCase("reset")){
+                    if (!TFUtil.checkForPermission("TechFun.Command.Research.Reset", sender)) return true;
                     TechFunMain.getData().createSection(p.getUniqueId().toString());
                     TechFunMain.saveData();
                     TechFunMain.getPluginLogger().sendMessage(sender, TextUtil.Level.Success, "Successfully reset all data!");
                     return true;
                 }else if(args[2].equalsIgnoreCase("all")){
+                    if (!TFUtil.checkForPermission("TechFun.Command.Research.All", sender)) return true;
                     for(Category category : Registry.getCategories()){
                         DataManager.setPlayerData(p, "Guide.Categories." + category.getName() + ".Unlocked", true);
                     }
@@ -70,6 +76,7 @@ public class TechFunCommands implements CommandExecutor {
                 }
             }
         }else if(cmd.getName().equalsIgnoreCase("tf") && args[0].equalsIgnoreCase("guide")) {
+            if (!TFUtil.checkForPermission("TechFun.Command.Guide", sender)) return true;
             if(sender instanceof Player){
                 Player p = (Player) sender;
                 p.getInventory().addItem(Registry.getItem("TechFunGuide").getItem());
@@ -79,6 +86,7 @@ public class TechFunCommands implements CommandExecutor {
             }
             return true;
         }else if(cmd.getName().equalsIgnoreCase("tf") && args[0].equalsIgnoreCase("resetconfig")) {
+            if (!TFUtil.checkForPermission("TechFun.Command.ResetConfig", sender)) return true;
             TechFunMain.getDataFile().delete();
             TechFunMain.loadData();
             TechFunMain.getPluginLogger().sendMessage(sender, TextUtil.Level.Success, "Config has been reset successfully!");

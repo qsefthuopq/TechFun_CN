@@ -6,6 +6,7 @@ import me.KodingKing1.TechFun.TechFunMain;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -118,6 +119,14 @@ public class TFUtil {
         String[] messages = { "You really enjoyed that!", "Mmm, that was nice!", "Mmm, tasty!", "That was delicious!" };
         Random r = new Random();
         TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, messages[r.nextInt(messages.length - 1)]);
+    }
+
+    public static boolean checkForPermission(String permission, CommandSender sender) {
+        if (!sender.hasPermission(permission)) {
+            TechFunMain.getPluginLogger().sendMessage(sender, TextUtil.Level.Error, "You do not have permission for this command.");
+            return false;
+        }
+        return true;
     }
 
 }
