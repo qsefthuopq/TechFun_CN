@@ -346,11 +346,29 @@ public class TechFunStartup {
 
         basicMachinesCategory.registerMultiBlock(compressor);
 
+        MultiBlock manufacturingTable = Factory.makeMultiBlock("ManufacturingTable", new String[]{ "Lets you create complex machines!" }, Material.ANVIL, new Material[]{
+                Material.STEP, Material.STEP, Material.STEP,
+                Material.REDSTONE_BLOCK, Material.ANVIL, Material.REDSTONE_BLOCK,
+                Material.IRON_BLOCK, Material.DROPPER, Material.IRON_BLOCK
+        }, 20);
+
+
+        manufacturingTable.registerHandler(new MultiBlockClickHandler() {
+            @Override
+            public void click(MultiBlock multiBlock, Player player, PlayerInteractEvent e) {
+                InvUtil.craftItem((Dropper) e.getClickedBlock().getRelative(BlockFace.DOWN).getState(), multiBlock, player, e, plugin, CraftingStation.ManufacturingTable);
+            }
+        });
+
+        manufacturingTable.register();
+
+        basicMachinesCategory.registerMultiBlock(manufacturingTable);
+
         Machine miner = Factory.makeMachine("Miner", TFUtil.makeSkullWithBase64(headBase64List.get("Miner"), "Miner", new String[]{"Mines blocks directly under the machine until bedrock."}), new Object[]{
                 Material.STONE, Material.REDSTONE_BLOCK, Material.STONE,
                 stoneCore, Material.DIAMOND_PICKAXE, stoneCore,
                 Material.STONE, Material.STICK, Material.STONE
-        }, CraftingStation.MagicalCraftingTable, 15);
+        }, CraftingStation.ManufacturingTable, 15);
 
         miner.registerHandler(new MachineClickHandler() {
             @Override
@@ -416,7 +434,7 @@ public class TechFunStartup {
                 null, Material.REDSTONE_BLOCK, null,
                 null, Material.DIAMOND_SWORD, null,
                 Material.OBSIDIAN, diamondCore, Material.OBSIDIAN
-        }, CraftingStation.MagicalCraftingTable, 10);
+        }, CraftingStation.Forge, 10);
 
         swordOfBlinding.registerHandler(new ItemAttackHandler() {
             @Override
