@@ -212,6 +212,9 @@ public class InvUtil {
             boolean isCorrect = true;
             Inventory inv = dispenser.getInventory();
             for (int i = 0; i < 9; i++) {
+                if (machine.getRecipe()[i] == null) {
+                    continue;
+                }
                 ItemStack invi = inv.getItem(i);
                 ItemStack reci = machine.getRecipe()[i];
                 if (!isSimilarItem(invi, reci)) {

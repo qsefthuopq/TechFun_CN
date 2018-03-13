@@ -19,6 +19,7 @@ public class RunnableMain implements Runnable {
     @Override
     public void run() {
         for(Player p : Bukkit.getOnlinePlayers()){
+            DataManager.setPlayerData(p, "Guide.Items.TechFunGuide.Unlocked", true);
             for(ItemBase armor : Registry.getArmor()){
                 if(armor.getXpToUnlock() == 0){
                     DataManager.setPlayerData(p, "Guide.Items." + armor.getName() + ".Unlocked", true);

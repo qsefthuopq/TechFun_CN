@@ -15,10 +15,7 @@ import me.KodingKing1.TechFun.Objects.ItemBase;
 import me.KodingKing1.TechFun.Objects.Machine.Machine;
 import me.KodingKing1.TechFun.Objects.MultiBlock.MultiBlock;
 import me.KodingKing1.TechFun.TechFunMain;
-import me.KodingKing1.TechFun.Util.Cooldown;
-import me.KodingKing1.TechFun.Util.InvUtil;
-import me.KodingKing1.TechFun.Util.TFUtil;
-import me.KodingKing1.TechFun.Util.TextUtil;
+import me.KodingKing1.TechFun.Util.*;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -107,6 +104,10 @@ public class TechFunStartup {
         headBase64List.put("Uranium", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzhiMjlhZmE2ZDZkYzkyM2UyZTEzMjRiZjgxOTI3NTBmN2JkYmRkYzY4OTYzMmEyYjZjMThkOWZlN2E1ZSJ9fX0");
         headBase64List.put("RawBronze", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzc3ZDYxNmJjNDRhYzliMzczMGZlZDQ3ZjI5YTM3OGY4OGExNjcyOGM2NzA0OGMxYTM4N2QyMjllMWNiYSJ9fX0");
         headBase64List.put("Bronze", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDhlMGE0NDAxNTg5ZDI5NTRlM2U1YzdlNjE1NTVlZjljZTFmZDI4OWNmNWM4NGFlZDE1YzMyMjBlYWY1ZDM5MCJ9fX0");
+
+        //Utilities
+        headBase64List.put("LampOn", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2ViNGIzNDUxOWZlMTU4NDdkYmVhNzIyOTE3OWZlZWI2ZWE1NzcxMmQxNjVkY2M4ZmY2Yjc4NWJiNTg5MTFiMCJ9fX0");
+        headBase64List.put("LampOff", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjNlNzFhZDkxOTUyM2VhY2U5Y2Q2MmEyNWIxOGU0ZTE3YWIzOGQxMjU2MjQxZjQyNjJkZmJhNzI5N2M0ZDkyIn19fQ");
 
         Category materials = Factory.makeCategory("TFMaterials", "Materials", new String[]{"Lots of things used to make lots of other", "things!"}, Material.DIAMOND, 0);
 
@@ -302,6 +303,30 @@ public class TechFunStartup {
 
         utilitiesCategory.registerItem(portableTrashCan);
 
+        Machine lamp = Factory.makeMachine("Lamp", TFUtil.makeSkullWithBase64(headBase64List.get("LampOff"), "Lamp", new String[]{ "You can turn this lamp on and off!" }), new Object[]{
+                Material.GLOWSTONE, Material.REDSTONE, Material.GLOWSTONE,
+                Material.REDSTONE, ironCore, Material.REDSTONE,
+                null, Material.STICK, null
+        }, CraftingStation.MagicalCraftingTable, 10);
+
+        lamp.registerHandler(new MachineClickHandler() {
+            @Override
+            public void onMachineClick(Machine machine, Player player, PlayerInteractEvent e) {
+                player.getWorld().playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK, 1, 1);
+                if ((boolean) DataManager.getBlockData(e.getClickedBlock(), "On", false)) {
+                    DataManager.saveBlockData(e.getClickedBlock(), "On", false);
+                    TFUtil.setHeadBlock(e.getClickedBlock().getLocation(), headBase64List.get("LampOff"), BlockFace.NORTH);
+                } else {
+                    DataManager.saveBlockData(e.getClickedBlock(), "On", true);
+                    TFUtil.setHeadBlock(e.getClickedBlock().getLocation(), headBase64List.get("LampOn"), BlockFace.NORTH);
+                }
+            }
+        });
+
+        lamp.register();
+
+        utilitiesCategory.registerMachine(lamp);
+
         utilitiesCategory.register();
 
         Category basicMachinesCategory = Factory.makeCategory("TFBasicMachines", "Basic Machines", new String[]{"Basically machines that are very basic! ;-)"}, Material.FURNACE, 0);
@@ -357,7 +382,7 @@ public class TechFunStartup {
 
         basicMachinesCategory.registerMultiBlock(cookingBench);
 
-        MultiBlock smeltry = Factory.makeMultiBlock("Smeltry", new String[]{"Smelts certain items into other materials."}, Material.BURNING_FURNACE, new Material[]{
+        MultiBlock smeltry = Factory.makeMultiBlock("Smeltry", new String[]{"Smelts certain items into other materials."}, Material.FURNACE, new Material[]{
                 Material.STEP, Material.STEP, Material.STEP,
                 Material.COBBLESTONE, Material.WORKBENCH, Material.COBBLESTONE,
                 Material.NETHERRACK, Material.DROPPER, Material.NETHERRACK
@@ -391,7 +416,7 @@ public class TechFunStartup {
 
         basicMachinesCategory.registerMultiBlock(compressor);
 
-        MultiBlock manufacturingTable = Factory.makeMultiBlock("ManufacturingTable", new String[]{ "Lets you create complex machines!" }, Material.ANVIL, new Material[]{
+        MultiBlock manufacturingTable = Factory.makeMultiBlock("Manufacturing Table", new String[]{ "Lets you create complex machines!" }, Material.ANVIL, new Material[]{
                 Material.STEP, Material.STEP, Material.STEP,
                 Material.REDSTONE_BLOCK, Material.ANVIL, Material.REDSTONE_BLOCK,
                 Material.IRON_BLOCK, Material.DROPPER, Material.IRON_BLOCK
@@ -458,7 +483,7 @@ public class TechFunStartup {
 
         basicMachinesCategory.register();
 
-        Category weaponsCategory = Factory.makeCategory("TFWeapons", "Weapons", new String[]{"Want to battle your enemies and conquer the world!", "Well here is the place for you!"}, Material.DIAMOND_SWORD, 0);
+        Category weaponsCategory = Factory.makeCategory("TFWeapons", "Weapons", new String[]{"Want to battle your enemies and conquer the world?", "Well here is the place for you!"}, Material.DIAMOND_SWORD, 0);
 
         ItemBase soulDagger = Factory.makeItem("SoulDagger", "Soul Dagger", new String[]{"Has a chance of gaining 2 hearts of life-steal when", "hitting another player."}, Material.GOLD_SWORD, new Object[]{
                 Material.GOLD_INGOT, Material.GOLD_SWORD, Material.GOLD_INGOT,

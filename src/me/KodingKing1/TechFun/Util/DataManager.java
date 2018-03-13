@@ -69,6 +69,7 @@ public class DataManager {
         ConfigurationSection section = checkSection("Blocks." + b.getX() + "-" + b.getY() + "-" + b.getZ() + "-" + b.getWorld());
         if (section.get(path) == null) {
             section.set(path, defaultValue);
+            TechFunMain.saveData();
         }
         return section.get(path);
     }

@@ -1,27 +1,50 @@
 package me.KodingKing1.TechFun.Util;
 
 import com.deanveloper.skullcreator.SkullCreator;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 import me.KodingKing1.TechFun.Objects.Factory;
 import me.KodingKing1.TechFun.TechFunMain;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.Skull;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.Plugin;
+import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
+import javax.xml.bind.DatatypeConverter;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.lang.reflect.Method;
+import java.util.*;
 
 /**
  * Created by djite on 16/05/2017.
  */
 public class TFUtil {
+
+    public static Method getWorldHandle = null;
+    public static Method getWorldTileEntity = null;
+    public static Method setGameProfile = null;
+
+    static {
+        if (getWorldHandle == null || getWorldTileEntity == null || setGameProfile == null) {
+            try {
+                getWorldHandle = getCraftClass("CraftWorld").getMethod("getHandle");
+                getWorldTileEntity = getMCClass("WorldServer").getMethod("getTileEntity", getMCClass("BlockPosition"));
+                setGameProfile = getMCClass("TileEntitySkull").getMethod("setGameProfile", GameProfile.class);
+            } catch (NoSuchMethodException | SecurityException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static ItemStack makeItem(String name, String[] lore, Material material, int amount, int data){
         ItemStack item = new ItemStack(material, amount, (short) data);
@@ -127,6 +150,60 @@ public class TFUtil {
             return false;
         }
         return true;
+    }
+
+    public static void setHeadBlock(Location loc, String base64, BlockFace face) {
+        Block b = loc.getBlock();
+        b.setTypeIdAndData(Material.SKULL.getId(), (byte) 1, true);
+        Skull skull = (Skull) b.getState();
+        skull.setSkullType(SkullType.PLAYER);
+        skull.setRotation(face);
+        GameProfile profile = new GameProfile(UUID.randomUUID(), null);
+        try {
+            profile.getProperties().put("textures", new Property("textures", Base64Coder.encodeString(new String(Base64.getDecoder().decode(base64), "UTF-8"))));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        try {
+            Object world = getWorldHandle.invoke(skull.getWorld());
+            Object tileSkull = getWorldTileEntity.invoke(world, getMCClass("BlockPosition").getConstructor(double.class, double.class, double.class).newInstance(loc.getX(), loc.getY(), loc.getZ()));
+            setGameProfile.invoke(tileSkull, profile);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        skull.getWorld().refreshChunk(skull.getChunk().getX(), skull.getChunk().getZ());
+    }
+
+    // Refletion
+    private static Class<?> getMCClass(String name) {
+        String version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3] + ".";
+        String className = "net.minecraft.server." + version + name;
+        Class<?> clazz = null;
+        try {
+            clazz = Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return clazz;
+    }
+
+    // Refletion
+    private static Class<?> getCraftClass(String name) {
+        String version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3] + ".";
+        String className = "org.bukkit.craftbukkit." + version + name;
+        Class<?> clazz = null;
+        try {
+            clazz = Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return clazz;
     }
 
 }
