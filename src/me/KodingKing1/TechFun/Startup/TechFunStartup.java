@@ -47,6 +47,7 @@ public class TechFunStartup {
 
     private static TechFunMain plugin;
     public static double xpMultiplier = 1;
+    public static int spawnEggAmountPeaceful = 1;
 
     public static void init(TechFunMain techfun) {
         plugin = techfun;
@@ -65,12 +66,19 @@ public class TechFunStartup {
          */
 
 
-        String xpMultiplierPath = "Settings.XPMultiplier";
-        if (!TechFunMain.getData().contains(xpMultiplierPath)) {
-            TechFunMain.getData().set(xpMultiplierPath, 2);
-            TechFunMain.saveData();
+        String xpMultiplierPath = "XPMultiplier";
+        if (!plugin.getConfig().contains(xpMultiplierPath)) {
+            plugin.getConfig().set(xpMultiplierPath, 2);
+            plugin.saveConfig();
         }
-        xpMultiplier = TechFunMain.getData().getDouble(xpMultiplierPath);
+        xpMultiplier = plugin.getConfig().getDouble(xpMultiplierPath);
+
+        String spawnEggPath = "SpawnEggAmountPeaceful";
+        if (!plugin.getConfig().contains(spawnEggPath)) {
+            plugin.getConfig().set(spawnEggPath, 1);
+            plugin.saveConfig();
+        }
+        spawnEggAmountPeaceful = plugin.getConfig().getInt(spawnEggPath);
 
         Map<String, String> headBase64List = new HashMap<>();
         //Misc
@@ -99,8 +107,6 @@ public class TechFunStartup {
         headBase64List.put("Uranium", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzhiMjlhZmE2ZDZkYzkyM2UyZTEzMjRiZjgxOTI3NTBmN2JkYmRkYzY4OTYzMmEyYjZjMThkOWZlN2E1ZSJ9fX0");
         headBase64List.put("RawBronze", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzc3ZDYxNmJjNDRhYzliMzczMGZlZDQ3ZjI5YTM3OGY4OGExNjcyOGM2NzA0OGMxYTM4N2QyMjllMWNiYSJ9fX0");
         headBase64List.put("Bronze", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDhlMGE0NDAxNTg5ZDI5NTRlM2U1YzdlNjE1NTVlZjljZTFmZDI4OWNmNWM4NGFlZDE1YzMyMjBlYWY1ZDM5MCJ9fX0");
-
-        int spawnEggAmountPeaceful = 1;
 
         Category materials = Factory.makeCategory("TFMaterials", "Materials", new String[]{"Lots of things used to make lots of other", "things!"}, Material.DIAMOND, 0);
 
