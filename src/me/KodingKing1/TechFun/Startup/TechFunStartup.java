@@ -57,6 +57,14 @@ public class TechFunStartup {
     }
 
     private static void registerAll() {
+        /*
+        TODO:
+         - Make the spawner recipe harder.
+         - Add more specific multiblocks.
+         - Add more intermediate products.
+         */
+
+
         String xpMultiplierPath = "Settings.XPMultiplier";
         if (!TechFunMain.getData().contains(xpMultiplierPath)) {
             TechFunMain.getData().set(xpMultiplierPath, 2);
@@ -123,10 +131,10 @@ public class TechFunStartup {
 
         materials.registerItem(ironCore);
 
-        ItemBase goldCore = Factory.makeItem("GoldCore", TFUtil.makeSkullWithBase64(headBase64List.get("GoldCore"), "Gold Core", new String[]{"The forth tier of item cores! Made out of beautiful rose gold! XD"}), new Object[]{
-                Material.GOLD_INGOT, Material.RED_ROSE, Material.GOLD_INGOT,
+        ItemBase goldCore = Factory.makeItem("GoldCore", TFUtil.makeSkullWithBase64(headBase64List.get("GoldCore"), "Gold Core", new String[]{"The forth tier of item cores!"}), new Object[]{
+                Material.GOLD_INGOT, Material.IRON_INGOT, Material.GOLD_INGOT,
                 Material.IRON_INGOT, ironCore.getItem(), Material.IRON_INGOT,
-                Material.GOLD_INGOT, Material.RED_ROSE, Material.GOLD_INGOT
+                Material.GOLD_INGOT, Material.IRON_INGOT, Material.GOLD_INGOT
         }, CraftingStation.MagicalCraftingTable, 6);
 
         goldCore.register();
@@ -364,10 +372,27 @@ public class TechFunStartup {
 
         basicMachinesCategory.registerMultiBlock(manufacturingTable);
 
+        MultiBlock spawnerForge = Factory.makeMultiBlock("Spawner Forge", new String[]{ "Lets you create spawners and spawn eggs." }, Material.MOB_SPAWNER, new Material[]{
+                Material.STEP, Material.STEP, Material.STEP,
+                Material.GOLD_BLOCK, Material.FURNACE, Material.GOLD_BLOCK,
+                Material.GLOWSTONE, Material.DROPPER, Material.GLOWSTONE
+        }, 15);
+
+        spawnerForge.registerHandler(new MultiBlockClickHandler() {
+            @Override
+            public void click(MultiBlock multiBlock, Player player, PlayerInteractEvent e) {
+                InvUtil.craftItem((Dropper) e.getClickedBlock().getRelative(BlockFace.DOWN).getState(), multiBlock, player, e, plugin, CraftingStation.SpawnerForge);
+            }
+        });
+
+        spawnerForge.register();
+
+        basicMachinesCategory.registerMultiBlock(spawnerForge);
+
         Machine miner = Factory.makeMachine("Miner", TFUtil.makeSkullWithBase64(headBase64List.get("Miner"), "Miner", new String[]{"Mines blocks directly under the machine until bedrock."}), new Object[]{
                 Material.STONE, Material.REDSTONE_BLOCK, Material.STONE,
-                stoneCore, Material.DIAMOND_PICKAXE, stoneCore,
-                Material.STONE, Material.STICK, Material.STONE
+                goldCore, Material.DIAMOND_PICKAXE, goldCore,
+                Material.STONE, compressedCarbon, Material.STONE
         }, CraftingStation.ManufacturingTable, 15);
 
         miner.registerHandler(new MachineClickHandler() {
@@ -400,7 +425,7 @@ public class TechFunStartup {
 
         ItemBase soulDagger = Factory.makeItem("SoulDagger", "Soul Dagger", new String[]{"Has a chance of gaining 2 hearts of life-steal when", "hitting another player."}, Material.GOLD_SWORD, new Object[]{
                 Material.GOLD_INGOT, Material.GOLD_SWORD, Material.GOLD_INGOT,
-                null, ironCore.getItem(), null,
+                uranium, ironCore.getItem(), uranium,
                 Material.GOLD_INGOT, null, Material.GOLD_INGOT
         }, CraftingStation.Forge, 7);
 
@@ -422,7 +447,7 @@ public class TechFunStartup {
                 Material.LEATHER, Material.LOG, Material.LEATHER,
                 null, Material.STICK, null,
                 null, Material.STICK, null
-        }, CraftingStation.MagicalCraftingTable, 2);
+        }, CraftingStation.MagicalCraftingTable, 3);
 
         smackyStick.getItem().addUnsafeEnchantment(Enchantment.KNOCKBACK, 5);
 
@@ -431,8 +456,8 @@ public class TechFunStartup {
         weaponsCategory.registerItem(smackyStick);
 
         ItemBase swordOfBlinding = Factory.makeItem("SwordOfBlinding", "Sword of Blinding", new String[]{"Has a chance to blind the enemy when hit."}, Material.DIAMOND_SWORD, new Object[]{
-                null, Material.REDSTONE_BLOCK, null,
-                null, Material.DIAMOND_SWORD, null,
+                Material.OBSIDIAN, Material.REDSTONE_BLOCK, Material.OBSIDIAN,
+                Material.INK_SACK, Material.DIAMOND_SWORD, Material.INK_SACK,
                 Material.OBSIDIAN, diamondCore, Material.OBSIDIAN
         }, CraftingStation.Forge, 10);
 
@@ -674,10 +699,10 @@ public class TechFunStartup {
         Category spawnerCategory = Factory.makeCategory("TFSpawner", "Spawners", new String[]{"Contains spawn eggs for entities."}, Material.MOB_SPAWNER);
 
         CustomRecipe mobSpawner = Factory.makeCustomRecipe(new ItemStack(Material.MOB_SPAWNER), new ItemStack[]{
-                new ItemStack(Material.OBSIDIAN), new ItemStack(Material.IRON_FENCE), new ItemStack(Material.OBSIDIAN),
+                compressedCarbon.getItem(), uranium.getItem(), new ItemStack(Material.OBSIDIAN),
                 new ItemStack(Material.IRON_BLOCK), diamondCore.getItem(), new ItemStack(Material.IRON_BLOCK),
-                new ItemStack(Material.OBSIDIAN), new ItemStack(Material.IRON_FENCE), new ItemStack(Material.OBSIDIAN)
-        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+                new ItemStack(Material.OBSIDIAN), uranium.getItem(), compressedCarbon.getItem()
+        }, CraftingStation.SpawnerForge, spawnerCategory);
 
         mobSpawner.register();
 
@@ -685,7 +710,7 @@ public class TechFunStartup {
                 null, new ItemStack(Material.RAW_BEEF), null,
                 null, new ItemStack(Material.EGG), null,
                 null, stoneCore.getItem(), null
-        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+        }, CraftingStation.SpawnerForge, spawnerCategory);
 
         cowSpawner.register();
 
@@ -693,7 +718,7 @@ public class TechFunStartup {
                 null, new ItemStack(Material.FEATHER), null,
                 null, new ItemStack(Material.EGG), null,
                 null, stoneCore.getItem(), null
-        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+        }, CraftingStation.SpawnerForge, spawnerCategory);
 
         chickenSpawner.register();
 
@@ -701,7 +726,7 @@ public class TechFunStartup {
                 null, new ItemStack(Material.PORK), null,
                 null, new ItemStack(Material.EGG), null,
                 null, stoneCore.getItem(), null
-        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+        }, CraftingStation.SpawnerForge, spawnerCategory);
 
         pigSpawner.register();
 
@@ -709,7 +734,7 @@ public class TechFunStartup {
                 null, new ItemStack(Material.BONE), null,
                 null, new ItemStack(Material.EGG), null,
                 null, stoneCore.getItem(), null
-        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+        }, CraftingStation.SpawnerForge, spawnerCategory);
 
         wolfSpawner.register();
 
@@ -717,7 +742,7 @@ public class TechFunStartup {
                 null, new ItemStack(Material.WOOL), null,
                 null, new ItemStack(Material.EGG), null,
                 null, stoneCore.getItem(), null
-        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+        }, CraftingStation.SpawnerForge, spawnerCategory);
 
         sheepSpawner.register();
 
@@ -725,7 +750,7 @@ public class TechFunStartup {
                 null, new ItemStack(Material.INK_SACK), null,
                 null, new ItemStack(Material.EGG), null,
                 null, stoneCore.getItem(), null
-        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+        }, CraftingStation.SpawnerForge, spawnerCategory);
 
         squidSpawner.register();
 
@@ -733,7 +758,7 @@ public class TechFunStartup {
                 null, new ItemStack(Material.RAW_FISH), null,
                 null, new ItemStack(Material.EGG), null,
                 null, stoneCore.getItem(), null
-        }, CraftingStation.MagicalCraftingTable, spawnerCategory);
+        }, CraftingStation.SpawnerForge, spawnerCategory);
 
         ocelotSpawner.register();
 

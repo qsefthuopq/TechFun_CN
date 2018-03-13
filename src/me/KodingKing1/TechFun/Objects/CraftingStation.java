@@ -16,6 +16,7 @@ public enum CraftingStation {
     CookingBench(TFUtil.makeItem("Cooking Bench", new String[]{"Lets you cook different foods!"}, Material.BURNING_FURNACE)),
     Compressor(TFUtil.makeItem("Compressor", new String[]{"Compresses items into its products."}, Material.PISTON_BASE)),
     ManufacturingTable(TFUtil.makeItem("Manufacturing Table", new String[]{"Lets you create complex machines!"}, Material.ANVIL)),
+    SpawnerForge(TFUtil.makeItem("Spawner Forge", new String[]{"Lets you create spawn eggs and spawners."}, Material.MOB_SPAWNER)),
     DefaultCraftingTable(TFUtil.makeItem("Crafting Table", new String[]{"Crafted in the default crafting table of Minecraft!", "No fanciness here!"}, Material.WORKBENCH));
 
     public ItemStack icon;
