@@ -95,7 +95,10 @@ public class TechFunStartup {
 
         //Materials
         headBase64List.put("CompressedCarbon", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjI1MjNlMTVlOTk4NjM1NWExZjg1MWY0M2Y3NTBlZTNmMjNjODlhZTEyMzYzMWRhMjQxZjg3MmJhN2E3ODEifX19");
-        headBase64List.put("Uranium", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNThjMjA2ZTI5OTI0Yjk5MTZkNGQyNGRmYmJjMzhmMjhiNDRkNmQzY2ZhMjNhZGVjOWVkM2E4ZmNlMWI3YjIifX19");
+//        headBase64List.put("Uranium", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNThjMjA2ZTI5OTI0Yjk5MTZkNGQyNGRmYmJjMzhmMjhiNDRkNmQzY2ZhMjNhZGVjOWVkM2E4ZmNlMWI3YjIifX19");
+        headBase64List.put("Uranium", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzhiMjlhZmE2ZDZkYzkyM2UyZTEzMjRiZjgxOTI3NTBmN2JkYmRkYzY4OTYzMmEyYjZjMThkOWZlN2E1ZSJ9fX0");
+        headBase64List.put("RawBronze", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzc3ZDYxNmJjNDRhYzliMzczMGZlZDQ3ZjI5YTM3OGY4OGExNjcyOGM2NzA0OGMxYTM4N2QyMjllMWNiYSJ9fX0");
+        headBase64List.put("Bronze", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDhlMGE0NDAxNTg5ZDI5NTRlM2U1YzdlNjE1NTVlZjljZTFmZDI4OWNmNWM4NGFlZDE1YzMyMjBlYWY1ZDM5MCJ9fX0");
 
         int spawnEggAmountPeaceful = 1;
 
@@ -178,6 +181,34 @@ public class TechFunStartup {
         uranium.register();
 
         materials.registerItem(uranium);
+
+        ItemBase rawBronze = Factory.makeItem("RawBronze", TFUtil.makeSkullWithBase64(headBase64List.get("RawBronze"), "Raw Bronze", new String[]{ "The raw version of bronze. Simple." }), new Object[]{
+                Material.IRON_ORE
+        }, CraftingStation.Ore, 10);
+
+        rawBronze.registerHandler(new ItemOreBlockBreakHandler() {
+            @Override
+            public void onBlockBroken(Player p, BlockBreakEvent e) {
+                Random random = new Random();
+                if (random.nextInt(17) == 0) {
+                    e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), rawBronze.getItem());
+                }
+            }
+        });
+
+        rawBronze.register();
+
+        materials.registerItem(rawBronze);
+
+        ItemBase bronze = Factory.makeItem("Bronze", TFUtil.makeSkullWithBase64(headBase64List.get("Bronze"), "Bronze", new String[]{ "Refined bronze, smelted fresh." }), new Object[]{
+                Material.IRON_INGOT, rawBronze, null,
+                null, null, null,
+                null, null, null
+        }, CraftingStation.Smeltry, 10);
+
+        bronze.register();
+
+        materials.registerItem(bronze);
 
         materials.register();
 
