@@ -52,7 +52,7 @@ public class Machine {
             }else if(obj == null){
                 items.add(null);
             }else{
-                TechFunMain.getPluginLogger().log(TextUtil.Level.Error, "Could not add recipe for Machine " + name + " because it contains an object that is not an item or material!");
+                TechFunMain.getPluginLogger().log(TextUtil.Level.Error, "无法给这个机器添加配方 " + name + " 配方包含无效的物品!");
             }
         }
         this.recipe = items.toArray(new ItemStack[]{});
