@@ -38,9 +38,9 @@ public class TechFunGuide implements Listener {
     public HashMap<Integer, Page> homes = new HashMap<>();
     public static HashMap<Category, List<Page>> categoryInvs = new HashMap<>();
 
-    public ItemStack prevpageitem = TFUtil.makeItem("Previous Page", new String[]{}, Material.STAINED_GLASS_PANE, 1, 5);
-    public ItemStack nextpageitem = TFUtil.makeItem("Next Page", new String[]{}, Material.STAINED_GLASS_PANE, 1, 5);
-    public ItemStack backpageitem = TFUtil.makeItem("Back page", new String[]{}, Material.STAINED_GLASS_PANE, 1, 4);
+    public ItemStack prevpageitem = TFUtil.makeItem("上一页", new String[]{}, Material.STAINED_GLASS_PANE, 1, 5);
+    public ItemStack nextpageitem = TFUtil.makeItem("下一页", new String[]{}, Material.STAINED_GLASS_PANE, 1, 5);
+    public ItemStack backpageitem = TFUtil.makeItem("返回", new String[]{}, Material.STAINED_GLASS_PANE, 1, 4);
 
     //0 |1 |2 |3 |4 |5 |6 |7 |8 |
     //9 |10|11|12|13|14|15|16|17|
@@ -61,7 +61,7 @@ public class TechFunGuide implements Listener {
         int homenum = 0;
         int homecount = 0;
         boolean homedone = false;
-        Inventory homeInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "TechFun Guide - Home");
+        Inventory homeInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "创新科技 - 主页");
         putBorder(homeInv);
         homeInv.setMaxStackSize(1);
         homeInv.setItem(49, TFUtil.makeItem("Page: " + String.valueOf(homecount + 1), new String[]{}, Material.STAINED_GLASS_PANE, 1, 3));
@@ -69,7 +69,7 @@ public class TechFunGuide implements Listener {
             List<Page> pages = new ArrayList<>();
             int catnum = 0;
             int catcount = 0;
-            Inventory catInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "TechFun Guide - Items");
+            Inventory catInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "创新科技 - 物品");
             putBorder(catInv);
             catInv.setItem(49, TFUtil.makeItem("Page: " + String.valueOf(catcount + 1), new String[]{}, Material.STAINED_GLASS_PANE, 1, 3));
             catInv.setMaxStackSize(1);
@@ -84,7 +84,7 @@ public class TechFunGuide implements Listener {
                     }
                     if (!unlocked) {
                         if (item.getXpToUnlock() > 0) {
-                            catInv.addItem(TFUtil.makeItem("Locked Objects - " + ChatColor.stripColor(item.getItem().getItemMeta().getDisplayName()), new String[]{"Xp to unlock: " + String.valueOf(item.getXpToUnlock())}, Material.REDSTONE_BLOCK));
+                            catInv.addItem(TFUtil.makeItem("Locked Objects - " + ChatColor.stripColor(item.getItem().getItemMeta().getDisplayName()), new String[]{"解锁需经验值: " + String.valueOf(item.getXpToUnlock())}, Material.REDSTONE_BLOCK));
                         } else {
                             catInv.addItem(item.getItem());
                         }
@@ -102,7 +102,7 @@ public class TechFunGuide implements Listener {
                     page.setInv(catInv);
                     pages.add(page);
                     catcount++;
-                    catInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "TechFun Guide - Items");
+                    catInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "创新科技 - 物品");
                     putBorder(catInv);
                     catInv.setItem(49, TFUtil.makeItem("Page: " + String.valueOf(catcount + 1), new String[]{}, Material.STAINED_GLASS_PANE, 1, 3));
                     catInv.setMaxStackSize(1);
@@ -119,7 +119,7 @@ public class TechFunGuide implements Listener {
                     }
                     if (!unlocked) {
                         if (item.getXpToUnlock() > 0) {
-                            catInv.addItem(TFUtil.makeItem("Locked MultiBlock - " + ChatColor.stripColor(item.getIcon().getItemMeta().getDisplayName()), new String[]{"Xp to unlock: " + String.valueOf(item.getXpToUnlock())}, Material.REDSTONE_BLOCK));
+                            catInv.addItem(TFUtil.makeItem("Locked MultiBlock - " + ChatColor.stripColor(item.getIcon().getItemMeta().getDisplayName()), new String[]{"解锁需经验值: " + String.valueOf(item.getXpToUnlock())}, Material.REDSTONE_BLOCK));
                         } else {
                             catInv.addItem(item.getIcon());
                         }
@@ -137,7 +137,7 @@ public class TechFunGuide implements Listener {
                     page.setInv(catInv);
                     pages.add(page);
                     catcount++;
-                    catInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "TechFun Guide - Items");
+                    catInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "创新科技 - 物品");
                     putBorder(catInv);
                     catInv.setItem(49, TFUtil.makeItem("Page: " + String.valueOf(catcount + 1), new String[]{}, Material.STAINED_GLASS_PANE, 1, 3));
                     catInv.setMaxStackSize(1);
@@ -159,7 +159,7 @@ public class TechFunGuide implements Listener {
                     page.setInv(catInv);
                     pages.add(page);
                     catcount++;
-                    catInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "TechFun Guide - Items");
+                    catInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "创新科技 - 物品");
                     putBorder(catInv);
                     catInv.setItem(49, TFUtil.makeItem("Page: " + String.valueOf(catcount + 1), new String[]{}, Material.STAINED_GLASS_PANE, 1, 3));
                     catInv.setMaxStackSize(1);
@@ -176,7 +176,7 @@ public class TechFunGuide implements Listener {
                     }
                     if (!unlocked) {
                         if (machine.getXpToUnlock() > 0) {
-                            catInv.addItem(TFUtil.makeItem("Locked Machine - " + ChatColor.stripColor(machine.getItem().getItemMeta().getDisplayName()), new String[]{"Xp to unlock: " + String.valueOf(machine.getXpToUnlock())}, Material.REDSTONE_BLOCK));
+                            catInv.addItem(TFUtil.makeItem("Locked Machine - " + ChatColor.stripColor(machine.getItem().getItemMeta().getDisplayName()), new String[]{"解锁需经验值: " + String.valueOf(machine.getXpToUnlock())}, Material.REDSTONE_BLOCK));
                         } else {
                             catInv.addItem(machine.getItem());
                         }
@@ -194,7 +194,7 @@ public class TechFunGuide implements Listener {
                     page.setInv(catInv);
                     pages.add(page);
                     catcount++;
-                    catInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "TechFun Guide - Items");
+                    catInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "创新科技 - 物品");
                     putBorder(catInv);
                     catInv.setItem(49, TFUtil.makeItem("Page: " + String.valueOf(catcount + 1), new String[]{}, Material.STAINED_GLASS_PANE, 1, 3));
                     catInv.setMaxStackSize(1);
@@ -218,7 +218,7 @@ public class TechFunGuide implements Listener {
                 }
                 if (!unlocked) {
                     if (category.getXpToUnlock() > 0) {
-                        homeInv.addItem(TFUtil.makeItem("Locked Category - " + category.getName(), new String[]{"Xp to unlock: " + String.valueOf(category.getXpToUnlock())}, Material.REDSTONE_BLOCK));
+                        homeInv.addItem(TFUtil.makeItem("Locked Category - " + category.getName(), new String[]{"解锁需经验值: " + String.valueOf(category.getXpToUnlock())}, Material.REDSTONE_BLOCK));
                     } else {
                         homeInv.addItem(category.getItem());
                     }
@@ -236,7 +236,7 @@ public class TechFunGuide implements Listener {
                 page.setInv(homeInv);
                 homes.put(homecount, page);
                 homecount++;
-                homeInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "TechFun Guide - Home");
+                homeInv = Bukkit.createInventory(null, 54, ChatColor.AQUA + "创新科技 - 主页");
                 putBorder(homeInv);
                 homeInv.setMaxStackSize(1);
                 homeInv.setItem(49, TFUtil.makeItem("Page: " + String.valueOf(homecount + 1), new String[]{}, Material.STAINED_GLASS_PANE, 1, 3));
@@ -287,7 +287,7 @@ public class TechFunGuide implements Listener {
                 for(Page inv : homes.values()){
                     if(InvUtil.isInvSimilar(inv.getInv(), e.getClickedInventory())){
                         if((inv.getId() - 1) <= 0){
-                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "You are at the first page!");
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "你已经在第一页了!");
                             return;
                         }else{
                             p.openInventory(inv.getInv());
@@ -300,7 +300,7 @@ public class TechFunGuide implements Listener {
                 for(Page inv : homes.values()){
                     if(InvUtil.isInvSimilar(inv.getInv(), e.getClickedInventory())){
                         if((inv.getId() + 1) >= homes.size()){
-                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "You are at the last page!");
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "你已经翻到最后一页了!");
                             return;
                         }else{
                             p.openInventory(inv.getInv());
@@ -316,7 +316,7 @@ public class TechFunGuide implements Listener {
                 return;
             }
             for(Category category : Registry.getCategories()){
-                if(e.getCurrentItem().isSimilar(TFUtil.makeItem("Locked Category - " + category.getName(), new String[]{"Xp to unlock: " + String.valueOf(category.getXpToUnlock())}, Material.REDSTONE_BLOCK))){
+                if(e.getCurrentItem().isSimilar(TFUtil.makeItem("Locked Category - " + category.getName(), new String[]{"解锁需经验值: " + String.valueOf(category.getXpToUnlock())}, Material.REDSTONE_BLOCK))){
                     if(p.getLevel() >= category.getXpToUnlock()){
                         p.setLevel(p.getLevel() - category.getXpToUnlock());
                         DataManager.setPlayerData(p, "Guide.Categories." + category.getName() + ".Unlocked", true);
@@ -329,7 +329,7 @@ public class TechFunGuide implements Listener {
                         TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "Category unlocked!");
                         p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
                     }else{
-                        TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "Insufficient xp!");
+                        TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "经验值不足!");
                     }
                     return;
                 }
@@ -348,10 +348,10 @@ public class TechFunGuide implements Listener {
                     ).appendText(
                             "",
                             "",
-                            "You seem to have",
-                            "opened a category",
-                            "with nothing in",
-                            "it. Hmmmmmm."
+                            "你好像",
+                            "打开了",
+                            "一个空白的页面",
+                            "Emmmmmm."
                     ).sendToPlayer(((Player) e.getWhoClicked()).getPlayer());
                 }catch (Exception exception){
                     exception.printStackTrace();
@@ -364,7 +364,7 @@ public class TechFunGuide implements Listener {
                         return;
                     }
                     p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1.0F, 1.0F);
-                    Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "TechFun Guide - Objects Info");
+                    Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "创新科技  - 物品介绍");
                     if (recipe.getRecipe().length >= 1) {
                         if (recipe.getRecipe()[0] != null) {
                             inv.setItem(3, recipe.getRecipe()[0]);
@@ -421,7 +421,7 @@ public class TechFunGuide implements Listener {
                     for (Page inv : categoryInvs.get(c)) {
                         if (InvUtil.isInvSimilar(inv.getInv(), e.getClickedInventory())) {
                             if ((inv.getId() - 1) < 0) {
-                                TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "You are at the first page!");
+                                TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "你已经翻到第一页了!");
                                 return;
                             } else {
                                 p.openInventory(categoryInvs.get(c).get(inv.getId() - 1).getInv());
@@ -434,7 +434,7 @@ public class TechFunGuide implements Listener {
                     for (Page inv : categoryInvs.get(c)) {
                         if (InvUtil.isInvSimilar(inv.getInv(), e.getClickedInventory())) {
                             if ((inv.getId() + 1) >= categoryInvs.get(c).size()) {
-                                TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "You are at the last page!");
+                                TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "你已经翻到最后一页了!");
                                 return;
                             } else {
                                 p.openInventory(categoryInvs.get(c).get(inv.getId() + 1).getInv());
@@ -456,22 +456,22 @@ public class TechFunGuide implements Listener {
                     }
                 }
                 for (ItemBase item : c.getItems()) {
-                    if (e.getCurrentItem().isSimilar(TFUtil.makeItem("Locked Objects - " + ChatColor.stripColor(item.getItem().getItemMeta().getDisplayName()), new String[]{"Xp to unlock: " + String.valueOf(item.getXpToUnlock())}, Material.REDSTONE_BLOCK))) {
+                    if (e.getCurrentItem().isSimilar(TFUtil.makeItem("Locked Objects - " + ChatColor.stripColor(item.getItem().getItemMeta().getDisplayName()), new String[]{"解锁需经验值: " + String.valueOf(item.getXpToUnlock())}, Material.REDSTONE_BLOCK))) {
                         if (p.getLevel() >= item.getXpToUnlock()) {
                             p.setLevel(p.getLevel() - item.getXpToUnlock());
                             DataManager.setPlayerData(p, "Guide.Items." + item.getName() + ".Unlocked", true);
                             new TechFunGuide();
                             p.openInventory(categoryInvs.get(c).get(invId).getInv());
-                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "Objects unlocked!");
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "成功解锁物品!");
                             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
                         } else if (p.getGameMode() == GameMode.CREATIVE) {
                             DataManager.setPlayerData(p, "Guide.Items." + item.getName() + ".Unlocked", true);
                             new TechFunGuide();
                             p.openInventory(categoryInvs.get(c).get(invId).getInv());
-                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "Objects unlocked!");
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "成功解锁物品!");
                             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
                         } else {
-                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "Insufficient xp!");
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "经验值不足!");
                         }
                         return;
                     }
@@ -481,7 +481,7 @@ public class TechFunGuide implements Listener {
                             return;
                         }
                         p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1.0F, 1.0F);
-                        Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "TechFun Guide - Objects Info");
+                        Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "创新科技  - 物品介绍");
                         if (item.getRecipe().length >= 1) {
                             if (item.getRecipe()[0] != null) {
                                 inv.setItem(3, item.getRecipe()[0]);
@@ -538,7 +538,7 @@ public class TechFunGuide implements Listener {
                         for (Page inv : categoryInvs.get(c)) {
                             if (InvUtil.isInvSimilar(inv.getInv(), e.getClickedInventory())) {
                                 if ((inv.getId() - 1) < 0) {
-                                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "You are already at the last page!");
+                                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "你已经翻到最后一页了!");
                                     return;
                                 } else {
                                     p.openInventory(inv.getInv());
@@ -550,7 +550,7 @@ public class TechFunGuide implements Listener {
                         for (Page inv : categoryInvs.get(c)) {
                             if (InvUtil.isInvSimilar(inv.getInv(), e.getClickedInventory())) {
                                 if ((inv.getId() + 1) >= categoryInvs.get(c).size()) {
-                                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "You are already at the last page!");
+                                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "你已经翻到最后一页了!");
                                     return;
                                 } else {
                                     p.openInventory(inv.getInv());
@@ -563,28 +563,28 @@ public class TechFunGuide implements Listener {
                         p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1, 1);
                         return;
                     }
-                    if (e.getCurrentItem().isSimilar(TFUtil.makeItem("Locked MultiBlock - " + ChatColor.stripColor(item.getIcon().getItemMeta().getDisplayName()), new String[]{"Xp to unlock: " + String.valueOf(item.getXpToUnlock())}, Material.REDSTONE_BLOCK))) {
+                    if (e.getCurrentItem().isSimilar(TFUtil.makeItem("Locked MultiBlock - " + ChatColor.stripColor(item.getIcon().getItemMeta().getDisplayName()), new String[]{"解锁需经验值: " + String.valueOf(item.getXpToUnlock())}, Material.REDSTONE_BLOCK))) {
                         if (p.getLevel() >= item.getXpToUnlock()) {
                             p.setLevel(p.getLevel() - item.getXpToUnlock());
                             DataManager.setPlayerData(p, "Guide.Items." + ChatColor.stripColor(item.getIcon().getItemMeta().getDisplayName()) + ".Unlocked", true);
-                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "MultiBlock unlocked!");
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "成功解锁机器!");
                             new TechFunGuide();
                             p.openInventory(categoryInvs.get(c).get(invId).getInv());
                             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
                         } else if (p.getGameMode() == GameMode.CREATIVE) {
                             DataManager.setPlayerData(p, "Guide.Items." + ChatColor.stripColor(item.getIcon().getItemMeta().getDisplayName()) + ".Unlocked", true);
-                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "MultiBlock unlocked!");
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "成功解锁机器!");
                             new TechFunGuide();
                             p.openInventory(categoryInvs.get(c).get(invId).getInv());
                             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
                         } else {
-                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "Insufficient xp!");
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "经验值不足!");
                         }
                         return;
                     }
                     if (e.getCurrentItem().isSimilar(item.getIcon())) {
                         p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1.0F, 1.0F);
-                        Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "TechFun Guide - MultiBlock Info");
+                        Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "创新科技 - 机器介绍");
                         if (item.getMaterials()[0] != null) {
                             inv.setItem(3, new ItemStack(item.getMaterials()[0]));
                         }
@@ -612,7 +612,7 @@ public class TechFunGuide implements Listener {
                         if (item.getMaterials()[8] != null) {
                             inv.setItem(23, new ItemStack(item.getMaterials()[8]));
                         }
-                        inv.setItem(10, TFUtil.makeItem("MultiBlock", new String[]{"Build in the world!"}, Material.CLAY_BRICK));
+                        inv.setItem(10, TFUtil.makeItem("MultiBlock", new String[]{"在这个世界中建筑!"}, Material.CLAY_BRICK));
                         inv.setItem(16, item.getIcon());
                         inv.setItem(18, backpageitem);
                         p.openInventory(inv);
@@ -624,7 +624,7 @@ public class TechFunGuide implements Listener {
                         for (Page inv : categoryInvs.get(c)) {
                             if (InvUtil.isInvSimilar(inv.getInv(), e.getClickedInventory())) {
                                 if ((inv.getId() - 1) < 0) {
-                                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "You are already at the last page!");
+                                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "你已经在第一页了!");
                                     return;
                                 } else {
                                     p.openInventory(inv.getInv());
@@ -636,7 +636,7 @@ public class TechFunGuide implements Listener {
                         for (Page inv : categoryInvs.get(c)) {
                             if (InvUtil.isInvSimilar(inv.getInv(), e.getClickedInventory())) {
                                 if ((inv.getId() + 1) >= categoryInvs.get(c).size()) {
-                                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "You are already at the last page!");
+                                    TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "你已经翻到最后一页了!");
                                     return;
                                 } else {
                                     p.openInventory(inv.getInv());
@@ -649,22 +649,22 @@ public class TechFunGuide implements Listener {
                         p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1, 1);
                         return;
                     }
-                    if (e.getCurrentItem().isSimilar(TFUtil.makeItem("Locked Machine - " + ChatColor.stripColor(item.getItem().getItemMeta().getDisplayName()), new String[]{"Xp to unlock: " + String.valueOf(item.getXpToUnlock())}, Material.REDSTONE_BLOCK))) {
+                    if (e.getCurrentItem().isSimilar(TFUtil.makeItem("Locked Machine - " + ChatColor.stripColor(item.getItem().getItemMeta().getDisplayName()), new String[]{"解锁需经验值: " + String.valueOf(item.getXpToUnlock())}, Material.REDSTONE_BLOCK))) {
                         if (p.getLevel() >= item.getXpToUnlock()) {
                             p.setLevel(p.getLevel() - item.getXpToUnlock());
                             DataManager.setPlayerData(p, "Guide.Machine." + ChatColor.stripColor(item.getItem().getItemMeta().getDisplayName()) + ".Unlocked", true);
-                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "Machine unlocked!");
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "成功解锁机器!");
                             new TechFunGuide();
                             p.openInventory(categoryInvs.get(c).get(invId).getInv());
                             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
                         } else if (p.getGameMode() == GameMode.CREATIVE) {
                             DataManager.setPlayerData(p, "Guide.Machine." + ChatColor.stripColor(item.getItem().getItemMeta().getDisplayName()) + ".Unlocked", true);
-                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "Machine unlocked!");
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Success, "成功解锁机器!");
                             new TechFunGuide();
                             p.openInventory(categoryInvs.get(c).get(invId).getInv());
                             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
                         } else {
-                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "Insufficient xp!");
+                            TechFunMain.getPluginLogger().sendMessage(p, TextUtil.Level.Error, "经验值不足!");
                         }
                         return;
                     }
@@ -674,7 +674,7 @@ public class TechFunGuide implements Listener {
                             return;
                         }
                         p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1.0F, 1.0F);
-                        Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "TechFun Guide - Machine Info");
+                        Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "创新科技 - 机器介绍");
                         if (item.getRecipe()[0] != null) {
                             inv.setItem(3, new ItemStack(item.getRecipe()[0]));
                         }
@@ -702,7 +702,7 @@ public class TechFunGuide implements Listener {
                         if (item.getRecipe()[8] != null) {
                             inv.setItem(23, new ItemStack(item.getRecipe()[8]));
                         }
-                        inv.setItem(10, TFUtil.makeItem("Machine", new String[]{"Place in the world!"}, Material.FURNACE));
+                        inv.setItem(10, TFUtil.makeItem("Machine", new String[]{"请放置在世界中!"}, Material.FURNACE));
                         inv.setItem(16, item.getItem());
                         inv.setItem(18, backpageitem);
                         p.openInventory(inv);
@@ -710,7 +710,7 @@ public class TechFunGuide implements Listener {
                 }
             }
         }
-        if(e.getClickedInventory().getTitle().toLowerCase().contains("TechFun Guide - Objects Info".toLowerCase())){
+        if(e.getClickedInventory().getTitle().toLowerCase().contains("创新科技 - 物品介绍".toLowerCase())){
             e.setCancelled(true);
             if (e.getCurrentItem().isSimilar(backpageitem)) {
                 for (CustomRecipe customRecipe : Registry.getCustomRecipes()) {
@@ -733,7 +733,7 @@ public class TechFunGuide implements Listener {
             for(ItemBase item : Registry.getItems()){
                 if(e.getCurrentItem().isSimilar(item.getItem())){
                     p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1.0F, 1.0F);
-                    Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "TechFun Guide - Objects Info");
+                    Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "创新科技 - 物品介绍");
                     if(item.getRecipe().length >= 1){
                         if(item.getRecipe()[0] != null){
                             inv.setItem(3, item.getRecipe()[0]);
@@ -786,7 +786,7 @@ public class TechFunGuide implements Listener {
                 }
             }
         }
-        if(e.getClickedInventory().getTitle().toLowerCase().contains("TechFun Guide - MultiBlock Info".toLowerCase())){
+        if(e.getClickedInventory().getTitle().toLowerCase().contains("创新科技 - 机器介绍".toLowerCase())){
             e.setCancelled(true);
             if (e.getCurrentItem().isSimilar(backpageitem)) {
                 for (Category c : Registry.getCategories()) {
@@ -801,7 +801,7 @@ public class TechFunGuide implements Listener {
             for(ItemBase item : Registry.getItems()) {
                 if (e.getCurrentItem().isSimilar(item.getItem())) {
                     p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1.0F, 1.0F);
-                    Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "TechFun Guide - Objects Info");
+                    Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "创新科技 - 物品介绍");
                     if (item.getRecipe().length >= 1) {
                         if (item.getRecipe()[0] != null) {
                             inv.setItem(3, item.getRecipe()[0]);
@@ -847,14 +847,14 @@ public class TechFunGuide implements Listener {
                             inv.setItem(23, item.getRecipe()[8]);
                         }
                     }
-                    inv.setItem(10, TFUtil.makeItem("MultiBlock", new String[]{"Build in the world!"}, Material.CLAY_BRICK));
+                    inv.setItem(10, TFUtil.makeItem("MultiBlock", new String[]{"在这个世界中建筑!"}, Material.CLAY_BRICK));
                     inv.setItem(16, item.getItem());
                     inv.setItem(18, backpageitem);
                     p.openInventory(inv);
                 }
             }
         }
-        if(e.getClickedInventory().getTitle().toLowerCase().contains("TechFun Guide - Machine Info".toLowerCase())) {
+        if(e.getClickedInventory().getTitle().toLowerCase().contains("创新科技 - 机器介绍".toLowerCase())) {
             e.setCancelled(true);
             if (e.getCurrentItem().isSimilar(backpageitem)) {
                 for (Category c : Registry.getCategories()) {
