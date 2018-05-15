@@ -111,7 +111,7 @@ public class TechFunStartup {
 
         Category materials = Factory.makeCategory("TFMaterials", "Materials", new String[]{"Lots of things used to make lots of other", "things!"}, Material.DIAMOND, 0);
 
-        ItemBase woodenCore = Factory.makeItem("WoodenCore", TFUtil.makeSkullWithBase64(headBase64List.get("WoodenCore"), "Wooden Core", new String[]{"The very first item core! Just made of wood."}), new Object[]{
+        ItemBase woodenCore = Factory.makeItem("WoodenCore", TFUtil.makeSkullWithBase64(headBase64List.get("WoodenCore"), "橡木之芯", new String[]{"最基础的物品核心! 由橡木构成."}), new Object[]{
                 Material.LOG, Material.WOOD, Material.LOG,
                 Material.WOOD, Material.LEATHER, Material.WOOD,
                 Material.LOG, Material.WOOD, Material.LOG
@@ -121,7 +121,7 @@ public class TechFunStartup {
 
         materials.registerItem(woodenCore);
 
-        ItemBase stoneCore = Factory.makeItem("StoneCore", TFUtil.makeSkullWithBase64(headBase64List.get("StoneCore"), "Stone Core", new String[]{"The second tier of item cores!", "Its made of stone!"}), new Object[]{
+        ItemBase stoneCore = Factory.makeItem("StoneCore", TFUtil.makeSkullWithBase64(headBase64List.get("StoneCore"), "岩石之芯", new String[]{"第二级物品核心!", "由石头构成!"}), new Object[]{
                 Material.STONE, Material.COBBLESTONE, Material.STONE,
                 Material.COBBLESTONE, woodenCore.getItem(), Material.COBBLESTONE,
                 Material.STONE, Material.COBBLESTONE, Material.STONE
@@ -131,7 +131,7 @@ public class TechFunStartup {
 
         materials.registerItem(stoneCore);
 
-        ItemBase ironCore = Factory.makeItem("IronCore", TFUtil.makeSkullWithBase64(headBase64List.get("IronCore"), "Iron Core", new String[]{"The third tier of item cores! Made out of silver shiny stuff! :-D"}), new Object[]{
+        ItemBase ironCore = Factory.makeItem("IronCore", TFUtil.makeSkullWithBase64(headBase64List.get("IronCore"), "钢铁之芯", new String[]{"第三级物品核心! 由铁锭构成! :-D"}), new Object[]{
                 Material.IRON_INGOT, Material.STONE, Material.IRON_INGOT,
                 Material.STONE, stoneCore.getItem(), Material.STONE,
                 Material.IRON_INGOT, Material.STONE, Material.IRON_INGOT
@@ -141,7 +141,7 @@ public class TechFunStartup {
 
         materials.registerItem(ironCore);
 
-        ItemBase goldCore = Factory.makeItem("GoldCore", TFUtil.makeSkullWithBase64(headBase64List.get("GoldCore"), "Gold Core", new String[]{"The forth tier of item cores!"}), new Object[]{
+        ItemBase goldCore = Factory.makeItem("GoldCore", TFUtil.makeSkullWithBase64(headBase64List.get("GoldCore"), "黄金之芯", new String[]{"第四级物品核心!"}), new Object[]{
                 Material.GOLD_INGOT, Material.IRON_INGOT, Material.GOLD_INGOT,
                 Material.IRON_INGOT, ironCore.getItem(), Material.IRON_INGOT,
                 Material.GOLD_INGOT, Material.IRON_INGOT, Material.GOLD_INGOT
@@ -151,7 +151,7 @@ public class TechFunStartup {
 
         materials.registerItem(goldCore);
 
-        ItemBase diamondCore = Factory.makeItem("DiamondCore", TFUtil.makeSkullWithBase64(headBase64List.get("DiamondCore"), "Diamond Core", new String[]{"The second best tier of item cores! Made out of blue shiny stuff (Diamonds)!"}), new Object[]{
+        ItemBase diamondCore = Factory.makeItem("DiamondCore", TFUtil.makeSkullWithBase64(headBase64List.get("DiamondCore"), "钻石之芯", new String[]{"最高级的物品核心! 由闪耀的钻石构成!"}), new Object[]{
                 Material.DIAMOND, Material.GOLD_INGOT, Material.DIAMOND,
                 Material.GOLD_INGOT, goldCore.getItem(), Material.GOLD_INGOT,
                 Material.DIAMOND, Material.GOLD_INGOT, Material.DIAMOND
@@ -161,7 +161,7 @@ public class TechFunStartup {
 
         materials.registerItem(diamondCore);
 
-        ItemBase compressedCarbon = Factory.makeItem("CompressedCarbon", TFUtil.makeSkullWithBase64(headBase64List.get("CompressedCarbon"), "Compressed Carbon", new String[]{ "Carbon that is compressed. What did you expect?" }), new Object[]{
+        ItemBase compressedCarbon = Factory.makeItem("CompressedCarbon", TFUtil.makeSkullWithBase64(headBase64List.get("CompressedCarbon"), "压缩碳", new String[]{ "由碳压缩而成." }), new Object[]{
                 null, Material.COAL, null,
                 Material.COAL, Material.COAL_BLOCK, Material.COAL,
                 null, Material.COAL, null
@@ -171,7 +171,7 @@ public class TechFunStartup {
 
         materials.registerItem(compressedCarbon);
 
-        ItemBase uranium = Factory.makeItem("Uranium", TFUtil.makeSkullWithBase64(headBase64List.get("Uranium"), "Uranium", new String[]{ "It\'s radioactive, so I wouldn\'t recommend touching it much." }), new Object[]{
+        ItemBase uranium = Factory.makeItem("Uranium", TFUtil.makeSkullWithBase64(headBase64List.get("Uranium"), "铀", new String[]{ "辐射性\的物质, 我不推荐你\徒手触碰它." }), new Object[]{
                 Material.STONE
         }, CraftingStation.Ore, 20);
 
@@ -189,7 +189,7 @@ public class TechFunStartup {
 
         materials.registerItem(uranium);
 
-        ItemBase rawBronze = Factory.makeItem("RawBronze", TFUtil.makeSkullWithBase64(headBase64List.get("RawBronze"), "Raw Bronze", new String[]{ "The raw version of bronze. Simple." }), new Object[]{
+        ItemBase rawBronze = Factory.makeItem("RawBronze", TFUtil.makeSkullWithBase64(headBase64List.get("RawBronze"), "生青铜", new String[]{ "The raw version of bronze. Simple." }), new Object[]{
                 Material.IRON_ORE
         }, CraftingStation.Ore, 10);
 
